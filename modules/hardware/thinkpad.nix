@@ -1,11 +1,10 @@
-{ pkgs, lib, resume-dev, ... }: {
-  time.timeZone = lib.mkForce null;
-  powerManagement = {
-    enable = true;
-    powertop.enable = true;
-  };
+{ pkgs, ... }: {
+  import = [
+    ./tzupdate.nix
+    ./hibernation.nix
+  ];
+  powerManagement.powertop.enable = true;
   security = {
-    protectKernelImage = false; # https://discourse.nixos.org/t/hibernate-doesnt-work-anymore/24673/7
     tpm2 = {
       enable = true;
       pkcs11.enable = true;
@@ -30,9 +29,6 @@
     };
   };
   boot = {
-    kernelParams = if resume-dev == "" then [] else ["resume=${resume-dev}"];
-    resumeDevice = "${resume-dev}";
-
     kernelPackages = pkgs.linuxPackages;
     kernel.sysctl."vm.laptop_mode" = 5;
     initrd.availableKernelModules = [ "thinkpad_acpi" ];
@@ -54,10 +50,6 @@
         echo 85 > /sys/class/power_supply/BAT1/charge_control_end_threshold || true
       ''}"
     '';
-    tzupdate = {
-      enable = true;
-      timer.enable = true;
-    };
     upower = {
       enable = true;
       percentageCritical = 15;
