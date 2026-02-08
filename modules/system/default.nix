@@ -6,7 +6,6 @@
     ./core/network.nix
     ./core/kernel.nix
     ./core/shell.nix
-    ./core/user.nix
     ./misc/programs.nix
     ./misc/graphics.nix
     ./desktop.nix

@@ -6,7 +6,6 @@
     ./core/xdg.nix
     ./core/cli.nix
     ./core/zsh.nix
-    ./desktop.nix
   ];
 
   home = {

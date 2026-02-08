@@ -12,14 +12,20 @@
   };
 
   outputs = inputs: let 
-    args = { inherit inputs; } // import ./lib/options.nix;
     pkgs = import inputs.nixpkgs {
       system = "x86_64-linux";
       overlays = [ inputs.gl.overlay ];
-      config.allowUnfree = true;
+      config = {
+        allowUnfree = true;
+        permittedInsecurePackages = [ "ventoy-qt5-1.1.10" ];
+      };
     };
+    args = {
+      inherit inputs;
+    } // import ./lib/options.nix;
 
-    nixosConfigForHost = { host }: pkgs.lib.nixosSystem {
+    nixosConfigForHost = host: inputs.nixpkgs.lib.nixosSystem {
+      inherit pkgs;
       specialArgs = args;
       modules = [
         ./hosts/${host}/config.nix
@@ -30,6 +36,7 @@
             extraSpecialArgs = args;
             backupFileExtension = ".hm-backup";
             users.${args.username} = import ./hosts/${host}/home.nix;
+            sharedModules = [ inputs.ctp.homeModules.catppuccin ];
           };
         }
       ];

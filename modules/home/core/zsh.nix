@@ -1,4 +1,4 @@
-{ hostname, flake-path, mc, ... }: {
+{ hostname, flake-path, ... }: {
   programs = {
     pay-respects = {
       enable = true;
@@ -41,19 +41,19 @@
         "hm-sw" = "home-manager switch -b bak-hm --flake";
         "nix-sw" = "sudo nixos-rebuild switch --flake";
         "nix-hw-conf" = "nixos-generate-config --show-hardware-config";
+        "nixos-diff" = "nix build .#nixosConfigurations.$(hostname).config.system.build.toplevel -o /tmp/nix-flake-diff && nvd diff /run/current-system /tmp/nix-flake-diff";
         "cd-conf" = "cd ${flake-path}";
         "code-conf" = "zeditor ${flake-path}";
 
         "mkdistro" = "distrobox create -Y -i";
         "mkdistro-arch" = "mkdistro archlinux -n arch";
         "mkdistro-deb" = "mkdistro debian -n deb";
-        "win11-compose" = "docker compose --file ~/.config/winapps/compose.yaml";
         "wm-ctl" = "hyprctl --instance 0";
         "wm-lock" = "wm-ctl dispatch exec loginctl lock-session && notify-send ${hostname} 'Manual lock triggered'";
         "wm-dpms" = "wm-ctl dispatch dpms";
 
         "git-author-setup" = "git config user.name $(gh api -H \"Accept: application/vnd.github+json\" -H \"X-GitHub-Api-Version: 2022-11-28\" /user | jq -r .login) && git config user.email $(gh api -H \"Accept: application/vnd.github+json\" -H \"X-GitHub-Api-Version: 2022-11-28\" /user/emails | jq -r \".[1].email\")";
-        "mcl" = "portablemc start ${mc.version} -l ${mc.email}";
+        "mcl" = "portablemc start -l $(cat .minecraft/portablemc-launch-params.json | jq .email) $(cat .minecraft/portablemc-launch-params.json | jq .version)";
         "mc" = "ferium upgrade; mcl";
 
         "please" = "SUDO_PROMPT=\"What is the magic word? \" sudo";

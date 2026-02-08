@@ -1,8 +1,4 @@
 { pkgs, ... }: {
-  nixpkgs.config.permittedInsecurePackages = [
-    "ventoy-qt5-1.1.10"
-  ];
-
   environment.systemPackages = with pkgs; [
     baobab
     file-roller
@@ -59,6 +55,7 @@
     nixd
     nil
     nh
+    nvd
     git
   ];
 }
