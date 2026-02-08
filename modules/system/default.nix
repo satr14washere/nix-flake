@@ -5,9 +5,11 @@
     ./core/filesystem.nix
     ./core/network.nix
     ./core/kernel.nix
+    ./core/shell.nix
     ./core/user.nix
     ./misc/programs.nix
-    ./misc/desktop.nix
+    ./misc/graphics.nix
+    ./desktop.nix
     ./base.nix
   ];
 
@@ -20,8 +22,4 @@
       Defaults passwd_tries = 5
     '';
   };
-
-  fonts.packages = with pkgs; [
-    corefonts
-  ];
 }

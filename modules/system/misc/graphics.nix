@@ -1,11 +1,10 @@
-{ pkgs, enable-dm, ... }: {
+{ pkgs, ... }: {
   hardware.graphics = {
     enable = true;
     extraPackages = [ pkgs.libva-vdpau-driver ];
   };
 
   services = {
-    displayManager.gdm.enable = enable-dm;
     xserver = {
       enable = true;
       xkb = {
@@ -25,6 +24,18 @@
     blueman.enable = true;
     pulseaudio.enable = false;
   };
-
+  
+  fonts = {
+    enableDefaultPackages = true;
+    packages = with pkgs; [
+      nerd-fonts.droid-sans-mono
+      noto-fonts-cjk-sans
+      noto-fonts
+      font-awesome
+      corefonts
+    ];
+  };
+  
+  programs.xfconf.enable = true;
   security.rtkit.enable = true;
 }

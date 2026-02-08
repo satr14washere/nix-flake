@@ -13,16 +13,11 @@
   };
 
   programs = {
-    gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
-    zsh.enable = true;
-    nix-ld.enable = true;
     steam.enable = true;
+    gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
     appimage = {
       enable = true;
       binfmt = true;
-    };
-    kdeconnect = {
-      enable = true;
     };
   };
 }

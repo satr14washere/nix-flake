@@ -16,5 +16,5 @@ rewrite of my nixos flake with hopefully better structuring and modularity
 - [X] apps list
 - [X] user config (not hm)
 
-- [ ] home manager config
-- [ ] rice config (everything in /rice)
+- [X] home manager config
+- [X] rice config (everything in /rice)
