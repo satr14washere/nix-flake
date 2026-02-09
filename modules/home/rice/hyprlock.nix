@@ -45,7 +45,7 @@
       input-field = [
         {
           size = "200, 50";
-          position = "0, ${builtins.toString (rice.gap.outer + (if rice.bar.top then 0 else 60))}";
+          position = "0, ${toString (rice.gap.outer + (if rice.bar.top then 0 else 60))}";
           valign = "bottom";
           halign = "center";
 

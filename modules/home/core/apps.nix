@@ -23,6 +23,7 @@
       remmina
       moonlight-qt
       kdePackages.kdenlive
+      arduino-ide
       inkscape
       #davinci-resolve
 
@@ -47,6 +48,7 @@
       nodePackages.yarn
       python314
       jdk25_headless
+      arduino-cli
     ];
   };
 }
