@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   nixpkgs.config.allowUnfree = true;
-  
+
   home = {
     sessionVariables = {
       EDITOR = "nvim";
@@ -49,6 +49,7 @@
       python314
       jdk25_headless
       arduino-cli
+      esptool
     ];
   };
 }
