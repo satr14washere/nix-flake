@@ -1,4 +1,4 @@
-{ hostname, flake-path, ... }: {
+{ hostname, flake-path, zsh-theme, ... }: {
   programs = {
     pay-respects = {
       enable = true;
@@ -7,6 +7,14 @@
         "--alias"
         "f"
       ];
+    };
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
     };
     zsh = {
       enable = true;
@@ -24,6 +32,7 @@
         "cd-gvfs" = "cd /run/user/$(id -u)/gvfs";
         "wlp-set" = "swww img --transition-type=grow --transition-duration=1";
         "ssh" = "TERM=xterm-256color ssh";
+        "cd" = "z";
 
         "sys" = "sudo systemctl";
         "sys-log" = "journalctl -f -b -u";
@@ -50,16 +59,14 @@
         "mkdistro-deb" = "mkdistro debian -n deb";
         "wm-ctl" = "hyprctl --instance 0";
         "wm-lock" = "wm-ctl dispatch exec loginctl lock-session && notify-send ${hostname} 'Manual lock triggered'";
-        "wm-dpms" = "wm-ctl dispatch dpms";
+        "wm-disp" = "wm-ctl dispatch dpms";
 
-        "git-author-setup" = "git config user.name $(gh api -H \"Accept: application/vnd.github+json\" -H \"X-GitHub-Api-Version: 2022-11-28\" /user | jq -r .login) && git config user.email $(gh api -H \"Accept: application/vnd.github+json\" -H \"X-GitHub-Api-Version: 2022-11-28\" /user/emails | jq -r \".[1].email\")";
+        "gh-author-setup" = "git config user.name $(gh api -H \"Accept: application/vnd.github+json\" -H \"X-GitHub-Api-Version: 2022-11-28\" /user | jq -r .login) && git config user.email $(gh api -H \"Accept: application/vnd.github+json\" -H \"X-GitHub-Api-Version: 2022-11-28\" /user/emails | jq -r \".[1].email\")";
         "mcl" = "portablemc start -l $(cat .minecraft/portablemc-launch-params.json | jq -r .email) $(cat .minecraft/portablemc-launch-params.json | jq -r .version)";
         "mc" = "ferium upgrade; mcl";
-
-        "please" = "SUDO_PROMPT=\"What is the magic word? \" sudo";
-        "pls" = "SUDO_PROMPT=\"What is the magic word? \" sudo";
       };
       initContent = ''
+        export SUDO_PROMPT="Password:"
         if [[ -z "$SSH_CONNECTION" && $(tput cols) -ge 64 && $(tput lines) -ge 16 ]]; then
           # ~/.fetch.sh -c 2> /dev/null
         fi
@@ -67,7 +74,7 @@
       oh-my-zsh = {
         enable = true;
         plugins = ["git"];
-        theme = "refined";
+        theme = if zsh-theme != "" then zsh-theme else "random";
       };
     };
   };

@@ -1,11 +1,12 @@
 {
-  flake-path = "~/Projects/nix-conf"; # set this to the cloned repo path
+  flake-path = "~/Projects/nix-flake"; # set this to the cloned repo path
 
   hostname = "thinkpad";
   username = "satr14";
 
   timezone = "Asia/Jakarta";
   locale = "en_US.UTF-8";
+  zsh-theme = "refined"; # good themes: refined, re5et, risto, amuse, afowler, pmcgee, itchy, example, strug, pygmalion, muse
 
   legacy-boot = false; # enables grub if true
   enable-dm = true; # enable display manager (for server use)
