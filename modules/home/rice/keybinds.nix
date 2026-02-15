@@ -1,6 +1,6 @@
 { pkgs, hostname, ... }: {
   services.fusuma = {
-    extraPackages = with pkgs; [ systemd coreutils-full xorg.xprop ];
+    extraPackages = with pkgs; [ systemd coreutils-full xprop ];
     enable = true;
     settings = {
       swipe = {
