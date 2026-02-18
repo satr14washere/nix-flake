@@ -2,7 +2,7 @@
   services = {
     thermald.enable = false;
     throttled.enable = true;
-    power-profiles-daemon.enable = true; # replacement for tlp and auto-cpufreq due to bugs
+    power-profiles-daemon.enable = false; # replacement for tlp and auto-cpufreq due to bugs
     tlp = {
       enable = false; # buggy and inconsistent with frequency scaling
       settings = {
@@ -50,17 +50,23 @@
       };
     };
     auto-cpufreq = {
-      enable = false; # wait for fix: https://github.com/AdnanHodzic/auto-cpufreq/issues/906
+      enable = true; # wait for fix: https://github.com/AdnanHodzic/auto-cpufreq/issues/906
       settings = {
         charger = {
           governor = "performance";
           energy_performance_preference = "performance";
           turbo = "auto";
+          platform_profile = "performance";
+          scaling_min_freq = 800000;
+          scaling_max_freq = 3600000;
         };
         battery = {
           governor = "powersave";
           energy_performance_preference = "power";
+          platform_profile = "low-power";
           turbo = "never";
+          scaling_min_freq = 400000;
+          scaling_max_freq = 1000000;
         };
       };
     };
