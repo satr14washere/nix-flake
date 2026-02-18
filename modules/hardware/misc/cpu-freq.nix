@@ -1,7 +1,5 @@
 { ... }: {
   services = {
-    thermald.enable = false;
-    throttled.enable = true;
     power-profiles-daemon.enable = false; # replacement for tlp and auto-cpufreq due to bugs
     tlp = {
       enable = false; # buggy and inconsistent with frequency scaling
@@ -66,18 +64,9 @@
           platform_profile = "low-power";
           turbo = "never";
           scaling_min_freq = 400000;
-          scaling_max_freq = 1000000;
+          scaling_max_freq = 1700000;
         };
       };
-    };
-    thinkfan = {
-      enable = true;
-      levels = [
-        [ "level auto"       0  55  ]
-        [ 3                  55 65  ]
-        [ 7                  65 75  ]
-        [ "level full-speed" 75 100 ]
-      ];
     };
   };
 }
