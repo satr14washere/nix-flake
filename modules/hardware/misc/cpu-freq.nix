@@ -53,14 +53,14 @@
         charger = {
           governor = "performance";
           energy_performance_preference = "performance";
-          turbo = "auto";
+          turbo = "always";
           platform_profile = "performance";
           scaling_min_freq = 800000;
           scaling_max_freq = 3600000;
         };
         battery = {
           governor = "powersave";
-          energy_performance_preference = "power";
+          energy_performance_preference = "balance-power";
           platform_profile = "low-power";
           turbo = "never";
           scaling_min_freq = 400000;

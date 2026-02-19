@@ -46,6 +46,8 @@
     sysstat
     netcat
     p7zip
+    throttled
+    tlp
     stress
     stress-ng
     wakeonlan

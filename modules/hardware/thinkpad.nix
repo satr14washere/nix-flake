@@ -35,24 +35,32 @@
     throttled = {
       enable = true;
       extraConfig = ''
-        [UNDERVOLT]
-        CORE: -120
-        GPU: -80
-        CACHE: -120
-        UNCORE: -80
-        ANALOGIO: 0
+        [GENERAL]
+        Enabled: True
+        Update_Rate_s: 30
     
         [BATTERY]
-        PL1_Tdp_W: 12
-        PL2_Tdp_W: 20
-        PL1_Duration_s: 28
-        PL2_Duration_s: 0.002
         Update_Rate_s: 30
+        PL1_Tdp_W: 12
+        PL1_Duration_s: 28
+        PL2_Tdp_W: 20
+        PL2_Duration_s: 0.002
         Trip_Temp_C: 85
-        
+    
         [AC]
+        Update_Rate_s: 5
         PL1_Tdp_W: 25
+        PL1_Duration_s: 28
         PL2_Tdp_W: 35
+        PL2_Duration_s: 0.002
+        Trip_Temp_C: 90
+    
+        [UNDERVOLT]
+        CORE: -100
+        GPU: -80
+        CACHE: -100
+        UNCORE: -80
+        ANALOGIO: 0
       '';
     };
     thinkfan = {
