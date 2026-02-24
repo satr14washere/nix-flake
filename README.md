@@ -1,20 +1,5 @@
-# nix-flake
+![nix-flake](ss.png)
 rewrite of my nixos flake with hopefully better structuring and modularity
 
-# todo
-- (done) migrate files to this repository in the modules folder
-- (done) split the files into little chunks for 1 specific purposes per file
-- (done) reintegrate file paths and arguments to work together
-- (done) test the final config in my system
-
-# todo: migrate files below
-- [X] flake stuff (flake.nix & flake.lock)
-
-- [X] hardware configs (hardware/scans)
-- [X] nixos system
-- [X] base nix configs
-- [X] apps list
-- [X] user config (not hm)
-
-- [X] home manager config
-- [X] rice config (everything in /rice)
+> [!WARNING]
+> this flake is ment for personal use. code is not well documented and is not ment to be used by others. use at your own risk.
