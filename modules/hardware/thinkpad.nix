@@ -57,8 +57,8 @@
     
         [UNDERVOLT]
         CORE: -100
-        GPU: -80
         CACHE: -100
+        GPU: -80
         UNCORE: -80
         ANALOGIO: 0
       '';
@@ -74,4 +74,9 @@
     };
     hardware.bolt.enable = true;
   };
+  environment.systemPackages = with pkgs; [
+    intel-gpu-tools
+    throttled
+    tlp
+  ];
 }

@@ -14,6 +14,7 @@
       discord
       slack
       brave
+      modrinth-app
 
       appimage-run
       #winboat

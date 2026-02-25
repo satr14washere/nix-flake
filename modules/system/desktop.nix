@@ -1,7 +1,9 @@
-
 { pkgs, enable-dm, ... }: {
   imports = [
+    ./misc/programs.nix
+    ./misc/graphics.nix
     ./misc/theme.nix
+    ./base.nix
   ];
 
   programs.hyprland = {

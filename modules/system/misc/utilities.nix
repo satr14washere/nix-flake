@@ -16,7 +16,6 @@
     pavucontrol
     jq
     powertop
-    smartmontools
     fastfetch
     ethtool
     dig
@@ -46,8 +45,6 @@
     sysstat
     netcat
     p7zip
-    throttled
-    tlp
     stress
     stress-ng
     wakeonlan

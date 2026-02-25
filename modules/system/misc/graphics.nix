@@ -5,13 +5,6 @@
   };
 
   services = {
-    xserver = {
-      enable = true;
-      xkb = {
-        layout = "us";
-        variant = "";
-      };
-    };
     pipewire = {
       enable = true;
       alsa.enable = true;
