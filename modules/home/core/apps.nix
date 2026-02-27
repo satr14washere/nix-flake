@@ -20,6 +20,7 @@
       #winboat
       libreoffice
       #keepassxc
+      kicad-small
       vlc
       remmina
       moonlight-qt
