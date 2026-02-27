@@ -34,7 +34,9 @@
     
     nixosConfigWithHome = host: inputs.nixpkgs.lib.nixosSystem {
       inherit pkgs;
-      specialArgs = args;
+      specialArgs = {
+        hostname = host;
+      } // args;
       modules = [
         ./hosts/${host}/config.nix
         inputs.ctp.nixosModules.catppuccin

@@ -1,9 +1,7 @@
 {
   flake-path = "~/Projects/nix-flake"; # set this to the cloned repo path
 
-  hostname = "thinkpad";
   username = "satr14";
-
   timezone = "Asia/Jakarta";
   locale = "en_US.UTF-8";
   zsh-theme = "refined"; # good themes: refined, re5et, risto, amuse, afowler, pmcgee, itchy, example, strug, pygmalion, muse
@@ -16,7 +14,11 @@
   resume-dev = "/dev/disk/by-uuid/1721721a-bb5a-4166-a077-9500d30be2ac"; # set to swap partition to enable hibernation, e.g. /dev/disk/by-uuid/1721721a-bb5a-4166-a077-9500d30be2ac
   
   homelab = {
-    domain = "satr14.my.id";
+    domain = "satr14.my.id"; # root domain for dns, ssl certs, reverse proxy, etc.
+    disks = {
+      share = "/dev/disk/by-uuid/1b9c8e5c-1d0a-4f2b-9c3e-7a0c8e5f6a2b"; # disk for nas share
+      data = "/dev/disk/by-uuid/2c3d4e5f-6a7b-8c9d-0e1f-2a3b4c5d6e7f"; # disk for app data
+    };
   };
 
   rice = {

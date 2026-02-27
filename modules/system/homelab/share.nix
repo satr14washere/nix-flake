@@ -4,7 +4,7 @@
       enable = true;
       virtualHosts."cdn" = {
         listen = [{ ip = "*"; port = 3000; }];
-        documentRoot = "/srv/dev-disk-by-uuid-f1ee1d17-e852-4e02-ae86-eaf6116a2aeb/NAS";
+        documentRoot = "/mnt/share";
         extraConfig = ''
           Options +Indexes +FollowSymLinks
           Require all granted
@@ -22,7 +22,7 @@
           "server min protocol" = "SMB2_02";
         };
         "NAS" = {
-          path = "/srv/dev-disk-by-uuid-f1ee1d17-e852-4e02-ae86-eaf6116a2aeb/NAS/";
+          path = "/mnt/share";
           browseable = "yes";
           "read only" = "no";
           "create mask" = "0664";
