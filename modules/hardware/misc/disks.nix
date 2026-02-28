@@ -1,12 +1,16 @@
-{ homelab, ... }: {
+{ homelab, ... }: let
+  globalOpts = {
+    fsType = "ext4";
+    autoFormat = true;
+    autoResize = true;
+  };
+in {
   fileSystems = {
-    "/mnt/share" = {
+    "/mnt/share" = globalOpts // {
       device = homelab.disks.share;
-      fsType = "ext4";
     };
-    "/mnt/data" = {
+    "/mnt/data" = globalOpts // {
       device = homelab.disks.data;
-      fsType = "ext4";
     };
   };
 }
