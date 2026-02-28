@@ -51,6 +51,7 @@
     };
     
     homeConfig = host: inputs.hm.lib.homeManagerConfiguration {
+      extraSpecialArgs = args // { hostname = host; };
       inherit pkgs;
       modules = [
         ./hosts/${host}/home.nix
