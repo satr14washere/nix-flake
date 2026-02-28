@@ -16,8 +16,8 @@
   homelab = {
     domain = "satr14.my.id"; # root domain for dns, ssl certs, reverse proxy, etc.
     disks = {
-      share = "/dev/disk/by-uuid/1b9c8e5c-1d0a-4f2b-9c3e-7a0c8e5f6a2b"; # disk for nas share
-      data = "/dev/disk/by-uuid/2c3d4e5f-6a7b-8c9d-0e1f-2a3b4c5d6e7f"; # disk for app data
+      share = "/dev/disk/by-uuid/ac61f6c8-ac20-41dd-ba93-41c4a225dc98"; # disk for nas share
+      data = "/dev/disk/by-uuid/a5752dd6-092d-484c-969c-2fdc7cb4a5f0"; # disk for app data
     };
   };
 
