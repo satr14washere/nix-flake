@@ -26,7 +26,7 @@
           bing = true;
           duckduckgo = true;
         };
-        rewrites = map (host: { enabled = true; domain = host[0]; answer = host[1]; }) [
+        rewrites = map (e: { enabled = true; domain = builtins.elemAt e 0; answer = builtins.elemAt e 1; }) [
           [ "router.dns.${homelab.domain}"     "10.3.14.1"                  ]
           [ "main.dns.${homelab.domain}"       "10.3.14.42"                 ]
           [ "websites.dns.${homelab.domain}"   "10.3.14.36"                 ]
