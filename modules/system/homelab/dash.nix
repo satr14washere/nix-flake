@@ -74,7 +74,6 @@ in {
       server = {
         host = "127.0.0.1";
         port = 5070;
-        assets-path = "/app/assets";
       };
 
       theme = {
