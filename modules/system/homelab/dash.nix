@@ -159,17 +159,23 @@ in {
                 }
                 {
                   type = "repository";
+                  repository = "is-a-dev/register";
+                  pull-requests-limit = 5;
+                  issues-limit = 3;
+                  commits-limit = 0;
+                  hide-header = true;
+                }
+                {
+                  type = "repository";
                   repository = "partofmyid/register";
                   pull-requests-limit = 5;
                   issues-limit = 3;
                   commits-limit = 0;
-                  # token = "\${GITHUB_TOKEN}";
                   hide-header = true;
                 }
                 {
                   type = "releases";
                   cache = "1d";
-                  # token = "\${GITHUB_TOKEN}";
                   hide-header = true;
                   repositories = gh;
                 }
@@ -198,73 +204,10 @@ in {
                 }
                 {
                   type = "dns-stats";
-                  title = "DNS STATS";
+                  title = "DNS Stats";
                   service = "adguard";
-                  url = "http://main.dns.satr14.my.id:8088/";
-                  username = "satr14";
-                  password = "\${ADGUARD_TOKEN}";
+                  url = "http://localhost:8088/";
                   hour-format = "12h";
-                }
-                {
-                  type = "custom-api";
-                  title = "PVE Stats";
-                  cache = "1m";
-                  allow-insecure = true;
-                  url = "https://homeserver.dns.satr14.my.id:8006/api2/json/cluster/resources";
-                  headers = {
-                    Accept = "application/json";
-                    Authorization = "PVEAPIToken=\${PROXVE_TOKEN}";
-                  };
-                  template = ''
-                    <div class="flex flex-column gap-5">
-                      <div class="flex justify-evenly text-center">
-                        <div>
-                          {{ $nodes_online := len (.JSON.Array "data.#(type==\"node\")#|#(status==\"online\")#") }}
-                          {{ $nodes_total := len (.JSON.Array "data.#(type==\"node\")#") }}
-                          <div class="color-highlight size-h3">{{ $nodes_online }}/{{ $nodes_total }}</div>
-                          <div class="size-h5 uppercase">Nodes</div>
-                        </div>
-                        <div>
-                          {{ $lxc_running := len (.JSON.Array "data.#(type==\"lxc\")#|#(status==\"running\")#|#(template==0)#") }}
-                          {{ $lxc_total := len (.JSON.Array "data.#(type==\"lxc\")#|#(template==0)#") }}
-                          <div class="color-highlight size-h3">{{ $lxc_running }}/{{ $lxc_total }}</div>
-                          <div class="size-h5 uppercase">LXCs</div>
-                        </div>
-                        <div>
-                          {{ $qemu_running := len (.JSON.Array "data.#(type==\"qemu\")#|#(status==\"running\")#|#(template==0)#") }}
-                          {{ $qemu_total := len (.JSON.Array "data.#(type==\"qemu\")#|#(template==0)#") }}
-                          <div class="color-highlight size-h3">{{ $qemu_running }}/{{ $qemu_total }}</div>
-                          <div class="size-h5 uppercase">VMs</div>
-                        </div>
-                      </div>
-                    </div>
-                  '';
-                }
-                {
-                  type = "custom-api";
-                  title = "Immich Usage";
-                  cache = "30m";
-                  url = "http://media.dns.satr14.my.id:2283/api/server/statistics";
-                  headers = {
-                    x-api-key = "\${IMMICH_TOKEN}";
-                    Accept = "application/json";
-                  };
-                  template = ''
-                    <div class="flex justify-evenly text-center">
-                      <div>
-                        <div class="color-highlight size-h3">{{ .JSON.Int "photos" | formatNumber }}</div>
-                        <div class="size-h6">PHOTOS</div>
-                      </div>
-                      <div>
-                        <div class="color-highlight size-h3">{{ .JSON.Int "videos" | formatNumber }}</div>
-                        <div class="size-h6">VIDEOS</div>
-                      </div>
-                      <div>
-                        <div class="color-highlight size-h3">{{ div (.JSON.Int "usage" | toFloat) 1073741824 | toInt | formatNumber }}GB</div>
-                        <div class="size-h6">USAGE</div>
-                      </div>
-                    </div>
-                  '';
                 }
               ];
             }
