@@ -1,4 +1,4 @@
-{ homelab, ... }: let
+{ homelab, lib, ... }: let
   base = "proxy.${homelab.domain}";
   proxyMappings = {
     "dns" = { dest = "http://localhost:8088"; auth = true; };
@@ -22,8 +22,7 @@ in {
       enable = true;
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
-      virtualHosts = builtins.mapAttrs (subdomain: cfg: {
-        hostName = "${subdomain}.${base}";
+      virtualHosts = lib.mapAttrs' (subdomain: cfg: lib.nameValuePair "${subdomain}.${base}" {
         useACMEHost = base;
         forceSSL = true;
         
