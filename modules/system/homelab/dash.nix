@@ -55,9 +55,9 @@
     [ "CDN" "http://10.3.14.217:3000/" ]
   ];
   services = [
-    [ "PocketID" "si:authentik" "https://auth.satr14.my.id" "http://main.dns.satr14.my.id:1411/" ]
-    [ "2FAuth" "si:authy" "https://2fa.satr14.my.id" "http://main.dns.satr14.my.id:8090/" ]
-    [ "VaultWarden" "si:vaultwarden" "https://pass.proxy.satr14.my.id" "http://main.dns.satr14.my.id:8060/" ]
+    [ "PocketID" "authentik" "https://auth.satr14.my.id" "http://main.dns.satr14.my.id:1411/" ]
+    [ "2FAuth" "authy" "https://2fa.satr14.my.id" "http://main.dns.satr14.my.id:8090/" ]
+    [ "VaultWarden" "vaultwarden" "https://pass.proxy.satr14.my.id" "http://main.dns.satr14.my.id:8060/" ]
   ];
   bookmarks = [
     [ "Tailscale" "tailscale" "https://login.tailscale.com/" ]
@@ -72,7 +72,7 @@ in {
     environmentFile = "/var/lib/glance/.env";
     settings = {
       server = {
-        host = "127.0.0.1";
+        host = "0.0.0.0"; # "127.0.0.1";
         port = 5070;
       };
 
@@ -197,9 +197,10 @@ in {
                   style = "compact";
                   show-failing-only = true;
                   sites = map (e: {
-                    enabled = true;
-                    domain = builtins.elemAt e 0;
-                    answer = builtins.elemAt e 1;
+                    same-tab = true;
+                    allow-insecure = true;
+                    title = builtins.elemAt e 0;
+                    url = builtins.elemAt e 1;
                   }) monitor;
                 }
                 {
