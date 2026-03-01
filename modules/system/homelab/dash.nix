@@ -69,6 +69,7 @@
 in {
   services.glance = {
     enable = true;
+    environmentFile = "/var/lib/glance/.env";
     settings = {
       server = {
         host = "127.0.0.1";
