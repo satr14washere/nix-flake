@@ -6,7 +6,8 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    
+    sops.url = "github:Mic92/sops-nix";
     gl.url = "github:nix-community/nixGL";
     ctp.url = "github:catppuccin/nix";
   };
@@ -29,6 +30,8 @@
       specialArgs = args // { hostname = host; };
       modules = [
         ./hosts/${host}/config.nix
+        inputs.ctp.nixosModules.catppuccin
+        inputs.sops.nixosModules.sops
       ];
     };
     
@@ -38,6 +41,7 @@
       modules = [
         ./hosts/${host}/config.nix
         inputs.ctp.nixosModules.catppuccin
+        inputs.sops.nixosModules.sops
         inputs.hm.nixosModules.home-manager
         {
           home-manager = {

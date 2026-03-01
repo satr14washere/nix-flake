@@ -1,10 +1,14 @@
-{ homelab, ... }: {
+{ homelab, username, ... }: {
   services.adguardhome = {
     enable = true;
-    host = "0.0.0.0";
+    host = "127.0.0.1"; # bind web ui to localhost since we're using reverse proxy authentication
     port = 8088;
     mutableSettings = false;
     settings = {
+      # users = [{
+      #   name = "${username}";
+      #   password = "${username}";
+      # }];
       dns = {
         upstream_dns = [ "https://security.cloudflare-dns.com/dns-query" ];
         bootstrap_dns = [ "1.1.1.2" "1.0.0.2" ];
@@ -20,13 +24,7 @@
         parental_enabled = true;
         rewrites_enabled = true;
         filtering_enabled = true;
-        safe_search = {
-          enabled = true;
-          youtube = true;
-          google = true;
-          bing = true;
-          duckduckgo = true;
-        };
+        safe_search.enabled = true;
         rewrites = map (e: { enabled = true; domain = builtins.elemAt e 0; answer = builtins.elemAt e 1; }) [
           [ "router.dns.${homelab.domain}"     "10.3.14.1"                  ]
           [ "main.dns.${homelab.domain}"       "10.3.14.42"                 ]
