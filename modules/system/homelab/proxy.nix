@@ -1,7 +1,8 @@
 { homelab, ... }: let
   base = "proxy.${homelab.domain}";
   proxyMappings = {
-    "dns"     = { dest = "http://localhost:8088"; auth = true; };
+    "dns" = { dest = "http://localhost:8088"; auth = true; };
+    "cdn" = { dest = "http://localhost:3000"; auth = false; };
   };
 in {
   users.users.nginx.extraGroups = [ "acme" ];

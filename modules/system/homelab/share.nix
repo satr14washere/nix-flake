@@ -3,12 +3,8 @@
     httpd = {
       enable = true;
       virtualHosts."cdn" = {
-        listen = [{ ip = "*"; port = 3000; }];
+        listen = [{ ip = "127.0.0.1"; port = 3000; }];
         documentRoot = "/mnt/share";
-        extraConfig = ''
-          Options +Indexes +FollowSymLinks
-          Require all granted
-        '';
       };
     };
 
