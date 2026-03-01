@@ -22,7 +22,12 @@ in {
       enable = true;
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
-      virtualHosts = lib.mapAttrs' (subdomain: cfg: lib.nameValuePair "${subdomain}.${base}" {
+      virtualHosts = {
+        "_" = {
+          default = true;
+          locations."/".return = "404";
+        };
+      } // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair (if subdomain == "@" then base else "${subdomain}.${base}") {
         useACMEHost = base;
         forceSSL = true;
         
