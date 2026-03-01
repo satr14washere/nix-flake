@@ -23,8 +23,9 @@ in {
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
       virtualHosts = builtins.mapAttrs (subdomain: cfg: {
-        forceSSL = true;
+        hostName = "${subdomain}.${base}";
         useACMEHost = base;
+        forceSSL = true;
         
         locations."/" = {
           proxyPass = cfg.dest;
