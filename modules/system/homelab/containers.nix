@@ -1,4 +1,4 @@
-{ ... }: let
+{ lib, ... }: let
   stacks-dir = "/opt/stacks";
 in {
   virtualisation = {
@@ -27,10 +27,10 @@ in {
   
   systemd.services."docker-dockge" = {
       serviceConfig = {
-        Restart = "always";
-        RestartMaxDelaySec = "1m";
-        RestartSec = "100ms";
-        RestartSteps = 9;
+        Restart = lib.mkOverride 500 "always";
+        RestartMaxDelaySec = lib.mkOverride 500 "1m";
+        RestartSec = lib.mkOverride 500 "100ms";
+        RestartSteps = lib.mkOverride 500 9;
       };
       wantedBy = [
         "multi-user.target"
