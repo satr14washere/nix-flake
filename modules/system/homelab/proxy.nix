@@ -1,6 +1,6 @@
 { homelab, lib, ... }: let
   base = "proxy.${homelab.domain}";
-  proxyMappings = {
+  proxy-mappings = {
     "containers" = { dest = "http://localhost:5001"; auth = false; };
     "auth"       = { dest = "http://localhost:1411"; auth = false; };
     "dns"        = { dest = "http://localhost:8088"; auth = true; };
@@ -47,6 +47,6 @@ in {
             proxy_set_header X-Forwarded-Proto $scheme;
           '';
         };
-      }) proxyMappings;
+      }) proxy-mappings;
     };
 }
