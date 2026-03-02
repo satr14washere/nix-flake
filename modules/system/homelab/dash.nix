@@ -49,14 +49,14 @@
     [ "Hypervisor" "https://10.3.14.69:8006/" ]
     [ "Router" "http://10.3.14.1:80/" ]
     [ "DNS" "http://localhost:8088/" ]
-    [ "Proxy" "https://localhost:443/" ]
     [ "CDN" "http://localhost:3000/" ]
+    [ "Proxy" "https://proxy.${homelab.domain}/" ]
   ];
   services = [
-    [ "PocketID" "authentik" "https://auth.proxy.satr14.my.id" "http://localhost:1411/" ]
-    [ "AdGuardHome" "adguard" "https://dns.proxy.satr14.my.id" "http://localhost:8088/" ]
-    [ "ApacheHTTPD" "apache" "https://cdn.proxy.satr14.my.id" "http://localhost:3000/" ]
-    [ "Forgejo" "forgejo" "https://git.proxy.satr14.my.id" "http://localhost:5080/" ]
+    [ "PocketID" "authentik" "https://auth.proxy.${homelab.domain}" "http://localhost:1411/" ]
+    [ "AdGuardHome" "adguard" "https://dns.proxy.${homelab.domain}" "http://localhost:8088/" ]
+    [ "ApacheHTTPD" "apache" "https://cdn.proxy.${homelab.domain}" "http://localhost:3000/" ]
+    [ "Forgejo" "forgejo" "https://git.proxy.${homelab.domain}" "http://localhost:5080/" ]
   ];
   bookmarks = [
     [ "Tailscale" "tailscale" "https://login.tailscale.com/" ]
