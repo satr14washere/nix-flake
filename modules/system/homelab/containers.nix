@@ -24,4 +24,18 @@ in {
     ];
     log-driver = "journald";
   };
+  
+  systemd.services."docker-dockge" = {
+      serviceConfig = {
+        Restart = "always";
+        RestartMaxDelaySec = "1m";
+        RestartSec = "100ms";
+        RestartSteps = 9;
+      };
+      wantedBy = [
+        "multi-user.target"
+        "network.target"
+        "docker.service"
+      ];
+    };
 }
