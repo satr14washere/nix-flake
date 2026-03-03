@@ -8,7 +8,7 @@ in {
     };
     volumes = [
       "${stacks-dir}:${stacks-dir}:rw"
-      "/root/dockge:/app/data:rw"
+      "${homelab.disks.data}/dockge/data:/app/data:rw"
       "/var/run/docker.sock:/var/run/docker.sock:rw"
     ];
     ports = [
