@@ -12,6 +12,8 @@
     # "media"      = { dest = "http://localhost:8096"; auth = false; };
     
     "containers" = { dest = "http://localhost:5001"; auth = false; };
+    "gallery"    = { dest = "http://localhost:2283"; auth = false; };
+    "remote"     = { dest = "http://localhost:8085"; auth = false; };
     "auth"       = { dest = "http://localhost:1411"; auth = false; };
     "cdn"        = { dest = "http://localhost:3000"; auth = false; };
     "git"        = { dest = "http://localhost:5080"; auth = false; };

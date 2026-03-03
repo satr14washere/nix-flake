@@ -2,6 +2,7 @@
   imports = lib.mkIf (config.specialisation != {}) [
     ./homelab/containers.nix
     ./homelab/gallery.nix
+    ./homelab/remote.nix
     # ./homelab/media.nix # wip
     ./homelab/share.nix
     ./homelab/proxy.nix
