@@ -189,6 +189,7 @@ in {
         {
           name = "Dashboard";
           show-mobile-header = true;
+          width = "slim";
           columns = [
             {
               size = "small";
