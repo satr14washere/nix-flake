@@ -1,6 +1,8 @@
 { homelab, ... }: {
   services.forgejo = {
     enable = true;
+    lfs.enable = true;
+    stateDir = "${homelab.disks.data}/forgejo";
     settings = {
       server = {
         DISABLE_SSH = true;

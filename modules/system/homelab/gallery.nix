@@ -1,4 +1,4 @@
-{ ... }: {
+{ homelab, ... }: {
   users.users.immich.extraGroups = [ "video" "render" ];
 
   services = {
@@ -6,7 +6,7 @@
       enable = true;
       port = 2283;
       host = "127.0.0.1";
-      mediaLocation = "/var/lib/immich";
+      mediaLocation = "${homelab.disks.data}/immich";
       accelerationDevices = null;
       machine-learning.enable = true;
     };

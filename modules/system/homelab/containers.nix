@@ -1,5 +1,5 @@
-{ lib, ... }: let
-  stacks-dir = "/opt/stacks";
+{ lib, homelab, ... }: let
+  stacks-dir = "${homelab.disks.data}/dockge/stacks";
 in {
   virtualisation.oci-containers.containers."dockge" = {
     image = "louislam/dockge:latest";
