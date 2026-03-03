@@ -191,22 +191,6 @@ in {
           show-mobile-header = true;
           columns = [
             {
-              type = "bookmarks";
-              groups = [{
-                links = map (e: {
-                  same-tab = true;
-                  title = builtins.elemAt e 0;
-                  icon = "si:${builtins.elemAt e 1}";
-                  url = builtins.elemAt e 2;
-                }) bookmarks;
-              }];
-            }
-            {
-              type = "to-do";
-              id = "tasks";
-              hide-header = true;
-            }
-            {
               size = "small";
               widgets = [
                 {
@@ -228,6 +212,22 @@ in {
                   service = "adguard";
                   url = "http://localhost:8088/";
                   hour-format = "12h";
+                }
+                {
+                  type = "bookmarks";
+                  groups = [{
+                    links = map (e: {
+                      same-tab = true;
+                      title = builtins.elemAt e 0;
+                      icon = "si:${builtins.elemAt e 1}";
+                      url = builtins.elemAt e 2;
+                    }) bookmarks;
+                  }];
+                }
+                {
+                  type = "to-do";
+                  id = "tasks";
+                  hide-header = true;
                 }
               ];
             }
