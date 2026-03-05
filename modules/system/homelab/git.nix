@@ -24,7 +24,8 @@
         ALLOW_ONLY_INTERNAL_REGISTRATION = false;
         REQUIRE_EXTERNAL_REGISTRATION_PASSWORD = true;
       };
-      user.ENABLE_FOLLOWING=false;
+      ui.DEFAULT_THEME = "catppuccin-mocha-blue";
+      user.ENABLE_FOLLOWING = false;
       repository = {
         DISABLE_STARS = true;
         DISABLE_FORKS = true;
