@@ -12,6 +12,7 @@
     ./homelab/git.nix
     ./homelab/ai.nix
     ./core/swapfile.nix
+    ./misc/theme.nix
     ./base.nix
   ];
 

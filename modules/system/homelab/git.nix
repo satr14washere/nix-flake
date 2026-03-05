@@ -25,8 +25,8 @@
         REQUIRE_EXTERNAL_REGISTRATION_PASSWORD = true;
       };
       ui = {
-        # THEMES = "catppuccin-blue-auto,catppuccin-mocha-blue,catppuccin-sapphire-auto,catppuccin-mocha-sapphire,auto";
-        # DEFAULT_THEME = "catppuccin-mocha-blue";
+        THEMES = "catppuccin-blue-auto,catppuccin-mocha-blue,catppuccin-sapphire-auto,catppuccin-mocha-sapphire,auto";
+        DEFAULT_THEME = "catppuccin-mocha-blue";
       };
       user.ENABLE_FOLLOWING=false;
       repository = {
