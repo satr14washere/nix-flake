@@ -71,9 +71,13 @@
     [ "ZeroTier" "zerotier" "https://my.zerotier.com" ]
   ];
 in {
-  users.users.glance = {
-    extraGroups = [ "docker" ];
-    isSystemUser = true;
+  users = {
+    groups.glance = {};
+    users.glance = {
+      extraGroups = [ "docker" ];
+      isSystemUser = true;
+      group = "glance";
+    };
   };
   services.glance = {
     enable = true;
