@@ -35,7 +35,7 @@
     distrobox
 
     ventoy-full-qt
-    home-manager
+    ffmpeg
     vim
     wget
     curl
@@ -53,6 +53,7 @@
     lxappearance
     freerdp
 
+    home-manager
     nix-index
     nixd
     nil
