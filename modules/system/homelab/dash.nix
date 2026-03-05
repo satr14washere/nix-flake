@@ -59,7 +59,7 @@
     [ "Forgejo" "forgejo" "https://git.proxy.${homelab.domain}" "http://localhost:5080/" ]
     [ "Dockge" "docker" "https://containers.proxy.${homelab.domain}" "http://localhost:5001/" ]
     [ "Ollama" "ollama" "https://ai.proxy.${homelab.domain}" "http://localhost:8080/" ]
-    [ "Guacamole" "apacheguacamole" "https://remote.proxy.${homelab.domain}" "http://localhost:8085/" ]
+    [ "Guacamole" "apacheguacamole" "https://remote.proxy.${homelab.domain}" "http://localhost:8085/guacamole/" ]
     [ "Immich" "immich" "https://gallery.proxy.${homelab.domain}" "http://localhost:2283/" ]
   ];
   bookmarks = [
@@ -249,6 +249,7 @@ in {
                     title = builtins.elemAt e 0;
                     icon = "si:${builtins.elemAt e 1}";
                     url = builtins.elemAt e 2;
+                    check-url = builtins.elemAt e 3;
                   }) services;
                 }
               ];
