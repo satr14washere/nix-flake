@@ -70,6 +70,7 @@
     [ "ZeroTier" "zerotier" "https://my.zerotier.com" ]
   ];
 in {
+  users.users.glance.extraGroups = [ "docker" ];
   services.glance = {
     enable = true;
     environmentFile = "/var/lib/glance/.env";
