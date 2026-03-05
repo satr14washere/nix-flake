@@ -4,6 +4,7 @@
     ./misc/power-button.nix
     ./misc/cpu-freq.nix
     ./misc/tzupdate.nix
+    ./misc/fakecam.nix
     ./core/hibernation.nix
     ./core/firmware.nix
     ./core/igpu.nix
