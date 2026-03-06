@@ -52,11 +52,17 @@
     [ "CDN" "http://localhost:3000/" ]
     [ "Proxy" "https://proxy.${homelab.domain}/" ]
   ];
+  external = [
+    [ "Proxmox" "proxmox" "https://server.proxy.${homelab.domain}" "http://server.dns.${homelab.domain}:8006/" ]
+    [ "OpenWRT" "openwrt" "https://router.proxy.${homelab.domain}" "http://router.dns.${homelab.domain}:80/" ]
+    [ "HomeAssistant" "homeassistant" "https://home.proxy.${homelab.domain}" "http://home.dns.${homelab.domain}:8123/" ]
+    [ "OpenMediaVault" "openmediavault" "https://nas.proxy.${homelab.domain}" "http://nas.dns.${homelab.domain}:80/" ]
+    [ "ApacheHTTPD" "apache" "https://cdn.proxy.${homelab.domain}" "http://nas.dns.${homelab.domain}:3000/" ]
+  ];
   services = [
     [ "PocketID" "authentik" "https://auth.${homelab.domain}" "http://localhost:1411/" ]
     [ "Forgejo" "forgejo" "https://git.${homelab.domain}" "http://localhost:5080/" ]
     [ "AdGuardHome" "adguard" "https://dns.proxy.${homelab.domain}" "http://localhost:8088/" ]
-    [ "ApacheHTTPD" "apache" "https://cdn.proxy.${homelab.domain}" "http://localhost:3000/" ]
     [ "Immich" "immich" "https://gallery.proxy.${homelab.domain}" "http://localhost:2283/" ]
     [ "Jellyfin" "jellyfin" "https://media.proxy.${homelab.domain}" "http://localhost:8096/" ]
     [ "VaultWarden" "vaultwarden" "https://pass.proxy.${homelab.domain}" "http://localhost:8060/" ]
@@ -257,6 +263,19 @@ in {
                 {
                   type = "server-stats";
                   servers = [{ type = "local"; }];
+                }
+                {
+                  type = "monitor";
+                  cache = "1m";
+                  title = "External";
+                  sites = map (e: { 
+                    same-tab = true;
+                    allow-insecure = true;
+                    title = builtins.elemAt e 0;
+                    icon = "si:${builtins.elemAt e 1}";
+                    url = builtins.elemAt e 2;
+                    check-url = builtins.elemAt e 3;
+                  }) external;
                 }
                 {
                   type = "monitor";
