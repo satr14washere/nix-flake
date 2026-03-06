@@ -3,6 +3,7 @@
     "git.${homelab.domain}"     = "http://localhost:3000";
     "auth.${homelab.domain}"    = "http://localhost:1411";
     "dash.${homelab.domain}"    = "http://localhost:5070";
+    "media.${homelab.domain}"   = "http://localhost:8096";
     "gallery.${homelab.domain}" = "http://localhost:2284";
   };
 in {

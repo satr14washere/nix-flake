@@ -4,15 +4,15 @@
     "dns"        = { dest = "http://localhost:8088"; auth = true; };
     "ai"         = { dest = "http://localhost:8080"; auth = true; };
     
-    "auth"       = { dest = "http://localhost:1411"; auth = false; };
-    "git"        = { dest = "http://localhost:5080"; auth = false; };
-    
     "containers" = { dest = "http://localhost:5001"; auth = false; };
-    "gallery"    = { dest = "http://localhost:2283"; auth = false; };
     "remote"     = { dest = "http://localhost:8085"; auth = false; };
-    "media"      = { dest = "http://localhost:8096"; auth = false; };
     "pass"       = { dest = "http://localhost:8060"; auth = false; };
     "cdn"        = { dest = "http://localhost:3000"; auth = false; };
+    
+    "gallery"    = { dest = "http://localhost:2283"; auth = false; };
+    "media"      = { dest = "http://localhost:8096"; auth = false; };
+    "auth"       = { dest = "http://localhost:1411"; auth = false; };
+    "git"        = { dest = "http://localhost:5080"; auth = false; };
     "@"          = { dest = "http://localhost:5070"; auth = false; };
   };
   redirects = {
