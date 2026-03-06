@@ -61,7 +61,7 @@
     [ "VaultWarden" "vaultwarden" "https://pass.proxy.${homelab.domain}" "http://localhost:8060/" ]
     [ "Ollama" "ollama" "https://ai.proxy.${homelab.domain}" "http://localhost:8080/" ]
     [ "Dockge" "docker" "https://containers.proxy.${homelab.domain}" "http://localhost:5001/" ]
-    [ "Guacamole" "apacheguacamole" "https://remote.proxy.${homelab.domain}" "http://localhost:8085/guacamole/" ]
+    [ "Guacamole" "apacheguacamole" "https://remote.proxy.${homelab.domain}/guacamole" "http://localhost:8085/guacamole/" ]
   ];
   bookmarks = [
     [ "Tailscale" "tailscale" "https://login.tailscale.com/" ]
