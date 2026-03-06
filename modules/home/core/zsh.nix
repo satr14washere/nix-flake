@@ -36,9 +36,9 @@
         "ssh" = "TERM=xterm-256color ssh";
         "cd" = "z";
 
-        "sys" = "sudo systemctl";
+        "sys" = "sudo systemctl --runtime";
         "sys-log" = "journalctl -f -b -u";
-        "user" = "systemctl --user";
+        "user" = "systemctl --user --runtime";
         "user-log" = "journalctl -f -b --user-unit";
 
         "ts" = "sudo tailscale";
