@@ -229,9 +229,9 @@ in {
                     {
                       links = [{
                         same-tab = true;
-                        title = "NixOS Flake";
-                        icon = "si:git";
-                        url = "https://flakes.satr14.my.id";
+                        title = "NixFlake";
+                        icon = "si:nixos";
+                        url = "https://flake.satr14.my.id";
                       }];
                     }
                     {

@@ -57,6 +57,10 @@ in {
     }) redirects // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair (if subdomain == "@" then base else "${subdomain}.${base}") {
       useACMEHost = base;
       forceSSL = true;
+      extraConfig = ''
+        access_log /var/log/nginx/${subdomain}.access.log;
+        error_log /var/log/nginx/${subdomain}.error.log;
+      '';
       locations."/" = {
         proxyPass = cfg.dest;
         proxyWebsockets = true;
