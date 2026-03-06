@@ -225,14 +225,24 @@ in {
                 }
                 {
                   type = "bookmarks";
-                  groups = [{
-                    links = map (e: {
-                      same-tab = true;
-                      title = builtins.elemAt e 0;
-                      icon = "si:${builtins.elemAt e 1}";
-                      url = builtins.elemAt e 2;
-                    }) bookmarks;
-                  }];
+                  groups = [
+                    {
+                      links = [{
+                        same-tab = true;
+                        title = "NixOS Flake";
+                        icon = "si:git";
+                        url = "https://flakes.satr14.my.id";
+                      }];
+                    }
+                    {
+                      links = map (e: {
+                        same-tab = true;
+                        title = builtins.elemAt e 0;
+                        icon = "si:${builtins.elemAt e 1}";
+                        url = builtins.elemAt e 2;
+                      }) bookmarks;
+                    }
+                  ];
                 }
                 {
                   type = "to-do";
