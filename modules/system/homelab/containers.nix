@@ -16,11 +16,11 @@ in {
     ];
     log-driver = "journald";
     labels = {
-      "glance.name" = "dockge";
+      "glance.name" = "Dockge";
       "glance.icon" = "si:docker";
       "glance.url" = "http://containers.proxy.${homelab.domain}:5001/";
       "glance.description" = "Docker Compose Management UI";
-      "glance.hide" = "false";
+      "glance.hide" = "true";
     };
   };
   
