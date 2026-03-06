@@ -262,7 +262,10 @@ in {
               widgets = [
                 {
                   type = "server-stats";
-                  servers = [{ type = "local"; }];
+                  servers = [{
+                    type = "local";
+                    mountpoints."/nix/store".hide = true;
+                  }];
                 }
                 {
                   type = "monitor";
