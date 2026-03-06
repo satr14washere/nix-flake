@@ -10,7 +10,7 @@ in {
     ./homelab/gallery.nix
     ./homelab/tunnels.nix
     ./homelab/remote.nix
-    # ./homelab/media.nix # wip
+    ./homelab/media.nix
     ./homelab/share.nix
     ./homelab/proxy.nix
     ./homelab/auth.nix
