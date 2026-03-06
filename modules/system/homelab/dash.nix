@@ -49,7 +49,7 @@
     [ "Hypervisor" "https://10.3.14.69:8006/" ]
     [ "Router" "http://10.3.14.1:80/" ]
     [ "DNS" "http://localhost:8088/" ]
-    [ "CDN" "http://localhost:3000/" ]
+    [ "CDN" "http://nas.local:3000/" ]
     [ "Proxy" "https://proxy.${homelab.domain}/" ]
   ];
   external = [

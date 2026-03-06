@@ -5,10 +5,9 @@
     "router"     = { dest = "http://router.dns.${homelab.domain}:80"; auth = false; };
     "home"       = { dest = "http://home.dns.${homelab.domain}:8123"; auth = false; };
     "nas"        = { dest = "http://nas.dns.${homelab.domain}:80"; auth = false; };
-    "cdn"        = { dest = "http://nas.dns.${homelab.domain}:3000"; auth = false; };
     
+    "cdn"        = { dest = "http://nas.dns.${homelab.domain}:3000"; auth = true; };
     "dns"        = { dest = "http://localhost:8088"; auth = true; };
-    "ai"         = { dest = "http://localhost:8080"; auth = true; };
     
     "containers" = { dest = "http://localhost:5001"; auth = false; };
     "remote"     = { dest = "http://localhost:8085"; auth = false; };
@@ -18,6 +17,7 @@
     "media"      = { dest = "http://localhost:8096"; auth = false; };
     "auth"       = { dest = "http://localhost:1411"; auth = false; };
     "git"        = { dest = "http://localhost:5080"; auth = false; };
+    "ai"         = { dest = "http://localhost:8080"; auth = false; };
     "@"          = { dest = "http://localhost:5070"; auth = false; };
   };
   redirects = {
