@@ -1,6 +1,6 @@
 { homelab, lib, ... }: let
   base = "proxy.${homelab.domain}";
-  proxy-mappings = {
+  hosts = {
     "dns"        = { dest = "http://localhost:8088"; auth = true; };
     "ai"         = { dest = "http://localhost:8080"; auth = true; };
     
@@ -20,6 +20,10 @@
     "pass"       = { dest = "http://localhost:8060"; auth = false; };
     "cdn"        = { dest = "http://localhost:3000"; auth = false; };
     "@"          = { dest = "http://localhost:5070"; auth = false; };
+  };
+  redirects = {
+    "www"  = "https://proxy.${homelab.domain}";
+    "dash" = "https://${homelab.domain}";
   };
 in {
   users.users.nginx.extraGroups = [ "acme" ];
@@ -46,10 +50,13 @@ in {
         useACMEHost = base;
         locations."/".return = "404";
       };
-    } // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair (if subdomain == "@" then base else "${subdomain}.${base}") {
+    } // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair "${subdomain}.${base}" {
       useACMEHost = base;
       forceSSL = true;
-      
+      locations."/".return = "301 https://${base}$request_uri";
+    }) redirects // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair (if subdomain == "@" then base else "${subdomain}.${base}") {
+      useACMEHost = base;
+      forceSSL = true;
       locations."/" = {
         proxyPass = cfg.dest;
         proxyWebsockets = true;
@@ -69,6 +76,6 @@ in {
           client_max_body_size 50000M;
         '';
       };
-    }) proxy-mappings;
+    }) hosts;
   };
 }
