@@ -11,10 +11,10 @@
       environment.DB_URL = lib.mkForce "postgresql:///immich?host=/var/run/postgresql&user=immich"; # https://github.com/immich-app/immich/issues/26140
       machine-learning.enable = true;
       redis.enable = true;
-      settings = {
-        newVersionCheck.enabled = true;
-        server.externalDomain = "https://gallery.${homelab.domain}";
-      };
+      # settings = {
+      #   newVersionCheck.enabled = true;
+      #   server.externalDomain = "https://gallery.${homelab.domain}";
+      # };
     };
     immich-public-proxy = {
       enable = true;
