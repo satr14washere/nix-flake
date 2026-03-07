@@ -15,11 +15,11 @@
     settings = {
       server = {
         DISABLE_SSH = true;
-        DOMAIN = "git.proxy.${homelab.domain}";
+        DOMAIN = "git.${homelab.domain}";
         HTTP_ADDR = "127.0.0.1";
         HTTP_PORT = 5080;
         PROTOCOL = "http";
-        ROOT_URL = "https://git.proxy.${homelab.domain}";
+        ROOT_URL = "https://git.${homelab.domain}";
         LANDING_PAGE = "explore";
       };
       oauth2_client.ENABLE_AUTO_REGISTRATION=true;
