@@ -25,16 +25,16 @@ in {
   };
   
   systemd.services."docker-dockge" = {
-      serviceConfig = {
-        Restart = lib.mkOverride 500 "always";
-        RestartMaxDelaySec = lib.mkOverride 500 "1m";
-        RestartSec = lib.mkOverride 500 "100ms";
-        RestartSteps = lib.mkOverride 500 9;
-      };
-      wantedBy = [
-        "multi-user.target"
-        "network.target"
-        "docker.service"
-      ];
+    serviceConfig = {
+      Restart = lib.mkOverride 500 "always";
+      RestartMaxDelaySec = lib.mkOverride 500 "1m";
+      RestartSec = lib.mkOverride 500 "100ms";
+      RestartSteps = lib.mkOverride 500 9;
     };
+    wantedBy = [
+      "multi-user.target"
+      "network.target"
+      "docker.service"
+    ];
+  };
 }
