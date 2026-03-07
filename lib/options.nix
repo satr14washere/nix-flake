@@ -19,7 +19,7 @@
     disks = {
       gallery = "/dev/disk/by-uuid/834f51c1-90ee-4601-ba76-ef0419198d67"; # disk for photo gallery 
       data = "/dev/disk/by-uuid/a5752dd6-092d-484c-969c-2fdc7cb4a5f0"; # disk for app data
-      media = "/dev/disk/by-uuid/968f14a4-631e-4325-8cd1-f9aec0da9e4d"; # disk for media collection
+      host = "/dev/disk/by-uuid/968f14a4-631e-4325-8cd1-f9aec0da9e4d"; # disk for media collection (named host for backwards compatibility)
     };
     records = [
       [ "server.dns.${domain}"     "10.3.14.69"         ]
