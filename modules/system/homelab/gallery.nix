@@ -6,7 +6,7 @@
       enable = true;
       port = 2283;
       host = "127.0.0.1";
-      mediaLocation = "/mnt/gallery/media";
+      mediaLocation = "/mnt/gallery";
       accelerationDevices = null;
       machine-learning.enable = true;
       redis.enable = true;
