@@ -14,7 +14,8 @@
     #};
     settings = {
       server = {
-        DISABLE_SSH = true;
+        DISABLE_SSH = false;
+        SSH_PORT = 5822;
         DOMAIN = "git.${homelab.domain}";
         HTTP_ADDR = "127.0.0.1";
         HTTP_PORT = 5080;
