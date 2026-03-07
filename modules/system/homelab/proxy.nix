@@ -23,6 +23,7 @@
   redirects = {
     "www"  = "https://proxy.${homelab.domain}";
     "dash" = "https://${homelab.domain}";
+    "immich" = "https://gallery.proxy${homelab.domain}";
   };
 in {
   users.users.nginx.extraGroups = [ "acme" ];
