@@ -20,7 +20,9 @@ in {
     ./homelab/dns.nix
     ./homelab/git.nix
     ./homelab/ai.nix
+    
     ./core/swapfile.nix
+    ./core/oom.nix
     ./misc/theme.nix
     ./base.nix
   ];

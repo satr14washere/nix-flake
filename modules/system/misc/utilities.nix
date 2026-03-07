@@ -24,6 +24,7 @@
     gucharmap
     ncdu
     zip
+    unzip
     blueman
     shared-mime-info
     usbutils
