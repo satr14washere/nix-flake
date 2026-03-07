@@ -3,6 +3,14 @@
     enable = true;
     lfs.enable = true;
     stateDir = "/mnt/data/forgejo";
+    secrets = {
+      oauth2.JWT_SECRET = "/mnt/data/forgejo/custom/conf/oauth2_jwt_secret";
+      server.LFS_JWT_SECRET = "/mnt/data/forgejo/custom/conf/lfs_jwt_secret";
+      security = {
+        INTERNAL_TOKEN = "/mnt/data/forgejo/custom/conf/internal_token";
+        SECRET_KEY = "/mnt/data/forgejo/custom/conf/secret_key";
+      };
+    };
     settings = {
       server = {
         DISABLE_SSH = true;
