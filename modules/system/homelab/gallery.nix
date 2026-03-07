@@ -8,7 +8,7 @@
       host = "127.0.0.1";
       mediaLocation = "/mnt/gallery";
       accelerationDevices = null;
-      environment.DB_URL = "postgresql:///immich?host=/var/run/postgresql&user=immich"; # https://github.com/immich-app/immich/issues/26140
+      environment.DB_URL = lib.mkForce "postgresql:///immich?host=/var/run/postgresql&user=immich"; # https://github.com/immich-app/immich/issues/26140
       machine-learning.enable = true;
       redis.enable = true;
       settings = {
