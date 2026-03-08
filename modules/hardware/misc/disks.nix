@@ -5,7 +5,9 @@
     autoResize = true;
   };
 in {
-  fileSystems = lib.mapAttrs' (name: device:
+  fileSystems = {
+    "/".autoResize = true;
+  } // lib.mapAttrs' (name: device:
     lib.nameValuePair "/mnt/${name}" (globalOpts // { inherit device; })
   ) homelab.disks;
 }
