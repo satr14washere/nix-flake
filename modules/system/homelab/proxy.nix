@@ -4,7 +4,6 @@
     "server"     = { dest = "https://server.dns.${homelab.domain}:8006"; auth = false; };
     "router"     = { dest = "http://router.dns.${homelab.domain}:80"; auth = false; };
     "home"       = { dest = "http://home.dns.${homelab.domain}:8123"; auth = false; };
-    "nas"        = { dest = "http://nas.dns.${homelab.domain}:80"; auth = false; };
     
     "cdn"        = { dest = "http://nas.dns.${homelab.domain}:3000"; auth = true; };
     "dns"        = { dest = "http://localhost:8088"; auth = true; };

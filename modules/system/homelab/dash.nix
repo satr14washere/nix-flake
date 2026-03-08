@@ -56,8 +56,8 @@
     [ "Proxmox" "proxmox" "https://server.proxy.${homelab.domain}" "http://server.dns.${homelab.domain}:8006/" ]
     [ "OpenWRT" "openwrt" "https://router.proxy.${homelab.domain}" "http://router.dns.${homelab.domain}:80/" ]
     [ "HomeAssistant" "homeassistant" "https://home.proxy.${homelab.domain}" "http://home.dns.${homelab.domain}:8123/" ]
-    [ "OpenMediaVault" "openmediavault" "https://nas.proxy.${homelab.domain}" "http://nas.dns.${homelab.domain}:80/" ]
-    [ "ApacheHTTPD" "apache" "https://cdn.proxy.${homelab.domain}" "http://nas.dns.${homelab.domain}:3000/" ]
+    [ "OpenMediaVault" "openmediavault" "https://nas.local:80" "http://nas.local:80/" ]
+    [ "ApacheHTTPD" "apache" "https://nas.local:3000" "http://nas.local:3000/" ]
   ];
   services = [
     [ "PocketID" "authentik" "https://auth.${homelab.domain}" "http://localhost:1411/" ]
