@@ -43,7 +43,10 @@ in {
         parental_enabled = true;
         rewrites_enabled = true;
         filtering_enabled = true;
-        safe_search.enabled = true;
+        safe_search = {
+          enabled = true;
+          youtube = false;
+        };
         rewrites = map (e: {
           enabled = true;
           domain = builtins.elemAt e 0;
