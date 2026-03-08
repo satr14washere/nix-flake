@@ -11,17 +11,18 @@
       modrinth-app
 
       appimage-run
-      #winboat
+      # winboat
       libreoffice
-      #keepassxc
-      kicad-small
+      # keepassxc
+      # kicad-small
       vlc
       remmina
       moonlight-qt
       kdePackages.kdenlive
-      arduino-ide
-      inkscape
-      #davinci-resolve
+      # arduino-ide
+      # inkscape
+      rustdesk
+      # davinci-resolve
 
       (wrapOBS {
         plugins = with obs-studio-plugins; [
