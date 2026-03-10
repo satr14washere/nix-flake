@@ -5,6 +5,7 @@
     "router"     = { dest = "http://router.dns.${homelab.domain}:80"; auth = false; };
     "home"       = { dest = "http://home.dns.${homelab.domain}:8123"; auth = false; };
     
+    # "dynamic"    = { dest = "http://127.0.0.1:8080"; auth = true; };
     "dns"        = { dest = "http://localhost:8088"; auth = true; };
     
     "containers" = { dest = "http://localhost:5001"; auth = false; };
@@ -23,9 +24,6 @@
     "immich" = "https://gallery.proxy${homelab.domain}";
   };
   exta-conf = ''
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Proto $scheme;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "upgrade";
     # proxy_set_header X-Auth-User $remote_user;
@@ -76,7 +74,7 @@ in {
       } // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair "${subdomain}.${base}" {
         useACMEHost = base;
         forceSSL = true;
-        locations."/".return = "301 https://${base}$request_uri";
+        locations."/".return = "301 ${base}";
       }) redirects // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair (if subdomain == "@" then base else "${subdomain}.${base}") {
         useACMEHost = base;
         forceSSL = true;
@@ -95,7 +93,14 @@ in {
     traefik = {
       enable = true;
       staticConfigOptions = {
-        entryPoints.web.address = "127.0.0.1:81";
+        entryPoints.web = {
+          address = "127.0.0.1:81";
+          forwardedHeaders.trustedIPs = [ "127.0.0.1/32" ];
+        };
+        # api = {
+        #   dashboard = true;
+        #   insecure = true;
+        # };
         global = {
           checkNewVersion = false;
           sendAnonymousUsage = false;
