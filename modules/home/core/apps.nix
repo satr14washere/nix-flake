@@ -34,6 +34,7 @@
 
       portablemc
       ferium
+      steamguard-cli
       virt-manager
     ];
 }
