@@ -6,8 +6,9 @@
       # kicad-small
       # arduino-ide
 
-      discord
       slack
+      discord
+      protonmail-desktop
       
       vlc
       brave
