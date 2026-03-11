@@ -1,7 +1,7 @@
-{ homelab, ... }: {
+{ config, homelab, ... }: {
   services.pocket-id = {
     enable = true;
-    credentials.ENCRYPTION_KEY = "/mnt/data/pocketid/encryption-key";
+    credentials.ENCRYPTION_KEY = config.sops.secrets.pocketid_encryption_key.path;
     dataDir = "/mnt/data/pocketid/data";
     settings = {
       PORT = "1411";

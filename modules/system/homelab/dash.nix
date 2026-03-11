@@ -1,4 +1,4 @@
-{ timezone, homelab, ... }: let 
+{ config, timezone, homelab, ... }: let 
   rss = [
     "https://www.raspberrypi.com/news/feed/"
     "https://www.jeffgeerling.com/blog.xml"
@@ -96,7 +96,7 @@ in {
   };
   services.glance = {
     enable = true;
-    environmentFile = "/var/lib/glance/.env";
+    environmentFile = config.sops.secrets.glance_env.path;
     settings = {
       server = {
         host = "127.0.0.1";

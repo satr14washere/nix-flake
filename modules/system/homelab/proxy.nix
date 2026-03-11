@@ -1,4 +1,4 @@
-{ homelab, lib, ... }: let
+{ config, homelab, lib, ... }: let
   base = "proxy.${homelab.domain}";
   hosts = {
     "server"     = { dest = "https://server.dns.${homelab.domain}:8006"; auth = false; };
@@ -45,8 +45,7 @@ in {
       domain = "*.${base}";
       extraDomainNames = [ base ];
       dnsProvider = "cloudflare";
-      environmentFile = "/var/lib/acme/cloudflare.env";
-      # ^^^contents: CLOUDFLARE_DNS_API_TOKEN=XXXXX
+      environmentFile = config.sops.templates."cloudflare.env".path;
     };
   };
   
@@ -81,7 +80,7 @@ in {
         locations."/" = {
           proxyPass = cfg.dest;
           proxyWebsockets = true;
-          basicAuthFile = if cfg.auth then "/var/lib/nginx/.htpasswd" else null;
+          basicAuthFile = if cfg.auth then config.sops.secrets.nginx_htpasswd.path else null;
           extraConfig = exta-conf;
         };
       }) hosts;

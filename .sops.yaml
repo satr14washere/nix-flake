@@ -1,0 +1,25 @@
+# To set up sops-nix:
+# 1. Generate an age key on each host:
+#      mkdir -p ~/.config/sops/age
+#      age-keygen -o ~/.config/sops/age/keys.txt
+#    Or derive from the host SSH key:
+#      nix-shell -p ssh-to-age --run 'cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age'
+#
+# 2. Replace the placeholder age keys below with the actual public keys.
+#
+# 3. Encrypt secret files:
+#      sops secrets/homelab.yaml
+#
+# 4. To re-key after changing keys:
+#      sops updatekeys secrets/homelab.yaml
+
+keys:
+  - &homelab age1XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX # replace with: ssh-to-age < /etc/ssh/ssh_host_ed25519_key.pub
+  - &admin   age1XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX # replace with: age-keygen output from your admin machine
+
+creation_rules:
+  - path_regex: secrets/homelab\.yaml$
+    key_groups:
+      - age:
+          - *homelab
+          - *admin

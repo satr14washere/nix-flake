@@ -1,4 +1,4 @@
-{ lib, homelab, ... }: let
+{ config, lib, homelab, ... }: let
   ts-flags = [
     "--advertise-exit-node"
     "--advertise-routes=10.3.14.0/24,192.168.1.0/24"
@@ -20,6 +20,7 @@ in {
     ./homelab/dns.nix
     ./homelab/git.nix
     ./homelab/ai.nix
+    ./homelab/sops.nix
     
     ./core/swapfile.nix
     ./core/oom.nix
@@ -29,7 +30,7 @@ in {
 
   services.tailscale = {
     enable = true;
-    authKeyFile = "/mnt/data/tailscale/authkey";
+    authKeyFile = config.sops.secrets.tailscale_authkey.path;
     useRoutingFeatures = "server";
     extraUpFlags = ts-flags;
     extraSetFlags = ts-flags;

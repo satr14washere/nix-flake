@@ -1,4 +1,4 @@
-{ pkgs, lib, homelab, ... }: let
+{ config, pkgs, lib, homelab, ... }: let
   routes = {
     "git.${homelab.domain}"     = "http://localhost:5080";
     "auth.${homelab.domain}"    = "http://localhost:1411";
@@ -10,8 +10,8 @@ in {
   services.cloudflared = {
     enable = true;
     tunnels.homelab = {
-      credentialsFile = "/mnt/data/cloudflared/homelab.json";
-      certificateFile = "/mnt/data/cloudflared/cert.pem";
+      credentialsFile = config.sops.secrets.cloudflared_tunnel_credentials.path;
+      certificateFile = config.sops.secrets.cloudflared_cert.path;
       default = "http_status:404";
       ingress = routes;
     };
@@ -31,7 +31,7 @@ in {
 
     script = lib.concatMapStringsSep "\n" (domain: ''
       echo "Ensuring DNS route for ${domain}..."
-      ${pkgs.cloudflared}/bin/cloudflared tunnel --origincert /mnt/data/cloudflared/cert.pem route dns ${homelab.cf-tunnel-id} ${domain} || true
+      ${pkgs.cloudflared}/bin/cloudflared tunnel --origincert ${config.sops.secrets.cloudflared_cert.path} route dns ${homelab.cf-tunnel-id} ${domain} || true
     '') (builtins.attrNames routes);
   };
 }
