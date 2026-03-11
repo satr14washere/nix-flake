@@ -2,28 +2,30 @@
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
-      vscode # lets see how long you survive as my default code editor
       zed-editor
+      # kicad-small
+      # arduino-ide
 
       discord
       slack
-      brave
-      modrinth-app
-
-      appimage-run
-      # winboat
-      libreoffice
-      # keepassxc
-      # kicad-small
+      
       vlc
+      brave
+      libreoffice
+      appimage-run
+      # keepassxc
+
+      virt-manager
+      # winboat
+      
       remmina
       moonlight-qt
-      kdePackages.kdenlive
-      # arduino-ide
+      # rustdesk
+      
+      
       # inkscape
-      rustdesk
       # davinci-resolve
-
+      # kdePackages.kdenlive
       (wrapOBS {
         plugins = with obs-studio-plugins; [
           wlrobs
@@ -32,9 +34,9 @@
         ];
       })
 
-      portablemc
       ferium
+      portablemc
       steamguard-cli
-      virt-manager
+      # modrinth-app
     ];
 }
