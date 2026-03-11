@@ -45,8 +45,8 @@
           interval = 1;
           format = " {usage:2}% {avg_frequency}GHz";
           on-click = "auto-cpufreq-gtk";
-          on-click-right = "pkexec tlp power-saver && notify-send ${hostname} \"TLP set to: $(tlp-stat -s | grep 'Power profile' | awk -F '=' '{print $2}' | xargs)\"";
-          on-click-middle = "pkexec tlp start && notify-send ${hostname} \"TLP set to: $(tlp-stat -s | grep 'Power profile' | awk -F '=' '{print $2}' | xargs)\"";
+          on-click-right = "pkexec auto-cpufreq --force powersave && notify-send ${hostname} \"CPU Governor Powersave Overide\"";
+          on-click-middle = "pkexec auto-cpufreq --force reset && notify-send ${hostname} \"CPU Governor Overide Reset\"";
         };
         "memory" = {
           states = {
