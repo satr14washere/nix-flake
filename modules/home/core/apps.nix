@@ -37,6 +37,7 @@
 
       ferium
       portablemc
+      prismlauncher
       steamguard-cli
       # modrinth-app
     ];
