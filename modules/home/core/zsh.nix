@@ -66,7 +66,7 @@
         "gh-author-setup" = "git config user.name $(gh api -H \"Accept: application/vnd.github+json\" -H \"X-GitHub-Api-Version: 2022-11-28\" /user | jq -r .login) && git config user.email $(gh api -H \"Accept: application/vnd.github+json\" -H \"X-GitHub-Api-Version: 2022-11-28\" /user/emails | jq -r \".[1].email\")";
         "convert-pdf" = "libreoffice --headless --convert-to pdf";
         
-        "mcl" = "portablemc start -l $(cat .minecraft/portablemc-launch-params.json | jq -r .email) $(cat .minecraft/portablemc-launch-params.json | jq -r .version)";
+        "mcl" = "portablemc start -l $(cat ~/.minecraft/portablemc-launch-params.json | jq -r .email) $(cat ~/.minecraft/portablemc-launch-params.json | jq -r .version)";
         "mc" = "ferium upgrade; mcl";
       };
       initContent = ''

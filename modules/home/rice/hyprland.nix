@@ -155,7 +155,8 @@
         "stay_focused on, suppress_event fullscreen maximize, dim_around on, float on, match:title ^(Hyprland Polkit Agent|Unlock Login Keyring|KeePassXC -.*)$"
         "float on, match:title ^(Open|Print|Save|Rename|Move|Copy|Confirm).*"
         "float on, match:title ^(Preferences|Settings|Options|About|Passbolt).*"
-        "float on, match:title ^(MainPicker|Volume Control|File Operation Progress|Network Connections|Choose an Application| )$"
+        "float on, match:title ^(MainPicker|Volume Control|File Operation Progress|Network Connections|Choose an Application)$"
+        "float on, match:title ^(Please wait)$"
       ];
     };
   };
