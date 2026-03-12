@@ -70,7 +70,7 @@
     [ "PocketID" "authentik" "https://auth.${homelab.domain}" "http://localhost:1411/" ]
     [ "Forgejo" "forgejo" "https://git.${homelab.domain}" "http://localhost:5080/" ]
     [ "AdGuardHome" "adguard" "https://dns.proxy.${homelab.domain}" "http://localhost:8088/" ]
-    [ "Traefik" "traefikproxy" "https://dynamic.proxy.${homelab.domain}/dashboard/" "http://localhost:81/dashboard/" ]
+    [ "Traefik" "traefikproxy" "https://dynamic.proxy.${homelab.domain}/dashboard/" "" ]
     [ "Immich" "immich" "https://gallery.proxy.${homelab.domain}" "http://localhost:2283/" ]
     [ "Jellyfin" "jellyfin" "https://media.proxy.${homelab.domain}" "http://localhost:8096/" ]
     [ "VaultWarden" "vaultwarden" "https://pass.proxy.${homelab.domain}" "http://localhost:8060/" ]
