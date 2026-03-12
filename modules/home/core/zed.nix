@@ -5,7 +5,6 @@
     extensions = [ "nix" ];
     userSettings = {
       format_on_save = "off";
-      features.edit_prediction_provider = "copilot";
       vim_mode = true;
       git.inline_blame.enabled = true;
       gutter.line_numbers = true;
@@ -19,6 +18,13 @@
       file_types.tailwindcss = [ "*.css" ];
       auto_install_extensions.catppuccin-icons = true;
       icon_theme = "Catppuccin Mocha";
+      agent = {
+        tool_permissions.default = "allow";
+        default_model = {
+          provider = "copilot_chat";
+          model = "claude-opus-4.6";
+        };
+      };
       theme = {
         mode = "dark";
         light = "Catppuccin Mocha (sapphire)";

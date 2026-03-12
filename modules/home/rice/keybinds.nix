@@ -106,9 +106,7 @@
         ", PRINT, exec, hyprshot -zm region -o ~/Pictures/Screenshots; killall -9 hyprpicker hyprshot"
 
         "SUPER, R, exec, rofi -show drun -show-icons -display-drun '' -run-command \"uwsm app -- {cmd}\""
-        "SUPER, RETURN, exec, rofi -show window -show-icons -drun-display '' -window-format '{c} {t}'"
-        "SUPER CTRL, RETURN, exec, rofi rofi -dmenu -p 'run nixpkgs' -lines 0 < /dev/null | xargs -r -I {} kitty -- nix run 'nixpkgs#{}'"
-        "SUPER ALT, RETURN, exec, rofi rofi -dmenu -p 'shell nixpkgs' -lines 0 < /dev/null | xargs -r -I {} kitty -- nde`ix shell 'nixpkgs#{}'"
+        "SUPER, RETURN, exec, ls ~/Projects | rofi -dmenu -p \"Open Project\" | xargs -I {} sh -c 'mkdir -p ~/Projects/\"{}\" && zeditor ~/Projects/\"{}\"'"
         "SUPER, V, exec, rofi -modi clipboard:cliphist-rofi-img -show clipboard -show-icons"
         # "SUPER, B, exec, rofi -show calc -modi calc -no-show-match -no-sort"
 

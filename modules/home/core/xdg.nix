@@ -9,7 +9,6 @@
         "application/pdf" = "brave-browser.desktop";
         "x-scheme-handler/http" = "brave-browser.desktop";
         "x-scheme-handler/https" = "brave-browser.desktop";
-        "x-scheme-handler/terminal" = "kitty.desktop";
         "x-terminal-emulator" = "kitty.desktop";
         "inode/directory" = "pcmanfm-qt.desktop";
         "audio/mpeg" = "vlc.desktop";

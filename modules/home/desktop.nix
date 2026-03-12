@@ -10,6 +10,7 @@
     ./rice/cursor.nix
     ./rice/theme.nix
     ./rice/keybinds.nix
+    ./misc/scheme-handlers.nix
     ./misc/kde-connect.nix
     ./core/apps.nix
     ./core/zed.nix
