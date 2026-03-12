@@ -8,7 +8,7 @@
 
       slack
       discord
-      protonmail-desktop
+      # protonmail-desktop # https://www.reddit.com/r/NixOS/comments/1rm9alf/protonmail_in_nixos/
       
       vlc
       brave
