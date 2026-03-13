@@ -111,7 +111,6 @@ in {
         providers.docker = {
           endpoint = "unix:///var/run/docker.sock";
           exposedByDefault = false; 
-          defaultRule = "Host(`ct-{{ normalize .Name }}.${base}`)";
         };
       };
     };
