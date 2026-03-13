@@ -2,7 +2,7 @@
   ts-flags = [
     "--advertise-exit-node"
     "--advertise-routes=10.3.14.0/24,192.168.1.0/24"
-    "--ssh" # "--webclient"
+    "--ssh" "--webclient"
   ];
 in {
   imports = [
@@ -12,6 +12,8 @@ in {
     ./homelab/gallery.nix
     ./homelab/tunnels.nix
     ./homelab/remote.nix
+    ./homelab/notify.nix
+    ./homelab/search.nix
     ./homelab/media.nix
     ./homelab/proxy.nix
     ./homelab/auth.nix

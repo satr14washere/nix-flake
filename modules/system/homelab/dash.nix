@@ -75,6 +75,8 @@
     [ "Jellyfin" "jellyfin" "https://media.proxy.${homelab.domain}" "http://localhost:8096/" ]
     [ "VaultWarden" "vaultwarden" "https://pass.proxy.${homelab.domain}" "http://localhost:8060/" ]
     [ "Ollama" "ollama" "https://ai.proxy.${homelab.domain}" "http://localhost:8080/" ]
+    [ "Ntfy" "ntfy" "https://notify.proxy.${homelab.domain}" "http://localhost:8067/" ]
+    [ "SearXNG" "searxng" "https://search.proxy.${homelab.domain}" "http://localhost:8091/" ]
     [ "Dockge" "docker" "https://containers.proxy.${homelab.domain}" "http://localhost:5001/" ]
     [ "Guacamole" "apacheguacamole" "https://remote.proxy.${homelab.domain}/guacamole" "http://localhost:8085/guacamole/" ]
   ];

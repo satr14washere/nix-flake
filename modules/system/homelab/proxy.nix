@@ -55,6 +55,8 @@ in {
       enable = true;
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
+      recommendedGzipSettings = true;
+      recommendedOptimisation = true;
       virtualHosts = {
         "_" = {
           default = true;
