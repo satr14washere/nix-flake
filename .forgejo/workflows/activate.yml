@@ -10,7 +10,7 @@ env:
   
 jobs:
   deploy:
-    runs-on: nixos-server
+    runs-on: nixos-server:host
     defaults:
       run:
         shell: /bin/sh -e {0}
@@ -39,3 +39,4 @@ jobs:
             
       - name: Deploy System over SSH
         run: nixos-rebuild switch --flake ./src#homelab --target-host root@localhost -L --show-trace 
+

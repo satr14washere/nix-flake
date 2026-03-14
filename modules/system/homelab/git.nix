@@ -1,4 +1,11 @@
 { lib, pkgs, homelab, ... }: {
+  security.sudo.extraRules = [{
+    users = [ "gitea-runner" ]; 
+    commands = [{ 
+      command = "/run/current-system/sw/bin/nixos-rebuild"; 
+      options = [ "NOPASSWD" ]; 
+    }];
+  }];
   services = {
     forgejo = {
       enable = true;
