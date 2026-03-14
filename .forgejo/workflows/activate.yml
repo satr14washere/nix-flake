@@ -19,6 +19,6 @@ jobs:
       - name: Build
         run: nixos-rebuild build --flake ./src#homelab -L --show-trace
       - name: Activate
-        run: sudo nixos-rebuild switch --flake ./src#homelab -L --show-trace -v
+        run: nixos-rebuild switch --flake ./src#homelab -L --show-trace -v
       - name: Clean
         run: rm -rfv src

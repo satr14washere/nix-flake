@@ -59,6 +59,9 @@
     NoNewPrivileges = lib.mkForce false;
     RestrictSUIDSGID = lib.mkForce false;
     PrivateUsers = lib.mkForce false;
+    User = lib.mkForce "root";
+    ProtectSystem = lib.mkForce false;
+    ProtectHome = lib.mkForce false;
   };
   systemd.services."gitea-runner-nixos-deploy".restartIfChanged = false;
 }
