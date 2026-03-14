@@ -1,10 +1,10 @@
-name: Activate NixOS Configuration On Push
+name: Activate NixOS Homelab Configuration On Push
 on:
   push:
     branches:
       - main
 jobs:
-  deploy:
+  build-and-activate:
     runs-on: nixos-server
     steps:
       - name: Checkout code
