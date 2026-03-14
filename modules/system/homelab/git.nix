@@ -12,14 +12,6 @@
       lfs.enable = true;
       stateDir = "/mnt/data/forgejo";
       package = pkgs.forgejo;
-      #secrets = {
-      #  oauth2.JWT_SECRET = "/mnt/data/forgejo/custom/conf/oauth2_jwt_secret";
-      #  server.LFS_JWT_SECRET = "/mnt/data/forgejo/custom/conf/lfs_jwt_secret";
-      #  security = {
-      #    INTERNAL_TOKEN = "/mnt/data/forgejo/custom/conf/internal_token";
-      #    SECRET_KEY = "/mnt/data/forgejo/custom/conf/secret_key";
-      #  };
-      #};
       settings = {
         server = {
           DISABLE_SSH = false;
@@ -64,7 +56,6 @@
     };
   };
   systemd.services."gitea-runner-nixos-deploy".serviceConfig = {
-    # Force systemd to allow privilege escalation (sudo) for this service
     NoNewPrivileges = lib.mkForce false;
     RestrictSUIDSGID = lib.mkForce false;
     PrivateUsers = lib.mkForce false;
