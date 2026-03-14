@@ -48,5 +48,10 @@
       hostPackages = with pkgs; [ bash coreutils git nix ];
     };
   };
+  systemd.services."gitea-runner-nixos-deploy".serviceConfig = {
+    NoNewPrivileges = lib.mkForce false;
+    RestrictSUIDSGID = lib.mkForce false;
+    PrivateUsers = lib.mkForce false;
+  };
   systemd.services."gitea-runner-nixos-deploy".restartIfChanged = false;
 }
