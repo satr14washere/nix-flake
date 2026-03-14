@@ -53,14 +53,14 @@
           ENABLE_PUSH_CREATE_USER = true;
         };
       };
-      gitea-actions-runner.instances.nixos-deploy = {
-        enable = true;
-        name = "nixos-server-runner";
-        url = "https://git.proxy.${homelab.domain}";
-        tokenFile = "/mnt/data/forgejo/runner/nixos_deploy_runner_token"; 
-        labels = [ "nixos-server" ];
-        hostPackages = with pkgs; [ bash coreutils git nix ];
-      };
+    };
+    gitea-actions-runner.instances.nixos-deploy = {
+      enable = true;
+      name = "nixos-server-runner";
+      url = "https://git.proxy.${homelab.domain}";
+      tokenFile = "/mnt/data/forgejo/runner/nixos_deploy_runner_token"; 
+      labels = [ "nixos-server" ];
+      hostPackages = with pkgs; [ bash coreutils git nix ];
     };
   };
 }
