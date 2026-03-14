@@ -62,6 +62,7 @@
     User = lib.mkForce "root";
     ProtectSystem = lib.mkForce false;
     ProtectHome = lib.mkForce false;
+    ReadWritePaths = lib.mkForce [ "/" ];
   };
   systemd.services."gitea-runner-nixos-deploy".restartIfChanged = false;
 }
