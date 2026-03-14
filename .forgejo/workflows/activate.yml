@@ -7,7 +7,11 @@ jobs:
   build-and-activate:
     runs-on: nixos-server
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Build and activate system
-        run: sudo nixos-rebuild switch --flake .#homelab
+      - name: Clone
+        run: git clone http://localhost:5080/satr14/nix-flake.git src
+      - name: Build
+        run: nixos-rebuild build --flake ./src#homelab
+      - name: Activate
+        run: sudo nixos-rebuild switch --flake ./src#homelab
+      - name: Clean
+        run: rm -rf src
