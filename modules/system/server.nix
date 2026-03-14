@@ -29,6 +29,8 @@ in {
     ./base.nix
   ];
 
+  users.users.root.openssh.authorizedKeys.keys = homelab.ssh-keys;
+  
   services.tailscale = {
     enable = true;
     authKeyFile = "/mnt/data/tailscale/authkey";

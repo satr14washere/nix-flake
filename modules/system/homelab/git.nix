@@ -1,11 +1,4 @@
 { lib, pkgs, homelab, ... }: {
-  security.sudo.extraRules = [{ # for configuration activation on push to git
-    users = [ "gitea-runner" ]; 
-    commands = [{ 
-      command = "/run/current-system/sw/bin/nixos-rebuild"; 
-      options = [ "NOPASSWD" ]; 
-    }];
-  }];
   services = {
     forgejo = {
       enable = true;
@@ -51,17 +44,9 @@
       name = "nixos-server-runner";
       url = "https://git.proxy.${homelab.domain}";
       tokenFile = "/root/forgejo-token-runner"; 
-      labels = [ "nixos-server" ];
-      hostPackages = with pkgs; [ bash coreutils git nix nodejs sudo ];
-      container.enable = false;
+      labels = [ "nixos-server:host" ];
+      hostPackages = with pkgs; [ bash coreutils git nix ];
     };
   };
-  systemd.services."gitea-runner-nixos-deploy" = {
-    restartIfChanged = false;
-    serviceConfig = {
-      NoNewPrivileges = lib.mkForce false;
-      RestrictSUIDSGID = lib.mkForce false;
-      PrivateUsers = lib.mkForce false;
-    };
-  };
+  systemd.services."gitea-runner-nixos-deploy".restartIfChanged = false;
 }

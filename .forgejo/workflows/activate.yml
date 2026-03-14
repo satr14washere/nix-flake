@@ -6,19 +6,26 @@ on:
       
 env:
   PATH: /run/current-system/sw/bin:/run/wrappers/bin
-      
+  
 jobs:
-  build-and-activate:
+  deploy:
     runs-on: nixos-server
     defaults:
       run:
         shell: /bin/sh -e {0}
+    
     steps:
-      - name: Clone
-        run: git clone -v http://localhost:5080/satr14/nix-flake.git src
-      - name: Build
-        run: nixos-rebuild build --flake ./src#homelab -L --show-trace -v
-      - name: Activate
-        run: sudo nixos-rebuild switch --flake ./src#homelab -L --show-trace -v
-      - name: Clean
-        run: rm -rfv src
+      - name: 1. Clone Repository
+        run: |
+          rm -rf src
+          git clone https://git.satr14.my.id/satr14/nix-flake.git src
+
+      - name: 2. Setup SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H localhost >> ~/.ssh/known_hosts
+
+      - name: 3. Deploy System over SSH
+        run: nixos-rebuild switch --flake ./src#homelab --target-host root@localhost -L --show-trace 
