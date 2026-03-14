@@ -8,7 +8,6 @@
       ROCKET_PORT = 8060;
       ROCKET_ADDRESS = "127.0.0.1";
       ROCKET_LOG = "critical";
-      SIGNUPS_ALLOWED = true;
     };
   };
 }
