@@ -60,7 +60,7 @@
       url = "https://git.proxy.${homelab.domain}";
       tokenFile = "/root/forgejo-token-runner"; 
       labels = [ "nixos-server" ];
-      hostPackages = with pkgs; [ bash coreutils git nix ];
+      hostPackages = with pkgs; [ bash coreutils git nix nodejs ];
     };
   };
 }
