@@ -52,12 +52,16 @@
       url = "https://git.proxy.${homelab.domain}";
       tokenFile = "/root/forgejo-token-runner"; 
       labels = [ "nixos-server" ];
-      hostPackages = with pkgs; [ bash coreutils git nix nodejs ];
+      hostPackages = with pkgs; [ bash coreutils git nix nodejs sudo ];
+      container.enable = false;
     };
   };
-  systemd.services."gitea-runner-nixos-deploy".serviceConfig = {
-    NoNewPrivileges = lib.mkForce false;
-    RestrictSUIDSGID = lib.mkForce false;
-    PrivateUsers = lib.mkForce false;
+  systemd.services."gitea-runner-nixos-deploy" = {
+    restartIfChanged = false;
+    serviceConfig = {
+      NoNewPrivileges = lib.mkForce false;
+      RestrictSUIDSGID = lib.mkForce false;
+      PrivateUsers = lib.mkForce false;
+    };
   };
 }
