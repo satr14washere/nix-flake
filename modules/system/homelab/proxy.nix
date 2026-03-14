@@ -47,7 +47,7 @@ in {
       domain = "*.${base}";
       extraDomainNames = [ base ];
       dnsProvider = "cloudflare";
-      environmentFile = "/var/lib/acme/cloudflare.env";
+      environmentFile = "/mnt/data/acme/.env";
       # ^^^contents: CLOUDFLARE_DNS_API_TOKEN=XXXXX
     };
   };
