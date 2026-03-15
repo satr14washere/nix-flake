@@ -24,7 +24,7 @@ jobs:
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
             root@localhost \
-            "nixos-rebuild switch --flake git+http://localhost:5080/satr14/nix-flake#homelab -L"
+            "bash -lc 'nixos-rebuild switch --flake git+http://localhost:5080/satr14/nix-flake#homelab -L'"
 
       - name: Show generation
         if: always()
@@ -32,7 +32,7 @@ jobs:
           ssh -i ./ssh/deploy_key \
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
-            root@localhost "nixos-version"
+            root@localhost "bash -lc 'nixos-version'"
 
       - name: Clean Up
         if: always()
