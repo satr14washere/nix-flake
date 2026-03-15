@@ -1,33 +1,31 @@
-name: Activate NixOS Homelab Configuration On Push
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
+name: NixOS Rebuild
 
-env:
-  PATH: /current-system/sw/bin:/run/wrappers/bin:/nix/var/nix/profiles/default/bin
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
-  build-and-activate:
+  rebuild:
     runs-on: self-hosted
-    defaults:
-      run:
-        shell: /bin/sh -e {0}
     steps:
-      - name: Clone
-        run: git clone --depth 1 http://localhost:5080/satr14/nix-flake.git src
+      - name: Setup SSH key
+        run: |
+          mkdir -p ./ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ./ssh/deploy_key
+          chmod 600 ./ssh/deploy_key
+          echo "StrictHostKeyChecking no" > ./ssh/config
 
-      - name: Activate
-        run: sudo nixos-rebuild switch --flake ./src#homelab -L
-
-      - name: Rollback on failure
-        if: failure()
-        run: sudo nixos-rebuild --rollback
+      - name: Rebuild (${{ github.event.inputs.action || 'switch' }})
+        run: |
+          ssh -i ./ssh/deploy_key root@localhost \
+            "nixos-rebuild switch \
+              --flake git+http://localhost:5080/satr14/nix-flake#homelab -L"
 
       - name: Show generation
-        run: nixos-version
-
-      - name: Clean up
         if: always()
-        run: rm -rf src
+        run: ssh -i ./ssh/deploy_key root@localhost "nixos-version"
+
+      - name: Clean Up
+        if: always()
+        run: rm -f ./ssh/deploy_key

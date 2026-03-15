@@ -45,48 +45,11 @@
       url = "https://git.proxy.${homelab.domain}";
       tokenFile = "/root/forgejo-token-runner"; 
       labels = [ "self-hosted:host" "docker" ];
-      hostPackages = with pkgs; [ bash coreutils git nix ];
+      hostPackages = with pkgs; [ bash coreutils git nix openssh nodejs ];
     };
-  };
-  users.users.gitea-runner = {
-    isSystemUser = true;
-    group = "gitea-runner";
   };
   users.groups.gitea-runner = {};
   systemd.services."gitea-runner-nixos-deploy" = {
-    restartIfChanged = true;
-    # serviceConfig = {
-    #   User  = lib.mkForce "root";
-    #   Group = lib.mkForce "root";
-
-    #   NoNewPrivileges         = lib.mkForce false;
-    #   RestrictSUIDSGID        = lib.mkForce false;
-    #   PrivateUsers            = lib.mkForce false;
-    #   PrivateTmp              = lib.mkForce false;
-    #   PrivateDevices          = lib.mkForce false;
-    #   ProtectSystem           = lib.mkForce false;
-    #   ProtectHome             = lib.mkForce false;
-    #   ProtectKernelTunables   = lib.mkForce false;
-    #   ProtectKernelModules    = lib.mkForce false;
-    #   ProtectKernelLogs       = lib.mkForce false;
-    #   ProtectControlGroups    = lib.mkForce false;
-    #   RestrictNamespaces      = lib.mkForce false;
-    #   RestrictRealtime        = lib.mkForce false;
-    #   LockPersonality         = lib.mkForce false;
-    #   MemoryDenyWriteExecute  = lib.mkForce false;
-    #   ProtectProc             = lib.mkForce "default";
-    #   SystemCallArchitectures = lib.mkForce "";
-    #   SystemCallFilter        = lib.mkForce [];
-    #   ReadWritePaths          = lib.mkForce [];
-    #   ReadOnlyPaths           = lib.mkForce [];
-    #   InaccessiblePaths       = lib.mkForce [];
-    # };
+    restartIfChanged = false;
   };
-  # security.sudo.extraRules = [{
-  #   users = [ "gitea-runner" ]; 
-  #   commands = [{ 
-  #     command = "/run/current-system/sw/bin/nixos-rebuild"; 
-  #     options = [ "NOPASSWD" ]; 
-  #   }];
-  # }];
 }
