@@ -5,10 +5,10 @@
     "router"     = { dest = "http://router.dns.${homelab.domain}:80"; auth = false; };
     "home"       = { dest = "http://home.dns.${homelab.domain}:8123"; auth = false; };
     
-    "dynamic"    = { dest = "http://127.0.0.1:8082"; auth = true; };
+    "containers" = { dest = "http://localhost:5001"; auth = true; };
+    "dynamic"    = { dest = "http://localhost:8082"; auth = true; };
     "dns"        = { dest = "http://localhost:8088"; auth = true; };
     
-    "containers" = { dest = "http://localhost:5001"; auth = false; };
     "gallery"    = { dest = "http://localhost:2283"; auth = false; };
     "remote"     = { dest = "http://localhost:8085"; auth = false; };
     "search"     = { dest = "http://localhost:8091"; auth = false; };
