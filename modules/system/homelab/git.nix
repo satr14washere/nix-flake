@@ -48,7 +48,6 @@
       hostPackages = with pkgs; [ bash coreutils git nix openssh nodejs ];
     };
   };
-  users.groups.gitea-runner = {};
   systemd.services."gitea-runner-nixos-deploy" = {
     restartIfChanged = false;
   };
