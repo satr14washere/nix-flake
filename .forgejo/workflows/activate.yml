@@ -3,10 +3,10 @@ on:
   push:
     branches:
       - main
-      
+
 env:
-  PATH: /run/current-system/sw/bin:/run/wrappers/bin
-      
+  PATH: /run/current-system/sw/bin:/run/wrappers/bin:/nix/var/nix/profiles/default/bin
+
 jobs:
   build-and-activate:
     runs-on: self-hosted
@@ -15,10 +15,18 @@ jobs:
         shell: /bin/sh -e {0}
     steps:
       - name: Clone
-        run: git clone http://localhost:5080/satr14/nix-flake.git src
-      - name: Build
-        run: nixos-rebuild build --flake ./src#homelab -L --show-trace
+        run: git clone --depth 1 http://localhost:5080/satr14/nix-flake.git src
+
       - name: Activate
-        run: nixos-rebuild switch --flake ./src#homelab -L --show-trace
-      - name: Clean
-        run: rm -rfv src
+        run: sudo nixos-rebuild switch --flake ./src#homelab -L
+
+      - name: Rollback on failure
+        if: failure()
+        run: sudo nixos-rebuild --rollback
+
+      - name: Show generation
+        run: nixos-version
+
+      - name: Clean up
+        if: always()
+        run: rm -rf src
