@@ -21,7 +21,7 @@
     tailscale.enable = true;
     openssh = {
       enable = true;
-      settings.PermitRootLogin = "yes";
+      settings.PermitRootLogin = "prohibit-password";
     };
   };
   users.users."${username}" = {

@@ -21,6 +21,7 @@ jobs:
       - name: Rebuild
         run: |
           ssh -i ./ssh/deploy_key \
+            -o PasswordAuthentication=no \
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
             root@localhost \
@@ -30,6 +31,7 @@ jobs:
         if: always()
         run: |
           ssh -i ./ssh/deploy_key \
+            -o PasswordAuthentication=no \
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
             root@localhost "bash -lc 'nixos-version'"
