@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  PATH: /run/current-system/sw/bin:/run/wrappers/bin:/nix/var/nix/profiles/default/bin
+  PATH: /current-system/sw/bin:/run/wrappers/bin:/nix/var/nix/profiles/default/bin
 
 jobs:
   build-and-activate:
@@ -19,11 +19,11 @@ jobs:
         run: git clone --depth 1 http://localhost:5080/satr14/nix-flake.git src
 
       - name: Activate
-        run: nixos-rebuild switch --flake ./src#homelab -L
+        run: sudo nixos-rebuild switch --flake ./src#homelab -L
 
       - name: Rollback on failure
         if: failure()
-        run: nixos-rebuild --rollback
+        run: sudo nixos-rebuild --rollback
 
       - name: Show generation
         run: nixos-version
