@@ -1,4 +1,4 @@
-name: NixOS Rebuild
+name: Activate Homelab Configuration
 
 on:
   workflow_dispatch:
@@ -18,7 +18,7 @@ jobs:
           echo "${{ secrets.DEPLOY_SSH_KEY }}" > ./ssh/deploy_key
           chmod 600 ./ssh/deploy_key
           
-      - name: Rebuild
+      - name: Rebuild and switch
         run: |
           ssh -i ./ssh/deploy_key \
             -o PasswordAuthentication=no \
