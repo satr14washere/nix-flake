@@ -74,7 +74,7 @@ in {
       } // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair "${subdomain}.${base}" {
         useACMEHost = base;
         forceSSL = true;
-        locations."/".return = "301 ${base}";
+        locations."/".return = "301 ${cfg.dest}";
       }) redirects // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair (if subdomain == "@" then base else "${subdomain}.${base}") {
         useACMEHost = base;
         forceSSL = true;
