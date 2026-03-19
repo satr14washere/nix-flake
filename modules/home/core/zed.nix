@@ -2,7 +2,14 @@
   programs.zed-editor = {
     enable = true;
     package = pkgs.zed-editor;
-    extensions = [ "nix" ];
+    extensions = [
+      "html" "html-snippets"
+      "svelte" "svelte-snippets"
+      "wakatime" "discord-presence"
+      "catppuccin" "catppuccin-icons"
+      "git-firefly"
+      "nix"
+    ];
     userSettings = {
       format_on_save = "off";
       vim_mode = true;
