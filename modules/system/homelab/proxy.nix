@@ -23,7 +23,7 @@
   redirects = {
     "www"  = "https://proxy.${homelab.domain}";
     "dash" = "https://${homelab.domain}";
-    "immich" = "https://gallery.proxy${homelab.domain}";
+    "immich" = "https://gallery.proxy.${homelab.domain}";
   };
   exta-conf = ''
     # proxy_set_header X-Auth-User $remote_user;
@@ -74,7 +74,7 @@ in {
       } // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair "${subdomain}.${base}" {
         useACMEHost = base;
         forceSSL = true;
-        locations."/".return = "301 ${cfg.dest}";
+        locations."/".return = "301 ${cfg}";
       }) redirects // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair (if subdomain == "@" then base else "${subdomain}.${base}") {
         useACMEHost = base;
         forceSSL = true;
