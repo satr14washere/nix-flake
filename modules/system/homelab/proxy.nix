@@ -24,7 +24,7 @@
     "www"  = "https://proxy.${homelab.domain}";
     "dash" = "https://proxy.${homelab.domain}";
     "immich" = "https://gallery.proxy.${homelab.domain}";
-    "2fa" = "https://2fa.${homelab.domain}"
+    "2fa" = "https://2fa.${homelab.domain}";
   };
   exta-conf = ''
     # proxy_set_header X-Auth-User $remote_user;
