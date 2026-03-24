@@ -1,24 +1,27 @@
 { homelab, lib, ... }: let
+  d = domain: { dest = d; auth = false; };
+  da = domain: { dest = d; auth = true; };
+
   base = "proxy.${homelab.domain}";
   hosts = {
-    "server"     = { dest = "https://server.dns.${homelab.domain}:8006"; auth = false; };
-    "router"     = { dest = "http://router.dns.${homelab.domain}:80"; auth = false; };
-    "home"       = { dest = "http://home.dns.${homelab.domain}:8123"; auth = false; };
+    "server"     = d "https://server.dns.${homelab.domain}:8006";
+    "router"     = d "http://router.dns.${homelab.domain}:80";
+    "home"       = d "http://home.dns.${homelab.domain}:8123";
     
-    "containers" = { dest = "http://localhost:5001"; auth = true; };
-    "dynamic"    = { dest = "http://localhost:8082"; auth = true; };
-    "dns"        = { dest = "http://localhost:8088"; auth = true; };
+    "containers" = da "http://localhost:5001";
+    "dns"        = da "http://localhost:8088";
     
-    "gallery"    = { dest = "http://localhost:2283"; auth = false; };
-    "remote"     = { dest = "http://localhost:8085"; auth = false; };
-    "search"     = { dest = "http://localhost:8091"; auth = false; };
-    "notify"     = { dest = "http://localhost:8067"; auth = false; };
-    "media"      = { dest = "http://localhost:8096"; auth = false; };
-    "pass"       = { dest = "http://localhost:8060"; auth = false; };
-    "auth"       = { dest = "http://localhost:1411"; auth = false; };
-    "git"        = { dest = "http://localhost:5080"; auth = false; };
-    "ai"         = { dest = "http://localhost:8080"; auth = false; };
-    "@"          = { dest = "http://localhost:5070"; auth = false; };
+    "gallery"    = d "http://localhost:2283";
+    "dynamic"    = d "http://localhost:8082";
+    "remote"     = d "http://localhost:8085";
+    "search"     = d "http://localhost:8091";
+    "notify"     = d "http://localhost:8067";
+    "media"      = d "http://localhost:8096";
+    "pass"       = d "http://localhost:8060";
+    "auth"       = d "http://localhost:1411";
+    "git"        = d "http://localhost:5080";
+    "ai"         = d "http://localhost:8080";
+    "@"          = d "http://localhost:5070";
   };
   redirects = {
     "www"  = "https://proxy.${homelab.domain}";
