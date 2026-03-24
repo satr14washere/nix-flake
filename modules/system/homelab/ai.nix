@@ -8,7 +8,7 @@
       home = "/mnt/data/ollama";
       loadModels = [ 
         "gemma3n:e4b" # "gemma3n:e2b" 
-        # "codellama:7b" "starcoder:3b"
+        "qwen3-coder-next:cloud" # "codellama:7b" "starcoder:3b"
       ];
     };
     open-webui = {
