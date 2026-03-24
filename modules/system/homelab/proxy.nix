@@ -1,6 +1,6 @@
 { homelab, lib, ... }: let
-  d = domain: { dest = d; auth = false; };
-  da = domain: { dest = d; auth = true; };
+  d = dest: { inherit dest; auth = false; };
+  da = dest: { inherit dest; auth = true; };
 
   base = "proxy.${homelab.domain}";
   hosts = {
