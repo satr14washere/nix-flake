@@ -96,6 +96,9 @@ in {
     };
     traefik = {
       enable = true;
+      dynamicConfigOptions = {
+        http.middlewares.auth.basicAuth.usersFile = "/var/lib/nginx/.htpasswd";
+      };
       staticConfigOptions = {
         entryPoints = {
           traefik.address = "127.0.0.1:8082";
@@ -104,7 +107,6 @@ in {
             forwardedHeaders.trustedIPs = [ "127.0.0.1/32" ];
           };
         };
-        http.middlewares.auth.basicAuth.usersFile = "/var/lib/nginx/.htpasswd";
         api = {
           dashboard = true;
           insecure = true;
