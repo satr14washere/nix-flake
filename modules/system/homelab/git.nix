@@ -1,4 +1,4 @@
-{ lib, pkgs, homelab, ... }: {
+{ pkgs, homelab, ... }: {
   services = {
     forgejo = {
       enable = true;
