@@ -78,7 +78,6 @@
     [ "Ntfy" "ntfy" "https://notify.proxy.${homelab.domain}" "http://localhost:8067/" ]
     [ "SearXNG" "searxng" "https://search.proxy.${homelab.domain}" "http://localhost:8091/" ]
     [ "Dockge" "docker" "https://containers.proxy.${homelab.domain}" "http://localhost:5001/" ]
-    [ "Guacamole" "apacheguacamole" "https://remote.proxy.${homelab.domain}/guacamole" "http://localhost:8085/guacamole/" ]
   ];
   bookmarks = [
     [ "Tailscale" "tailscale" "https://login.tailscale.com/" ]

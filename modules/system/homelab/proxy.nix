@@ -13,7 +13,6 @@
     
     "gallery"    = d "http://localhost:2283";
     "dynamic"    = d "http://localhost:8082";
-    "remote"     = d "http://localhost:8085";
     "search"     = d "http://localhost:8091";
     "notify"     = d "http://localhost:8067";
     "media"      = d "http://localhost:8096";
