@@ -1,7 +1,7 @@
 { username, ... }: {
   imports = [
+    ./core/shell.nix
     ./core/cli.nix
-    ./core/zsh.nix
   ];
 
   home = {

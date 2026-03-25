@@ -1,20 +1,19 @@
 { pkgs, ... }: {
   imports = [
-    ./rice/hyprland.nix
-    ./rice/hyprlock.nix
-    ./rice/waybar.nix
-    ./rice/rofi.nix
-    ./rice/wlogout.nix
-    ./rice/hypridle.nix
-    ./rice/dunst.nix
+    ./rice/compositor.nix
+    ./rice/lockscreen.nix
+    ./rice/keybinds.nix
+    ./rice/logout.nix
+    ./rice/notifs.nix
     ./rice/cursor.nix
     ./rice/theme.nix
-    ./rice/keybinds.nix
-    ./misc/scheme-handlers.nix
-    ./misc/kde-connect.nix
+    ./rice/menu.nix
+    ./rice/idle.nix
+    ./rice/bar.nix
+    ./misc/handlers.nix
+    ./misc/phone.nix
     ./core/apps.nix
-    ./core/zed.nix
-    ./core/xdg.nix
+    ./core/code.nix
   ];
 
   services = {
