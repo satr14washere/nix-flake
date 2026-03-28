@@ -69,7 +69,7 @@
   services = [
     [ "PocketID" "authentik" "https://auth.${homelab.domain}" "http://localhost:1411/" ]
     [ "Forgejo" "forgejo" "https://git.${homelab.domain}" "http://localhost:5080/" ]
-    [ "CodeServer" "coder" "https://code.${homelab.domain}" "http://localhost:8443/" ]
+    [ "CodeServer" "coder" "https://code.proxy.${homelab.domain}" "http://localhost:8443/" ]
     [ "AdGuardHome" "adguard" "https://dns.proxy.${homelab.domain}" "http://localhost:8088/" ]
     [ "Traefik" "traefikproxy" "https://dynamic.proxy.${homelab.domain}/dashboard/" "" ]
     [ "Immich" "immich" "https://gallery.proxy.${homelab.domain}" "http://localhost:2283/" ]
