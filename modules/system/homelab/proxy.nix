@@ -9,6 +9,7 @@
     "home"       = d "http://home.dns.${homelab.domain}:8123";
     
     "containers" = da "http://localhost:5001";
+    "code"       = da "http://localhost:8443";
     "dns"        = da "http://localhost:8088";
     
     "gallery"    = d "http://localhost:2283";

@@ -18,6 +18,7 @@ in {
     ./homelab/auth.nix
     ./homelab/pass.nix
     ./homelab/dash.nix
+    ./homelab/code.nix
     ./homelab/dns.nix
     ./homelab/git.nix
     ./homelab/ai.nix
