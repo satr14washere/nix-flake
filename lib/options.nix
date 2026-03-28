@@ -68,7 +68,7 @@
   git = { # setup your git author
     username = "satr14"; # forgejo username
     server = "https://git.satr14.my.id"; # forgejo server url
-    user = "Satria";
+    user = "satr14";
     email = "admin@satr14.my.id";
   };
 }
