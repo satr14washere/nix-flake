@@ -1,4 +1,4 @@
-{ homelab, lib, ... }: let
+{ pkgs, homelab, lib, ... }: let
   d = dest: { inherit dest; auth = false; };
   da = dest: { inherit dest; auth = true; };
 
@@ -58,6 +58,7 @@ in {
   services = {
     nginx = {
       enable = true;
+      package = pkgs.angie;
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
       recommendedGzipSettings = true;
