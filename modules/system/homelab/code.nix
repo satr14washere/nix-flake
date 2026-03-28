@@ -6,7 +6,7 @@
     user = username;
     disableTelemetry = true;
     extensionsDir = "/mnt/data/code-server/extensions";
-    userDataDit = "/mnt/data/code-server/user-data";
+    userDataDir = "/mnt/data/code-server/user-data";
     extraPackages = with pkgs; [];
   };
 }
