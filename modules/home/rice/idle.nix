@@ -6,7 +6,7 @@
         lock_cmd = "hyprlock";
         unlock_cmd = "pkill -USR1 hyprlock";
         before_sleep_cmd = "hyprctl dispatch dpms off && hyprlock";
-        after_sleep_cmd = "hyprctl dispatch dpms on && pkill -USR2 hyprlock";
+        after_sleep_cmd = "hyprctl dispatch dpms on";
       };
       listener = [
         {
