@@ -1,6 +1,9 @@
 let
   d = dest: { inherit dest; auth = false; };
   da = dest: { inherit dest; auth = true; };
+  
+  o = path: { inherit path; required = false; };
+  r = path: { inherit path; required = true; };
 in {
   flake-path = "~/Projects/nix-flake"; # set this to the cloned repo path
 
@@ -24,10 +27,10 @@ in {
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJtdH1YqRH9xhuHMivezLvj/hpH77yfH3HUCaRboB/hb forgejo-deploy-runner"
     ];
     disks = {
-      gallery = "/dev/disk/by-uuid/834f51c1-90ee-4601-ba76-ef0419198d67"; # disk for photo gallery 
-      share = "/dev/disk/by-uuid/f1ee1d17-e852-4e02-ae86-eaf6116a2aeb"; # disk for media collection (named host for backwards compatibility)
-      data = "/dev/disk/by-uuid/a5752dd6-092d-484c-969c-2fdc7cb4a5f0"; # disk for app data
-      host = "/dev/disk/by-uuid/968f14a4-631e-4325-8cd1-f9aec0da9e4d"; # disk for media collection (named host for backwards compatibility)
+      share = o "/dev/disk/by-uuid/f1ee1d17-e852-4e02-ae86-eaf6116a2aeb"; # disk for file share and storage
+      gallery = r "/dev/disk/by-uuid/834f51c1-90ee-4601-ba76-ef0419198d67"; # disk for photo gallery 
+      data = r "/dev/disk/by-uuid/a5752dd6-092d-484c-969c-2fdc7cb4a5f0"; # disk for app data
+      host = r "/dev/disk/by-uuid/968f14a4-631e-4325-8cd1-f9aec0da9e4d"; # disk for media collection (named host for backwards compatibility)
     };
     dash = [
       [ "PocketID" "authentik" "https://auth.${domain}" "http://localhost:1411/" ]

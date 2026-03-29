@@ -7,7 +7,13 @@
 in {
   fileSystems = {
     "/".autoResize = true;
-  } // lib.mapAttrs' (name: device:
-    lib.nameValuePair "/mnt/${name}" (globalOpts // { inherit device; })
+  } // lib.mapAttrs' (name: dev:
+    lib.nameValuePair "/mnt/${name}" (globalOpts // {
+      device = dev.path;
+      options = if dev.required == false then [
+        "nofail"
+        "x-systemd.automount"
+      ] else [];
+    })
   ) homelab.disks;
 }
