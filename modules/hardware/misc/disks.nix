@@ -13,7 +13,7 @@ in {
       options = if dev.required == false then [
         "nofail"
         "x-systemd.automount"
-      ] else [];
+      ] else [ "defaults" ];
     })
   ) homelab.disks;
 }
