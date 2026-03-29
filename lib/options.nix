@@ -25,6 +25,7 @@ in {
     ];
     disks = {
       gallery = "/dev/disk/by-uuid/834f51c1-90ee-4601-ba76-ef0419198d67"; # disk for photo gallery 
+      share = "/dev/disk/by-uuid/f1ee1d17-e852-4e02-ae86-eaf6116a2aeb"; # disk for media collection (named host for backwards compatibility)
       data = "/dev/disk/by-uuid/a5752dd6-092d-484c-969c-2fdc7cb4a5f0"; # disk for app data
       host = "/dev/disk/by-uuid/968f14a4-631e-4325-8cd1-f9aec0da9e4d"; # disk for media collection (named host for backwards compatibility)
     };
