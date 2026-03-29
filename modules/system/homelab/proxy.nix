@@ -1,34 +1,4 @@
 { pkgs, homelab, lib, ... }: let
-  d = dest: { inherit dest; auth = false; };
-  da = dest: { inherit dest; auth = true; };
-
-  base = "proxy.${homelab.domain}";
-  hosts = {
-    "server"     = d "https://server.dns.${homelab.domain}:8006";
-    "router"     = d "http://router.dns.${homelab.domain}:80";
-    "home"       = d "http://home.dns.${homelab.domain}:8123";
-    
-    "containers" = da "http://localhost:5001";
-    "code"       = da "http://localhost:8443";
-    "dns"        = da "http://localhost:8088";
-    
-    "gallery"    = d "http://localhost:2283";
-    "dynamic"    = d "http://localhost:8082";
-    "search"     = d "http://localhost:8091";
-    "notify"     = d "http://localhost:8067";
-    "media"      = d "http://localhost:8096";
-    "pass"       = d "http://localhost:8060";
-    "auth"       = d "http://localhost:1411";
-    "git"        = d "http://localhost:5080";
-    "ai"         = d "http://localhost:8080";
-    "@"          = d "http://localhost:5070";
-  };
-  redirects = {
-    "www"  = "https://proxy.${homelab.domain}";
-    "dash" = "https://proxy.${homelab.domain}";
-    "immich" = "https://gallery.proxy.${homelab.domain}";
-    "2fa" = "https://2fa.${homelab.domain}";
-  };
   exta-conf = ''
     # proxy_set_header X-Auth-User $remote_user;
     proxy_read_timeout 600s;
@@ -47,9 +17,9 @@ in {
   security.acme = {
     acceptTerms = true;
     defaults.email = "admin@${homelab.domain}";
-    certs."${base}" = {
-      domain = "*.${base}";
-      extraDomainNames = [ base ];
+    certs."${homelab.proxy.base}" = {
+      domain = "*.${homelab.proxy.base}";
+      extraDomainNames = [ homelab.proxy.base ];
       dnsProvider = "cloudflare";
       environmentFile = "/mnt/data/acme/.env";
       # ^^^contents: CLOUDFLARE_DNS_API_TOKEN=XXXXX
@@ -68,7 +38,7 @@ in {
         "_" = {
           default = true;
           forceSSL = true;
-          useACMEHost = base;
+          useACMEHost = homelab.proxy.base;
           # locations."/".return = "404";
           locations."/" = {
             proxyPass = "http://127.0.0.1:81"; # traefik for docker container dynamic proxy
@@ -76,12 +46,12 @@ in {
             extraConfig = exta-conf;
           };
         };
-      } // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair "${subdomain}.${base}" {
-        useACMEHost = base;
+      } // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair "${subdomain}.${homelab.proxy.base}" {
+        useACMEHost = homelab.proxy.base;
         forceSSL = true;
         locations."/".return = "301 ${cfg}";
-      }) redirects // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair (if subdomain == "@" then base else "${subdomain}.${base}") {
-        useACMEHost = base;
+      }) homelab.proxy.redirects // lib.mapAttrs' (subdomain: cfg: lib.nameValuePair (if subdomain == "@" then homelab.proxy.base else "${subdomain}.${homelab.proxy.base}") {
+        useACMEHost = homelab.proxy.base;
         forceSSL = true;
         extraConfig = ''
           access_log /var/log/nginx/${subdomain}.access.log;
@@ -93,7 +63,7 @@ in {
           basicAuthFile = if cfg.auth then "/var/lib/nginx/.htpasswd" else null;
           extraConfig = exta-conf;
         };
-      }) hosts;
+      }) homelab.proxy.hosts;
     };
     traefik = {
       enable = true;

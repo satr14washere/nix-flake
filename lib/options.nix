@@ -1,4 +1,7 @@
-{
+let
+  d = dest: { inherit dest; auth = false; };
+  da = dest: { inherit dest; auth = true; };
+in {
   flake-path = "~/Projects/nix-flake"; # set this to the cloned repo path
 
   username = "satr14";
@@ -24,6 +27,49 @@
       gallery = "/dev/disk/by-uuid/834f51c1-90ee-4601-ba76-ef0419198d67"; # disk for photo gallery 
       data = "/dev/disk/by-uuid/a5752dd6-092d-484c-969c-2fdc7cb4a5f0"; # disk for app data
       host = "/dev/disk/by-uuid/968f14a4-631e-4325-8cd1-f9aec0da9e4d"; # disk for media collection (named host for backwards compatibility)
+    };
+    dash = [
+      [ "PocketID" "authentik" "https://auth.${domain}" "http://localhost:1411/" ]
+      [ "Forgejo" "forgejo" "https://git.${domain}" "http://localhost:5080/" ]
+      [ "CodeServer" "coder" "https://code.proxy.${domain}" "http://localhost:8443/" ]
+      [ "AdGuardHome" "adguard" "https://dns.proxy.${domain}" "http://localhost:8088/" ]
+      [ "Traefik" "traefikproxy" "https://dynamic.proxy.${domain}/dashboard/" "" ]
+      [ "Immich" "immich" "https://gallery.proxy.${domain}" "http://localhost:2283/" ]
+      [ "Jellyfin" "jellyfin" "https://media.proxy.${domain}" "http://localhost:8096/" ]
+      [ "VaultWarden" "vaultwarden" "https://pass.proxy.${domain}" "http://localhost:8060/" ]
+      [ "Ollama" "ollama" "https://ai.proxy.${domain}" "http://localhost:8080/" ]
+      [ "Ntfy" "ntfy" "https://notify.proxy.${domain}" "http://localhost:8067/" ]
+      [ "SearXNG" "searxng" "https://search.proxy.${domain}" "http://localhost:8091/" ]
+      [ "Dockge" "docker" "https://containers.proxy.${domain}" "http://localhost:5001/" ]
+    ];
+    proxy = {
+      base = "proxy.${domain}";
+      hosts = {
+        "server"     = d "https://server.dns.${domain}:8006";
+        "router"     = d "http://router.dns.${domain}:80";
+        "home"       = d "http://home.dns.${domain}:8123";
+        
+        "containers" = da "http://localhost:5001";
+        "code"       = da "http://localhost:8443";
+        "dns"        = da "http://localhost:8088";
+        
+        "gallery"    = d "http://localhost:2283";
+        "dynamic"    = d "http://localhost:8082";
+        "search"     = d "http://localhost:8091";
+        "notify"     = d "http://localhost:8067";
+        "media"      = d "http://localhost:8096";
+        "pass"       = d "http://localhost:8060";
+        "auth"       = d "http://localhost:1411";
+        "git"        = d "http://localhost:5080";
+        "ai"         = d "http://localhost:8080";
+        "@"          = d "http://localhost:5070";
+      };
+      redirects = {
+        "www"  = "https://${proxy.base}";
+        "dash" = "https://${proxy.base}";
+        "immich" = "https://gallery.${proxy.base}";
+        "2fa" = "https://2fa.${domain}";
+      };
     };
     records = [
       [ "server.dns.${domain}"     "10.3.14.69"         ]

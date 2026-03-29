@@ -56,7 +56,6 @@
     [ "Hypervisor" "https://10.3.14.69:8006/" ]
     [ "Router" "http://10.3.14.1:80/" ]
     [ "DNS" "http://localhost:8088/" ]
-    [ "CDN" "http://nas.local:3000/" ]
     [ "Proxy" "https://proxy.${homelab.domain}/" ]
   ];
   external = [
@@ -65,20 +64,6 @@
     [ "HomeAssistant" "homeassistant" "https://home.proxy.${homelab.domain}" "http://home.dns.${homelab.domain}:8123/" ]
     [ "OpenMediaVault" "openmediavault" "https://nas.local:80" "http://nas.local:80/" ]
     [ "ApacheHTTPD" "apache" "https://nas.local:3000" "http://nas.local:3000/" ]
-  ];
-  services = [
-    [ "PocketID" "authentik" "https://auth.${homelab.domain}" "http://localhost:1411/" ]
-    [ "Forgejo" "forgejo" "https://git.${homelab.domain}" "http://localhost:5080/" ]
-    [ "CodeServer" "coder" "https://code.proxy.${homelab.domain}" "http://localhost:8443/" ]
-    [ "AdGuardHome" "adguard" "https://dns.proxy.${homelab.domain}" "http://localhost:8088/" ]
-    [ "Traefik" "traefikproxy" "https://dynamic.proxy.${homelab.domain}/dashboard/" "" ]
-    [ "Immich" "immich" "https://gallery.proxy.${homelab.domain}" "http://localhost:2283/" ]
-    [ "Jellyfin" "jellyfin" "https://media.proxy.${homelab.domain}" "http://localhost:8096/" ]
-    [ "VaultWarden" "vaultwarden" "https://pass.proxy.${homelab.domain}" "http://localhost:8060/" ]
-    [ "Ollama" "ollama" "https://ai.proxy.${homelab.domain}" "http://localhost:8080/" ]
-    [ "Ntfy" "ntfy" "https://notify.proxy.${homelab.domain}" "http://localhost:8067/" ]
-    [ "SearXNG" "searxng" "https://search.proxy.${homelab.domain}" "http://localhost:8091/" ]
-    [ "Dockge" "docker" "https://containers.proxy.${homelab.domain}" "http://localhost:5001/" ]
   ];
   bookmarks = [
     [ "Tailscale" "tailscale" "https://login.tailscale.com/" ]
@@ -302,7 +287,7 @@ in {
                     icon = "si:${builtins.elemAt e 1}";
                     url = builtins.elemAt e 2;
                     check-url = builtins.elemAt e 3;
-                  }) services;
+                  }) homelab.dash;
                 }
                 {
                   type = "docker-containers";
