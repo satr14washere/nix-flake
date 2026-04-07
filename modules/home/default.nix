@@ -1,5 +1,6 @@
 { username, ... }: {
   imports = [
+    ./rice/theme.nix
     ./core/shell.nix
     ./core/cli.nix
   ];

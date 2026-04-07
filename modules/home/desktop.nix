@@ -6,7 +6,6 @@
     ./rice/logout.nix
     ./rice/notifs.nix
     ./rice/cursor.nix
-    ./rice/theme.nix
     ./rice/menu.nix
     ./rice/idle.nix
     ./rice/bar.nix

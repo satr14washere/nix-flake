@@ -51,7 +51,7 @@
       enable = true; # wait for fix: https://github.com/AdnanHodzic/auto-cpufreq/issues/906
       settings = {
         charger = {
-          governor = "performance";
+          governor = "powersave"; # "performance";
           energy_performance_preference = "performance";
           turbo = "always";
           platform_profile = "performance";

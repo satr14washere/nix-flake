@@ -51,6 +51,7 @@
         vim.api.nvim_create_autocmd("VimEnter", {
           callback = function()
             -- vim.cmd("NvimTreeOpen")
+            vim.cmd("set nu")
             vim.cmd.wincmd 'p'
           end,
         })
