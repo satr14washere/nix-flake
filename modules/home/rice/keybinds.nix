@@ -126,6 +126,7 @@
         "SUPER, F, togglefloating,"
         "SUPER, G, layoutmsg, togglesplit"
         "SUPER, L, exec, loginctl lock-session"
+        "SUPER SHIFT, L, exec, hyprctl dispatch dpms off && loginctl lock-session && sleep 1 && hyprctl dispatch dpms on"
         
         "SUPER, down, togglespecialworkspace, hidden"
         "SUPER SHIFT, down, movetoworkspace, special:hidden"
