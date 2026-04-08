@@ -44,6 +44,8 @@
       enable = true;
       defaultEditor = true;
       vimAlias = true;
+      withRuby = false;
+      withPython3 = false;
       initLua = ''
         vim.opt.clipboard = "unnamedplus"
         vim.opt.termguicolors = true
@@ -81,6 +83,7 @@
     };
     git = {
       enable = true;
+      signing.format = null;
       settings = {
         pull.rebase = "true";
         credential.helper = "cache --timeout=3600";

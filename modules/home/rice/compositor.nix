@@ -30,7 +30,7 @@
 
         #"dunst &"
         #"hypridle &"
-        #"swww-daemon &"
+        #"awww-daemon &"
         "uwsm app -s s -- waybar &"
         "uwsm app -s b -- sunshine &"
 
@@ -140,7 +140,7 @@
       layerrule = [
         "no_anim on, match:namespace selection" # hyprshot overlay
         "no_anim on, match:namespace hyprpicker"
-        "animation fade, match:namespace swww-daemon"
+        "animation fade, match:namespace awww-daemon"
         "animation fade, match:namespace logout_dialog"
         "animation fade, match:namespace hyprshutdown"
         "above_lock 2, match:namespace notifications"

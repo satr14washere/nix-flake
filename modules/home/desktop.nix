@@ -16,7 +16,7 @@
   ];
 
   services = {
-    swww.enable = true;
+    awww.enable = true;
     hyprpolkitagent.enable = true;
   };
 

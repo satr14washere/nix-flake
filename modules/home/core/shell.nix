@@ -32,7 +32,7 @@
       '';
       shellAliases = {
         "cd-gvfs" = "cd /run/user/$(id -u)/gvfs";
-        "wlp-set" = "swww img --transition-type=grow --transition-duration=1";
+        "wlp-set" = "awww img --transition-type=grow --transition-duration=1";
         "ssh" = "TERM=xterm-256color ssh";
         "cd" = "z";
 
