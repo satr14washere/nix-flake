@@ -35,6 +35,8 @@ in {
     dash = [
       [ "PocketID" "authentik" "https://auth.${domain}" "http://localhost:1411/" ]
       [ "Forgejo" "forgejo" "https://git.${domain}" "http://localhost:5080/" ]
+      [ "Copyparty" "files" "https://cdn.${domain}" "http://localhost:3923/" ]
+      [ "CryptPad" "cryptpad" "https://docs.${domain}" "http://localhost:7090/" ]
       [ "CodeServer" "coder" "https://code.proxy.${domain}" "http://localhost:8443/" ]
       [ "AdGuardHome" "adguard" "https://dns.proxy.${domain}" "http://localhost:8088/" ]
       [ "Traefik" "traefikproxy" "https://dynamic.proxy.${domain}/dashboard/" "" ]
@@ -48,6 +50,8 @@ in {
     ];
     routes = {
       "git.${domain}"     = "http://localhost:5080";
+      "cdn.${domain}"     = "http://localhost:3923";
+      "docs.${domain}"    = "http://localhost:7090";
       "auth.${domain}"    = "http://localhost:1411";
       "dash.${domain}"    = "http://localhost:5070";
       "media.${domain}"   = "http://localhost:8096";
@@ -72,6 +76,7 @@ in {
         "pass"       = d "http://localhost:8060";
         "auth"       = d "http://localhost:1411";
         "git"        = d "http://localhost:5080";
+        "cdn"        = d "http://localhost:3923";
         "ai"         = d "http://localhost:8080";
         "@"          = d "http://localhost:5070";
       };
