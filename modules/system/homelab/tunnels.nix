@@ -1,19 +1,11 @@
-{ pkgs, lib, homelab, ... }: let
-  routes = {
-    "git.${homelab.domain}"     = "http://localhost:5080";
-    "auth.${homelab.domain}"    = "http://localhost:1411";
-    "dash.${homelab.domain}"    = "http://localhost:5070";
-    "media.${homelab.domain}"   = "http://localhost:8096";
-    "gallery.${homelab.domain}" = "http://localhost:2284";
-  };
-in {
+{ pkgs, lib, homelab, ... }: {
   services.cloudflared = {
     enable = true;
     tunnels.homelab = {
       credentialsFile = "/mnt/data/cloudflared/homelab.json";
       certificateFile = "/mnt/data/cloudflared/cert.pem";
       default = "http_status:404";
-      ingress = routes;
+      ingress = homelab.routes;
     };
   };
   
@@ -32,6 +24,6 @@ in {
     script = lib.concatMapStringsSep "\n" (domain: ''
       echo "Ensuring DNS route for ${domain}..."
       ${pkgs.cloudflared}/bin/cloudflared tunnel --origincert /mnt/data/cloudflared/cert.pem route dns ${homelab.cf-tunnel-id} ${domain} || true
-    '') (builtins.attrNames routes);
+    '') (builtins.attrNames homelab.routes);
   };
 }

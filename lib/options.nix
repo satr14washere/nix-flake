@@ -46,6 +46,13 @@ in {
       [ "SearXNG" "searxng" "https://search.proxy.${domain}" "http://localhost:8091/" ]
       [ "Dockge" "docker" "https://containers.proxy.${domain}" "http://localhost:5001/" ]
     ];
+    routes = {
+      "git.${domain}"     = "http://localhost:5080";
+      "auth.${domain}"    = "http://localhost:1411";
+      "dash.${domain}"    = "http://localhost:5070";
+      "media.${domain}"   = "http://localhost:8096";
+      "gallery.${domain}" = "http://localhost:2284";
+    };
     proxy = {
       base = "proxy.${domain}";
       hosts = {
