@@ -1,8 +1,8 @@
 { ... }: {
   imports = [
-    # ./misc/cpu-hotplug.nix
-    # ./misc/serial.nix 
-    # ./misc/qemu-virtio.nix
+    ./misc/cpu-hotplug.nix
+    ./misc/serial.nix 
+    ./misc/qemu-virtio.nix
     # ^^ only used if vm
     
     ./core/firmware.nix
