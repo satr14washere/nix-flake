@@ -1,11 +1,4 @@
 { lib, pkgs, ctp-opt, rice, ... }: {
-  catppuccin = {
-    enable = true;
-    hyprlock.useDefaultConfig = false;
-    
-    flavor = ctp-opt.flavor;
-    accent = ctp-opt.accent;
-  };
   
   dconf = {
     enable = true;
