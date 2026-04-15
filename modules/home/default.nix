@@ -1,6 +1,5 @@
 { username, ctp-opt, ... }: {
   imports = [
-    ./rice/theme.nix
     ./core/shell.nix
     ./core/cli.nix
   ];

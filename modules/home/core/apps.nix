@@ -36,6 +36,7 @@
     
     vlc
     brave
+    flameshot
     libreoffice
     appimage-run
     # keepassxc
