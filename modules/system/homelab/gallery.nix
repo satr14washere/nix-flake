@@ -6,7 +6,7 @@
       enable = true;
       port = 2283;
       host = "127.0.0.1";
-      mediaLocation = "/mnt/gallery";
+      mediaLocation = "/mnt/data/gallery";
       accelerationDevices = null;
       environment.DB_URL = lib.mkForce "postgresql:///immich?host=/var/run/postgresql&user=immich"; # https://github.com/immich-app/immich/issues/26140
       machine-learning.enable = true;

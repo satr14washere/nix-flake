@@ -2,7 +2,7 @@
   services.searx = {
     enable = true;
     redisCreateLocally = true;
-    environmentFile = "/mnt/data/searxng/.env";
+    environmentFile = "/mnt/data/apps/searxng/.env";
     settings = {
       server = {
         bind_address = "127.0.0.1";

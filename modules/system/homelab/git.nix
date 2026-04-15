@@ -3,7 +3,7 @@
     forgejo = {
       enable = true;
       lfs.enable = true;
-      stateDir = "/mnt/data/forgejo";
+      stateDir = "/mnt/data/apps/forgejo";
       package = pkgs.forgejo;
       settings = {
         server = {

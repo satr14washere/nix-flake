@@ -33,7 +33,7 @@ in {
   
   services.tailscale = {
     enable = true;
-    authKeyFile = "/mnt/data/tailscale/authkey";
+    authKeyFile = "/mnt/data/apps/tailscale/authkey";
     useRoutingFeatures = "server";
     extraUpFlags = ts-flags;
     extraSetFlags = ts-flags;

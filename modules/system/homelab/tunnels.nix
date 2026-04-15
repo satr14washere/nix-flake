@@ -2,8 +2,8 @@
   services.cloudflared = {
     enable = true;
     tunnels.homelab = {
-      credentialsFile = "/mnt/data/cloudflared/homelab.json";
-      certificateFile = "/mnt/data/cloudflared/cert.pem";
+      credentialsFile = "/mnt/data/apps/cloudflared/homelab.json";
+      certificateFile = "/mnt/data/apps/cloudflared/cert.pem";
       default = "http_status:404";
       ingress = homelab.routes;
     };
@@ -23,7 +23,7 @@
 
     script = lib.concatMapStringsSep "\n" (domain: ''
       echo "Ensuring DNS route for ${domain}..."
-      ${pkgs.cloudflared}/bin/cloudflared tunnel --origincert /mnt/data/cloudflared/cert.pem route dns ${homelab.cf-tunnel-id} ${domain} || true
+      ${pkgs.cloudflared}/bin/cloudflared tunnel --origincert /mnt/data/apps/cloudflared/cert.pem route dns ${homelab.cf-tunnel-id} ${domain} || true
     '') (builtins.attrNames homelab.routes);
   };
 }
