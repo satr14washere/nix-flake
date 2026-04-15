@@ -21,7 +21,6 @@ in {
   
   homelab = rec {
     domain = "satr14.my.id"; # root domain for dns, ssl certs, reverse proxy, etc.
-    cf-tunnel-id = "26318288-cdd7-4e58-904b-c45f10d3e40a";
     ssh-keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIESvQFXoUBafatqnxTd6qk3WEOcfwb3AIWVTstR3lHzX forgejo"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJtdH1YqRH9xhuHMivezLvj/hpH77yfH3HUCaRboB/hb forgejo-deploy-runner"

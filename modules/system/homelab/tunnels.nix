@@ -23,7 +23,7 @@
 
     script = lib.concatMapStringsSep "\n" (domain: ''
       echo "Ensuring DNS route for ${domain}..."
-      ${pkgs.cloudflared}/bin/cloudflared tunnel --origincert /mnt/data/apps/cloudflared/cert.pem route dns --overwrite-dns ${homelab.cf-tunnel-id} ${domain} || true
+      ${pkgs.cloudflared}/bin/cloudflared tunnel --origincert /mnt/data/apps/cloudflared/cert.pem route dns --overwrite-dns $(cat /mnt/data/apps/cloudflared/homelab.json | jq -r .TunnelID) ${domain} || true
     '') (builtins.attrNames homelab.routes);
   };
 }
