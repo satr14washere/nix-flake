@@ -27,10 +27,14 @@ in {
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJtdH1YqRH9xhuHMivezLvj/hpH77yfH3HUCaRboB/hb forgejo-deploy-runner"
     ];
     disks = {
-      share = btrfs "/dev/disk/by-uuid/f1ee1d17-e852-4e02-ae86-eaf6116a2aeb"; # disk for file share and storage
       gallery = ext4 "/dev/disk/by-uuid/834f51c1-90ee-4601-ba76-ef0419198d67"; # disk for photo gallery 
       data = ext4 "/dev/disk/by-uuid/a5752dd6-092d-484c-969c-2fdc7cb4a5f0"; # disk for app data
       host = ext4 "/dev/disk/by-uuid/968f14a4-631e-4325-8cd1-f9aec0da9e4d"; # disk for media collection (named host for backwards compatibility)
+      # ^^ virtual disks
+      
+      apps = ext4 "/dev/disk/by-uuid/aa453135-4b7a-4b12-8efc-f3dda093d2b7"; # app data
+      # achive = ext4 "/dev/disk/by-uuid/"; # long term archival 
+      share = btrfs "/dev/disk/by-uuid/f1ee1d17-e852-4e02-ae86-eaf6116a2aeb"; # file share
     };
     dash = [
       [ "PocketID" "authentik" "https://auth.${domain}" "http://localhost:1411/" ]
