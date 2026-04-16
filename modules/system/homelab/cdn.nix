@@ -1,5 +1,14 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [ copyparty-most ];
 
-  # TODO: systemd service
+  systemd.services.copyparty = {
+    description = "File Sharing Service";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.copyparty-most}/bin/copyparty -c /mnt/share/cfg/files.conf";
+      Restart = "on-failure";
+      User = "nobody";
+    };
+  };
 }
