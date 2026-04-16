@@ -5,6 +5,7 @@
   services = {
     jellyfin = {
       enable = true;
+      dataDir = "/mnt/data/apps/jellyfin";
       hardwareAcceleration = {
         enable = true;
         device = "/dev/dri/renderD128";

@@ -1,4 +1,5 @@
 { pkgs, homelab, lib, ... }: let
+  htpasswd = "/mnt/data/apps/nginx/htpasswd";
   exta-conf = ''
     # proxy_set_header X-Auth-User $remote_user;
     proxy_read_timeout 600s;
@@ -60,7 +61,7 @@ in {
         locations."/" = {
           proxyPass = cfg.dest;
           proxyWebsockets = true;
-          basicAuthFile = if cfg.auth then "/var/lib/nginx/.htpasswd" else null;
+          basicAuthFile = if cfg.auth then htpasswd else null;
           extraConfig = exta-conf;
         };
       }) homelab.proxy.hosts;
@@ -68,7 +69,7 @@ in {
     traefik = {
       enable = true;
       dynamicConfigOptions = {
-        http.middlewares.auth.basicAuth.usersFile = "/var/lib/nginx/.htpasswd";
+        http.middlewares.auth.basicAuth.usersFile = htpasswd;
       };
       staticConfigOptions = {
         entryPoints = {
