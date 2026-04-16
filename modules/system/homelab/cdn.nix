@@ -9,7 +9,6 @@
     serviceConfig = {
       ExecStart = "${pkgs.copyparty-most}/bin/copyparty -c /mnt/share/cfg/files.conf";
       Restart = "on-failure";
-      User = "nobody";
     };
   };
 }
