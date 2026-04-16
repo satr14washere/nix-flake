@@ -53,7 +53,7 @@ in {
     ];
     routes = {
       "git.${domain}"     = "http://localhost:5080";
-      "cdn.${domain}"     = "http://localhost:3923";
+      "cdn.${domain}"     = "https://localhost:3923";
       "docs.${domain}"    = "http://localhost:7090";
       "auth.${domain}"    = "http://localhost:1411";
       "dash.${domain}"    = "http://localhost:5070";
