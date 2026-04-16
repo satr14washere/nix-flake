@@ -22,6 +22,7 @@ in {
     ./homelab/dns.nix
     ./homelab/git.nix
     ./homelab/ai.nix
+    ./homelab/db.nix
     
     ./core/swapfile.nix
     ./core/oom.nix
