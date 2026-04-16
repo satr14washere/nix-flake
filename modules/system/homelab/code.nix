@@ -1,4 +1,4 @@
-{ pkgs, username, ... }: {
+{ username, ... }: {
   services.code-server = {
     enable = true;
     host = "127.0.0.1";
@@ -8,6 +8,5 @@
     disableTelemetry = true;
     extensionsDir = "/mnt/data/apps/code-server/extensions";
     userDataDir = "/mnt/data/apps/code-server/user-data";
-    extraPackages = with pkgs; [];
   };
 }
