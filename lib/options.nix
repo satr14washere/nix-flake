@@ -4,6 +4,8 @@ let
   
   ext4 = path: { inherit path; type = "ext4"; };
   btrfs = path: { inherit path; type = "btrfs"; };
+  
+  selfSigned = service: { inherit service; originRequest.noTLSVerify = true; };
 in {
   flake-path = "~/Projects/nix-flake"; # set this to the cloned repo path
 
@@ -52,8 +54,8 @@ in {
       [ "Dockge" "docker" "https://containers.proxy.${domain}" "http://localhost:5001/" ]
     ];
     routes = {
+      "cdn.${domain}"     = selfSigned "https://localhost:3923";
       "git.${domain}"     = "http://localhost:5080";
-      "cdn.${domain}"     = "https://localhost:3923";
       "docs.${domain}"    = "http://localhost:7090";
       "auth.${domain}"    = "http://localhost:1411";
       "dash.${domain}"    = "http://localhost:5070";
