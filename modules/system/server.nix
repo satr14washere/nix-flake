@@ -21,6 +21,7 @@ in {
     ./homelab/code.nix
     ./homelab/dns.nix
     ./homelab/git.nix
+    ./homelab/cdn.nix
     ./homelab/ai.nix
     ./homelab/db.nix
     
