@@ -3,6 +3,7 @@
 
   systemd.services.copyparty = {
     description = "File Sharing Service";
+    enable = true;
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
