@@ -43,7 +43,7 @@
       enable = true;
       name = "nixos-server-runner";
       url = "https://git.proxy.${homelab.domain}";
-      tokenFile = "/root/forgejo-token-runner"; 
+      tokenFile = "/mnt/data/apps/forgejo/token-runner"; 
       labels = [ "self-hosted:host" ];
       hostPackages = with pkgs; [ bash coreutils git nix openssh nodejs ];
     };
