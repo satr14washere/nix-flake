@@ -83,7 +83,6 @@ in {
   };
   services.glance = {
     enable = true;
-    environmentFile = "/var/lib/glance/.env";
     settings = {
       server = {
         host = "127.0.0.1";
@@ -260,7 +259,7 @@ in {
                   type = "server-stats";
                   servers = [{
                     type = "local";
-                    mountpoints."/nix/store".hide = true;
+                    # mountpoints."/nix/store".hide = true;
                   }];
                 }
                 {
