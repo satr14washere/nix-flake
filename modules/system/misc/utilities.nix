@@ -29,6 +29,8 @@
     blueman
     shared-mime-info
     usbutils
+    cloudflared
+    cloud-utils
     
     hplipWithPlugin
 
