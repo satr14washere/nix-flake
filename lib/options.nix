@@ -54,9 +54,10 @@ in {
       [ "Dockge" "docker" "https://containers.proxy.${domain}" "http://localhost:5001/" ]
     ];
     routes = {
+      "docs-sandbox.${domain}" = "http://localhost:7090";
+      "docs.${domain}"         = "http://localhost:7090";
       "cdn.${domain}"     = selfSigned "https://localhost:3923";
       "git.${domain}"     = "http://localhost:5080";
-      "docs.${domain}"    = "http://localhost:7090";
       "auth.${domain}"    = "http://localhost:1411";
       "dash.${domain}"    = "http://localhost:5070";
       "media.${domain}"   = "http://localhost:8096";
