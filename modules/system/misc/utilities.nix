@@ -1,62 +1,80 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
+    # Disk & Storage
     baobab
-    file-roller
-    gnome-network-displays
     gnome-disk-utility
-    
-    parted
-    smartmontools
-    lm_sensors
-    ntfs3g
-    virt-viewer
-    dconf2nix
-    pciutils
     gparted
+    parted
+    ntfs3g
     exfatprogs
-    pavucontrol
-    jq
+    smartmontools
+    ncdu
+    ventoy-full-qt
+
+    # System Monitoring & Hardware
+    htop
+    sysstat
     powertop
+    lm_sensors
     fastfetch
+    pciutils
+    usbutils
+    stress
+    stress-ng
+
+    # Networking
+    gnome-network-displays
     ethtool
     dig
     dnslookup
-    lsof
-    gucharmap
-    ncdu
-    zip
-    unzip
-    blueman
-    shared-mime-info
-    usbutils
+    nmap
+    netcat
+    traceroute
+    wakeonlan
     cloudflared
     cloud-utils
-    
-    hplipWithPlugin
 
-    android-tools
-    scrcpy
+    # Archives & Compression
+    file-roller
+    zip
+    unzip
+    p7zip
+
+    # GUI Utilities
+    pavucontrol
+    gucharmap
+    lxappearance
+    blueman
+    shared-mime-info
+
+    # Virtualization & Containers
+    virt-viewer
     distrobox
 
-    ventoy-full-qt
+    # Android
+    android-tools
+    scrcpy
+
+    # Remote Access
+    freerdp
+
+    # Media
     ffmpeg
+
+    # Printing
+    hplipWithPlugin
+
+    # CLI Essentials
     vim
     wget
     curl
     openssl_3
-    htop
-    nmap
-    sysstat
-    netcat
-    p7zip
-    stress
-    stress-ng
-    wakeonlan
     coreutils-full
-    traceroute
-    lxappearance
-    freerdp
+    jq
+    lsof
 
+    # Nix & Development
+    dconf2nix
     home-manager
     nix-index
     nixd
