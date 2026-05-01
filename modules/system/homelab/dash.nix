@@ -250,7 +250,12 @@ in {
                   type = "server-stats";
                   servers = [{
                     type = "local";
-                    # mountpoints."/nix/store".hide = true;
+                    mountpoints = {
+                      "/nix/store".hide = true;
+                      "/var/lib/cryptpad".hide = true;
+                      "/var/lib/vaultwarden".hide = true;
+                      "/var/lib/acme/proxy.satr14.my.id".hide = true;
+                    };
                   }];
                 }
                 {
