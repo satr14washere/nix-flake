@@ -1,7 +1,9 @@
-{ homelab, ... }: let
+{ lib, homelab, ... }: let
   domain = "docs.${homelab.domain}";
   sandbox = "docs-sandbox.${homelab.domain}";
 in {
+  systemd.services.cryptpad.confinement.enable = lib.mkForce false;
+  
   services.cryptpad = {
     enable = true;
     settings = {
