@@ -96,12 +96,8 @@ in {
     records = [
       [ "server.dns.${domain}"     "10.3.14.69"         ]
       [ "router.dns.${domain}"     "10.3.14.1"          ]
-      [ "home.dns.${domain}"       "10.3.14.235"        ]
-      [ "games.dns.${domain}"      "10.3.14.37"         ]
-      [ "workspace.dns.${domain}"  "10.3.14.57"         ]
-      [ "old-main.dns.${domain}"   "10.3.14.42"         ] # old main machine for connecting while migrating
       
-      [ "main.dns.${domain}"       "10.3.14.215"        ] # this machine
+      [ "main.dns.${domain}"       "homelab.axolotl-chameleon.ts.net" ] # this machine
       [ "proxy.${domain}"          "main.dns.${domain}" ]
       [ "*.proxy.${domain}"        "proxy.${domain}"    ]
       
