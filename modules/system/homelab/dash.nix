@@ -53,8 +53,6 @@
     [ "Google Web Results Only" "!s" "https://google.com/search?udm=14&q={QUERY}" ]
   ];
   monitor = [
-    [ "Hypervisor" "https://10.3.14.69:8006/" ]
-    [ "Router" "http://10.3.14.1:80/" ]
     [ "DNS" "http://localhost:8088/" ]
     [ "Proxy" "https://proxy.${homelab.domain}/" ]
   ];
