@@ -31,6 +31,7 @@ in {
     device = "/mnt/data/apps/acme/${homelab.proxy.base}";
     depends = [ "/mnt/data" ];
     options = [ "bind" "nofail" ];
+    fsType = "none";
   };
   
   services = {

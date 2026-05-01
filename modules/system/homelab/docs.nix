@@ -19,5 +19,6 @@ in {
     device = "/mnt/data/apps/cryptpad";
     depends = [ "/mnt/data" ]; 
     options = [ "bind" "nofail" ];
+    fsType = "none";
   };
 }

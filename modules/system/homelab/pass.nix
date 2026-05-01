@@ -15,5 +15,6 @@
     device = "/mnt/data/apps/vaultwarden/data";
     depends = [ "/mnt/data" ];
     options = [ "bind" "nofail" ];
+    fsType = "none";
   };
 }
