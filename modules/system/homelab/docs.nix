@@ -3,10 +3,6 @@
   sandbox = "docs-sandbox.${homelab.domain}";
   data-dir = "/mnt/data/apps/cryptpad";
 in {
-  systemd.tmpfiles.rules = [
-    "d ${data-dir} 0750 cryptpad cryptpad -"
-  ];
-
   services.cryptpad = {
     enable = true;
     settings = {
@@ -26,6 +22,4 @@ in {
       logPath = "${data-dir}/logs";
     };
   };
-
-  systemd.services.cryptpad.serviceConfig.ReadWritePaths = [ data-dir ];
 }
