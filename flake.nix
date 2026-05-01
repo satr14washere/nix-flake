@@ -6,18 +6,18 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     gl.url = "github:nix-community/nixGL";
     ctp.url = "github:catppuccin/nix";
   };
 
-  outputs = inputs: let 
+  outputs = inputs: let
     pkgs = import inputs.nixpkgs {
       system = "x86_64-linux";
       overlays = [ inputs.gl.overlay ];
       config = {
         allowUnfree = true;
-        permittedInsecurePackages = [ "ventoy-qt5-1.1.10" ];
+        permittedInsecurePackages = [ "ventoy-qt5-1.1.12" ];
       };
     };
     args = {
@@ -32,7 +32,7 @@
         inputs.ctp.nixosModules.catppuccin
       ];
     };
-    
+
     nixosConfigWithHome = host: inputs.nixpkgs.lib.nixosSystem {
       inherit pkgs;
       specialArgs = args // { hostname = host; };
@@ -50,7 +50,7 @@
         }
       ];
     };
-    
+
     homeConfig = host: inputs.hm.lib.homeManagerConfiguration {
       extraSpecialArgs = args // { hostname = host; };
       inherit pkgs;
