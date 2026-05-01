@@ -1,9 +1,7 @@
-{ lib, homelab, ... }: let
+{ homelab, ... }: let
   domain = "docs.${homelab.domain}";
   sandbox = "docs-sandbox.${homelab.domain}";
 in {
-  systemd.services.cryptpad.confinement.enable = lib.mkForce false;
-  
   services.cryptpad = {
     enable = true;
     settings = {
@@ -17,7 +15,7 @@ in {
     };
   };
   
-  fileSystems."/var/lib/cryptpad" = {
+  fileSystems."/var/lib/private/cryptpad" = {
     device = "/mnt/data/apps/cryptpad";
     depends = [ "/mnt/data" ]; 
     options = [ "bind" "nofail" ];
