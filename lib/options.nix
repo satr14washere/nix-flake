@@ -66,10 +66,6 @@ in {
     proxy = {
       base = "proxy.${domain}";
       hosts = {
-        "server"     = d "https://server.dns.${domain}:8006";
-        "router"     = d "http://router.dns.${domain}:80";
-        "home"       = d "http://home.dns.${domain}:8123";
-        
         "containers" = da "http://localhost:5001";
         "code"       = da "http://localhost:8443";
         "dns"        = da "http://localhost:8088";
@@ -94,9 +90,6 @@ in {
       };
     };
     records = [
-      [ "server.dns.${domain}"     "10.3.14.69"         ]
-      [ "router.dns.${domain}"     "10.3.14.1"          ]
-      
       [ "main.dns.${domain}"       "100.113.147.93" ] # this machine
       [ "proxy.${domain}"          "main.dns.${domain}" ]
       [ "*.proxy.${domain}"        "proxy.${domain}"    ]

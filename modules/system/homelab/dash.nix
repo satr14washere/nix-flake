@@ -58,10 +58,6 @@
     [ "DNS" "http://localhost:8088/" ]
     [ "Proxy" "https://proxy.${homelab.domain}/" ]
   ];
-  external = [
-    [ "Proxmox" "proxmox" "https://server.proxy.${homelab.domain}" "http://server.dns.${homelab.domain}:8006/" ]
-    [ "OpenWRT" "openwrt" "https://router.proxy.${homelab.domain}" "http://router.dns.${homelab.domain}:80/" ]
-  ];
   bookmarks = [
     [ "Tailscale" "tailscale" "https://login.tailscale.com/" ]
     [ "Cloudflare" "cloudflare" "https://dash.cloudflare.com/" ]
@@ -258,19 +254,6 @@ in {
                     type = "local";
                     # mountpoints."/nix/store".hide = true;
                   }];
-                }
-                {
-                  type = "monitor";
-                  cache = "1m";
-                  title = "External";
-                  sites = map (e: { 
-                    same-tab = true;
-                    allow-insecure = true;
-                    title = builtins.elemAt e 0;
-                    icon = "si:${builtins.elemAt e 1}";
-                    url = builtins.elemAt e 2;
-                    check-url = builtins.elemAt e 3;
-                  }) external;
                 }
                 {
                   type = "monitor";
