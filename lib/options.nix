@@ -97,7 +97,7 @@ in {
       [ "server.dns.${domain}"     "10.3.14.69"         ]
       [ "router.dns.${domain}"     "10.3.14.1"          ]
       
-      [ "main.dns.${domain}"       "homelab.axolotl-chameleon.ts.net" ] # this machine
+      [ "main.dns.${domain}"       "100.113.147.93" ] # this machine
       [ "proxy.${domain}"          "main.dns.${domain}" ]
       [ "*.proxy.${domain}"        "proxy.${domain}"    ]
       
