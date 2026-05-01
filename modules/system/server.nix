@@ -2,7 +2,7 @@
   ts-flags = [
     "--advertise-exit-node"
     "--advertise-routes=10.3.14.0/24,192.168.1.0/24"
-    "--ssh" "--webclient"
+    "--ssh"
   ];
 in {
   imports = [
