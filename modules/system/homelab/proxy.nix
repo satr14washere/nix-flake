@@ -27,6 +27,12 @@ in {
     };
   };
   
+  fileSystems."/var/lib/acme/${homelab.proxy.base}" = {
+    device = "/mnt/data/apps/acme/${homelab.proxy.base}";
+    depends = [ "/mnt/data" ];
+    options = [ "bind" "nofail" ];
+  };
+  
   services = {
     nginx = {
       enable = true;
