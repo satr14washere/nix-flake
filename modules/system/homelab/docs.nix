@@ -12,14 +12,12 @@ in {
       httpSafeOrigin = "https://${sandbox}";
       blockDailyCheck = true;
       disableIntegratedEviction = true;
-      archivePath = "${data-dir}/archive";
-      pinPath = "${data-dir}/pins";
-      taskPath = "${data-dir}/tasks";
-      blockPath = "${data-dir}/block";
-      blobPath = "${data-dir}/blob";
-      blobStagingPath = "${data-dir}/blobstage";
-      decreePath = "${data-dir}/decrees";
-      logPath = "${data-dir}/logs";
     };
+  };
+  
+  fileSystems."/var/lib/cryptpad" = {
+    device = "/mnt/data/apps/cryptpad";
+    dependsOn = [ "/mnt/data" ]; 
+    options = [ "bind" "nofail" ];
   };
 }
