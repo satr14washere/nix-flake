@@ -13,7 +13,7 @@
   
   fileSystems."/var/lib/vaultwarden" = {
     device = "/mnt/data/apps/vaultwarden/data";
-    dependsOn = [ "/mnt/data" ];
+    depends = [ "/mnt/data" ];
     options = [ "bind" "nofail" ];
   };
 }

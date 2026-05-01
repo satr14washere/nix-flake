@@ -17,7 +17,7 @@ in {
   
   fileSystems."/var/lib/cryptpad" = {
     device = "/mnt/data/apps/cryptpad";
-    dependsOn = [ "/mnt/data" ]; 
+    depends = [ "/mnt/data" ]; 
     options = [ "bind" "nofail" ];
   };
 }
