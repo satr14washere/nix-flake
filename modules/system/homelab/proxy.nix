@@ -21,8 +21,9 @@ in {
     certs."${homelab.proxy.base}" = {
       domain = "*.${homelab.proxy.base}";
       extraDomainNames = [ homelab.proxy.base ];
-      dnsProvider = "cloudflare";
+      directory = "/mnt/data/apps/acme/${homelab.proxy.base}";
       environmentFile = "/mnt/data/apps/acme/cf-api.env";
+      dnsProvider = "cloudflare";
       # ^^^contents: CLOUDFLARE_DNS_API_TOKEN=XXXXX
     };
   };
