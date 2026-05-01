@@ -252,8 +252,8 @@ in {
                     type = "local";
                     mountpoints = {
                       "/nix/store".hide = true;
-                      "/var/lib/cryptpad".hide = true;
                       "/var/lib/vaultwarden".hide = true;
+                      "/var/lib/private/cryptpad".hide = true;
                       "/var/lib/acme/proxy.satr14.my.id".hide = true;
                     };
                   }];
