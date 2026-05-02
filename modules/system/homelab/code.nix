@@ -1,6 +1,6 @@
 { username, ... }: {
   services.code-server = {
-    enable = false;
+    enable = true;
     host = "127.0.0.1";
     port = 8443;
     user = username;
