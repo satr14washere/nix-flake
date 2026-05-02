@@ -9,6 +9,8 @@
 
     gl.url = "github:nix-community/nixGL";
     ctp.url = "github:catppuccin/nix";
+    
+    mc.url = "github:Infinidoge/nix-minecraft";
   };
 
   outputs = inputs: let

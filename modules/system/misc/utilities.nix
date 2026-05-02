@@ -74,6 +74,7 @@
     lsof
 
     # Nix & Development
+    rcon-cli
     dconf2nix
     home-manager
     nix-index

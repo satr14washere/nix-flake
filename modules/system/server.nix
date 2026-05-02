@@ -25,6 +25,7 @@ in {
     ./homelab/cdn.nix
     ./homelab/ai.nix
     ./homelab/db.nix
+    ./homelab/mc.nix
     
     ./core/swapfile.nix
     ./core/oom.nix
