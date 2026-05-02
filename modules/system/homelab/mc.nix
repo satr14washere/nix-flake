@@ -21,7 +21,7 @@ in {
       restart = "always";
       enableReload = true;
       
-      package = pkgs.fabricServers.fabric-26_1.override {
+      package = pkgs.fabricServers.fabric-1_21_11.override {
         loaderVersion = "0.19.2";
         jre_headless = pkgs.javaPackages.compiler.temurin-bin.jre-25;
       };
