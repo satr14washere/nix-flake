@@ -10,13 +10,13 @@ in {
   nixpkgs.overlays = [ inputs.mc.overlay ];
   
   services.minecraft-servers = {
-    enable = false;
+    enable = true;
     eula = true;
     managementSystem.systemd-socket.enable = true; # Referenced but unset environment variable evaluates to an empty string: MAINPID
     # ^^^ https://github.com/Infinidoge/nix-minecraft/issues/119
    
     servers.mc0-explorers-creativity = {
-      enable = false;
+      enable = true;
       autoStart = true;
       restart = "always";
       enableReload = true;
