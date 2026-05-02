@@ -12,6 +12,8 @@ in {
       httpSafeOrigin = "https://${sandbox}";
       blockDailyCheck = true;
       disableIntegratedEviction = true;
+      disableAnonymousStore = true;
+      disableAnonymousPadCreation = true;
       adminKeys = [ 
         "[satr14@docs.satr14.my.id/f1A82fmBuqQka2bNqrCb1WbB9r2ex5A3rdys5xLX3Hc=]"
       ];
