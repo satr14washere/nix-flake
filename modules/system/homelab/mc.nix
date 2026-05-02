@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }: let
+{ inputs, lib, pkgs, ... }: let
   ram-allocation = "10240M";
   auth-server = "https://mc.satr14.my.id";
   # modpack = pkgs.fetchPackwizModpack {
@@ -25,11 +25,35 @@ in {
           url = "https://github.com/yushijinhun/authlib-injector/releases/download/v1.2.7/authlib-injector-1.2.7.jar";
           sha256 = "0av58bz0fn7wn9bf7sib62cn4vgkk4mr9mavpn2xiizzmk2lpwga";
         };
-      in ''
-        -Xms${ram-allocation} -Xmx${ram-allocation} -javaagent:${authlib-injector}=${auth-server}
-        
-        -add-modules=jdk.incubator.vector -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20
-      '';
+        flags = [
+          "-Xms${ram-allocation}"
+          "-Xmx${ram-allocation}"
+          "-javaagent:${authlib-injector}=${auth-server}"
+          "--add-modules=jdk.incubator.vector"
+
+          # Aikar's GC flags
+          "-XX:+UseG1GC"
+          "-XX:+ParallelRefProcEnabled"
+          "-XX:MaxGCPauseMillis=200"
+          "-XX:+UnlockExperimentalVMOptions"
+          "-XX:+DisableExplicitGC"
+          "-XX:+AlwaysPreTouch"
+          "-XX:G1HeapWastePercent=5"
+          "-XX:G1MixedGCCountTarget=4"
+          "-XX:InitiatingHeapOccupancyPercent=15"
+          "-XX:G1MixedGCLiveThresholdPercent=90"
+          "-XX:G1RSetUpdatingPauseTimePercent=5"
+          "-XX:SurvivorRatio=32"
+          "-XX:+PerfDisableSharedMem"
+          "-XX:MaxTenuringThreshold=1"
+          "-Dusing.aikars.flags=https://mcflags.emc.gs"
+          "-Daikars.new.flags=true"
+          "-XX:G1NewSizePercent=30"
+          "-XX:G1MaxNewSizePercent=40"
+          "-XX:G1HeapRegionSize=8M"
+          "-XX:G1ReservePercent=20"
+        ];
+      in lib.concatStringsSep " " flags;
       
       serverProperties = {
         server-port = 25565;
