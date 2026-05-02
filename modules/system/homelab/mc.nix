@@ -12,6 +12,7 @@ in {
   services.minecraft-servers = {
     enable = true;
     eula = true;
+    managementSystem.systemd-socket.enable = true; # Referenced but unset environment variable evaluates to an empty string: MAINPID
    
     servers.mc0-explorers-creativity = {
       enable = true;
@@ -19,7 +20,6 @@ in {
       restart = "always";
       enableReload = true;
       
-      managementSystem.systemd-socket.enable = true; # Referenced but unset environment variable evaluates to an empty string: MAINPID
       package = pkgs.fabricServers.fabric-26_1.override { loaderVersion = "0.19.2"; };
       jvmOpts = let
         authlib-injector = pkgs.fetchurl {
