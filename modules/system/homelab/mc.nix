@@ -13,6 +13,7 @@ in {
     enable = true;
     eula = true;
     managementSystem.systemd-socket.enable = true; # Referenced but unset environment variable evaluates to an empty string: MAINPID
+    # ^^^ https://github.com/Infinidoge/nix-minecraft/issues/119
    
     servers.mc0-explorers-creativity = {
       enable = true;
