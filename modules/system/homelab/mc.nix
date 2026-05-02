@@ -21,7 +21,11 @@ in {
       restart = "always";
       enableReload = true;
       
-      package = pkgs.fabricServers.fabric-26_1.override { loaderVersion = "0.19.2"; };
+      package = pkgs.fabricServers.fabric-26_1.override {
+        loaderVersion = "0.19.2";
+        jre_headless = pkgs.javaPackages.compiler.temurin-bin.jre-25;
+      };
+
       jvmOpts = let
         authlib-injector = pkgs.fetchurl {
           url = "https://github.com/yushijinhun/authlib-injector/releases/download/v1.2.7/authlib-injector-1.2.7.jar";
