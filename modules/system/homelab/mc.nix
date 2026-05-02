@@ -64,7 +64,7 @@ in {
       serverProperties = {
         server-port = 25565;
         server-name = "Digit Association";
-        motd = "\u00a7lSeason 3\u00a7r - \u00a7dExplorers Creativity \ud83d\udd25";
+        motd = "§lSeason 3§r - §dExplorers Creativity 🔥";
         
         difficulty = "normal";
         gamemode = "survival";
