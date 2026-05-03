@@ -3,7 +3,7 @@
   auth-server = "https://mc.satr14.my.id"; # TODO: self hosted drasl server
   modpack = pkgs.fetchPackwizModpack {
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/commit/e8a47c7f6dbf26cf436d40d68eed17ac4a98decc/pack.toml";
-    packHash = "";
+    packHash = "sha256-VJ018vTOASlS9Ndp+dI2N5bla2lQcDxY+MPS2qXYufE=";
   };
 in {
   imports = [ inputs.mc.nixosModules.minecraft-servers ];
