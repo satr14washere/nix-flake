@@ -1,9 +1,11 @@
 { inputs, lib, pkgs, ... }: let
   ram-allocation = "10240M";
   auth-server = "https://mc.satr14.my.id"; # TODO: self hosted drasl server
-  modpack = pkgs.fetchPackwizModpack {
-    url = "https://git.satr14.my.id/satr14/server-modpack/raw/commit/ffd94a9909407a5d1ca2c1a2c35b19b048815dbd/pack.toml";
+  modpack = let
+    commit = "ffd94a9909407a5d1ca2c1a2c35b19b048815dbd";
+  in pkgs.fetchPackwizModpack {
     packHash = "sha256-ipG+TlkQDKODpybJ+Obwpvq8DALc6YaGCBGsn7ayLi0=";
+    url = "https://git.satr14.my.id/satr14/server-modpack/raw/commit/${commit}/pack.toml";
   };
 in {
   imports = [ inputs.mc.nixosModules.minecraft-servers ];
@@ -40,7 +42,7 @@ in {
           "-Dminecraft.api.session.host=${auth-server}/session"
           "-Dminecraft.api.services.host=${auth-server}/services"
 
-          # Aikar's GC flags
+          # Aikar's GC flags (tuned for 10GB)
           "-XX:+UseG1GC"
           "-XX:+ParallelRefProcEnabled"
           "-XX:MaxGCPauseMillis=200"
