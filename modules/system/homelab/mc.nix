@@ -1,10 +1,10 @@
 { inputs, lib, pkgs, ... }: let
   ram-allocation = "10240M";
   auth-server = "https://mc.satr14.my.id";
-  # modpack = pkgs.fetchPackwizModpack {
-  #   url = "";
-  #   packHash = "";
-  # };
+  modpack = pkgs.fetchPackwizModpack {
+    url = "https://git.satr14.my.id/satr14/server-modpack/raw/commit/a1372bf1b044fd178d5ca29a8b01805f56c9ee4f/pack.toml";
+    packHash = "sha256-TCBGa4W+hi6iMzaI9GkapgaQGib0mvhnOObTdEgO/Rs=";
+  };
 in {
   imports = [ inputs.mc.nixosModules.minecraft-servers ];
   nixpkgs.overlays = [ inputs.mc.overlay ];
@@ -93,7 +93,7 @@ in {
       
       symlinks = {
         # "resources/datapack/required" = "${modpack}/datapacks";
-        # "mods" = "${modpack}/mods";
+        "mods" = "${modpack}/mods";
         
         # "server-icon.png" = "${modpack}/server-icon.png";
         # "config" = "";
