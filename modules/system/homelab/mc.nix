@@ -73,6 +73,7 @@ in {
         pvp = true;
         
         online-mode = true;
+        enable-query = true;
         enforce-secure-profile = false;
         pevent-proxy-connections = false;
         allow-flight = false;
