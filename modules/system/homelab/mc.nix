@@ -19,11 +19,11 @@ in {
       enable = true;
       autoStart = true;
       restart = "always";
-      enableReload = true;
+      enableReload = false; # NOTE: development phase, disable in production
       
       package = pkgs.fabricServers.fabric-1_21_11.override {
-        loaderVersion = "0.19.2";
         jre_headless = pkgs.javaPackages.compiler.temurin-bin.jre-25;
+        loaderVersion = "0.19.2";
       };
 
       jvmOpts = let
@@ -67,7 +67,7 @@ in {
       serverProperties = {
         server-port = 25565;
         server-name = "Digit Association";
-        motd = "§lSeason 3§r - §dExplorers Creativity 🔥";
+        motd = "§lSeason 3 TESTING§r - §dExplorers Creativity 🔥";
         
         difficulty = "normal";
         gamemode = "survival";
