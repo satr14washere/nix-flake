@@ -1,6 +1,6 @@
 { inputs, lib, pkgs, ... }: let
   ram-allocation = "10240M";
-  auth-server = "https://mc.satr14.my.id";
+  auth-server = "https://mc.satr14.my.id"; # self hosted drasl server
   modpack = pkgs.fetchPackwizModpack {
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/commit/a1372bf1b044fd178d5ca29a8b01805f56c9ee4f/pack.toml";
     packHash = "sha256-TCBGa4W+hi6iMzaI9GkapgaQGib0mvhnOObTdEgO/Rs=";
@@ -27,15 +27,18 @@ in {
       };
 
       jvmOpts = let
-        authlib-injector = pkgs.fetchurl {
-          url = "https://github.com/yushijinhun/authlib-injector/releases/download/v1.2.7/authlib-injector-1.2.7.jar";
-          sha256 = "0av58bz0fn7wn9bf7sib62cn4vgkk4mr9mavpn2xiizzmk2lpwga";
-        };
         flags = [
           "-Xms${ram-allocation}"
           "-Xmx${ram-allocation}"
-          "-javaagent:${authlib-injector}=${auth-server}"
           "--add-modules=jdk.incubator.vector"
+          
+          # Custom auth server
+          "-Dminecraft.api.env=custom"
+          "-Dminecraft.api.auth.host=${auth-server}/auth"
+          "-Dminecraft.api.account.host=${auth-server}/account"
+          "-Dminecraft.api.profiles.host=${auth-server}/account"
+          "-Dminecraft.api.session.host=${auth-server}/session"
+          "-Dminecraft.api.services.host=${auth-server}/services"
 
           # Aikar's GC flags
           "-XX:+UseG1GC"
