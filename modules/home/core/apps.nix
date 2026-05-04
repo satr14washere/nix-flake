@@ -61,6 +61,7 @@
     })
 
     ferium
+    packwiz
     portablemc
     steamguard-cli
     # modrinth-app
