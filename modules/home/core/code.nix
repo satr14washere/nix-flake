@@ -11,6 +11,8 @@
       "nix"
     ];
     userSettings = {
+      diff_view_style =  "unified";
+      cli_default_open_behavior = "existing_window";
       format_on_save = "off";
       vim_mode = true;
       git.inline_blame.enabled = true;
@@ -41,7 +43,9 @@
         tool_permissions.default = "allow";
         default_model = {
           provider = "copilot_chat";
-          model = "claude-opus-4.6";
+          model = "claude-sonnet-4.6";
+          effort = "high";
+          enable_thinking = false;
         };
       };
       theme = {
