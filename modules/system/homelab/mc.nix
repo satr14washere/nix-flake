@@ -2,9 +2,9 @@
   ram-allocation = "10240M";
   auth-server = "https://mc.satr14.my.id"; # TODO: self hosted drasl server
   modpack = let
-    commit = "9e2538b25a2e6f81c45062c8f6ea3234676a9c8e";
+    commit = "c76c7fc2037c4f9d6870d49c9444d33dd9480014";
   in pkgs.fetchPackwizModpack {
-    packHash = "sha256-GPMiCg2S9IQ4my5NPjet7MJNjgc+jf64a59fDbjEGVI=";
+    packHash = "";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/commit/${commit}/pack.toml";
   };
 in {
