@@ -1,10 +1,10 @@
 { inputs, lib, pkgs, ... }: let
   ram-allocation = "10240M";
-  auth-server = "https://mc.satr14.my.id"; # TODO: self hosted drasl server
+  # auth-server = "https://mc.satr14.my.id"; # TODO: self hosted drasl server
   modpack = let
-    commit = "c76c7fc2037c4f9d6870d49c9444d33dd9480014";
+    commit = "3ce321be116ec909aa2f2188b6d3e9351806dd7e";
   in pkgs.fetchPackwizModpack {
-    packHash = "sha256-ZTzI6hhpqkirkbwcqV7ufC0XB2qSmiNYec+z/kr/HpE=";
+    packHash = "";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/commit/${commit}/pack.toml";
   };
 in {
@@ -35,12 +35,12 @@ in {
           "--add-modules=jdk.incubator.vector"
           
           # Custom auth server
-          "-Dminecraft.api.env=custom"
-          "-Dminecraft.api.auth.host=${auth-server}/auth"
-          "-Dminecraft.api.account.host=${auth-server}/account"
-          "-Dminecraft.api.profiles.host=${auth-server}/account"
-          "-Dminecraft.api.session.host=${auth-server}/session"
-          "-Dminecraft.api.services.host=${auth-server}/services"
+          # "-Dminecraft.api.env=custom"
+          # "-Dminecraft.api.auth.host=${auth-server}/auth"
+          # "-Dminecraft.api.account.host=${auth-server}/account"
+          # "-Dminecraft.api.profiles.host=${auth-server}/account"
+          # "-Dminecraft.api.session.host=${auth-server}/session"
+          # "-Dminecraft.api.services.host=${auth-server}/services"
 
           # Aikar's GC flags (tuned for 10GB)
           "-XX:+UseG1GC"
