@@ -23,7 +23,6 @@ in {
       const factory = (AppConfig) => {
           AppConfig.disableAnonymousPadCreation = true;
           AppConfig.disableAnonymousStore = true;
-          AppConfig.defaultDarkTheme = 'true';
           return AppConfig;
       };
   
