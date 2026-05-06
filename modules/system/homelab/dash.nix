@@ -251,6 +251,7 @@ in {
                   servers = [{
                     type = "local";
                     mountpoints = {
+                      "/boot".hide = true;
                       "/nix/store".hide = true;
                       "/var/lib/vaultwarden".hide = true;
                       "/var/lib/private/cryptpad".hide = true;
