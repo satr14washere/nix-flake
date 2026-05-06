@@ -66,7 +66,6 @@
         telescope-file-browser-nvim
         nvim-tree-lua
         nvim-cmp
-        barbar-nvim
         indent-blankline-nvim
         markdown-preview-nvim
       ];
