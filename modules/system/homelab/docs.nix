@@ -18,7 +18,7 @@ in {
     };
   };
   
-  systemd.tmpfiles.rules = lib.singleton "f /var/lib/cryptpad/customize/application_config.js 0644 root root - ${pkgs.writeText "cryptpad-application-config.js" ''
+  systemd.tmpfiles.rules = lib.singleton "L+ /var/lib/cryptpad/customize/application_config.js - - - - ${pkgs.writeText "cryptpad-application-config.js" ''
     (() => {
       const factory = (AppConfig) => {
           AppConfig.disableAnonymousPadCreation = true;
