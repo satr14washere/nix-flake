@@ -9,3 +9,4 @@
 
 ## Credits
 - [orangc's flake](https://git.orangc.net/c/dots)
+- [vimjoyer's tutorials](https://www.youtube.com/@vimjoyer)

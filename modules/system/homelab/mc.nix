@@ -1,9 +1,9 @@
 { inputs, lib, pkgs, ... }: let
   ram-allocation-mb = 12288;
   modpack = let
-    commit = "667aadf36aac9b0689289f4988a76b924bbb9cbc";
+    commit = "c82e271f5e8a8067ed62af6e870307459580e812";
   in pkgs.fetchPackwizModpack {
-    packHash = "sha256-sNWuqTIpqnwxhoof5PkJXrvVE5x/wnhc3LoqomjYBNs=";
+    packHash = "";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/commit/${commit}/pack.toml";
   };
 in {
