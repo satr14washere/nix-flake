@@ -8,6 +8,7 @@
     ntfs3g
     exfatprogs
     smartmontools
+    rclone
     ncdu
     ventoy-full-qt
 
