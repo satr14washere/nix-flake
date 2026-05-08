@@ -1,6 +1,5 @@
 { inputs, lib, pkgs, ... }: let
-  ram-allocation = "10240M";
-  # auth-server = "https://mc.satr14.my.id"; # TODO: self hosted drasl server
+  ram-allocation-mb = 12288;
   modpack = let
     commit = "667aadf36aac9b0689289f4988a76b924bbb9cbc";
   in pkgs.fetchPackwizModpack {
@@ -10,6 +9,12 @@
 in {
   imports = [ inputs.mc.nixosModules.minecraft-servers ];
   nixpkgs.overlays = [ inputs.mc.overlay ];
+  
+  powerManagement.cpuFreqGovernor = "schedutil";
+  boot.kernel.sysctl = {
+    "vm.nr_hugepages" = 6656;
+    "vm.swappiness" = 10;
+  };
   
   services.minecraft-servers = {
     enable = true;
@@ -21,54 +26,34 @@ in {
       enable = true;
       autoStart = true;
       restart = "always";
-      enableReload = false; # NOTE: development phase, disable in production
+      enableReload = true; # NOTE: development phase, disable in production
       
       package = pkgs.fabricServers.fabric-1_21_11.override {
-        jre_headless = pkgs.javaPackages.compiler.temurin-bin.jre-25;
+        jre_headless = pkgs.javaPackages.compiler.temurin-bin.jdk-25;
         loaderVersion = "0.19.2";
       };
 
-      jvmOpts = let
-        flags = [
-          "-Xms${ram-allocation}"
-          "-Xmx${ram-allocation}"
-          "--add-modules=jdk.incubator.vector"
-          
-          # Custom auth server
-          # "-Dminecraft.api.env=custom"
-          # "-Dminecraft.api.auth.host=${auth-server}/auth"
-          # "-Dminecraft.api.account.host=${auth-server}/account"
-          # "-Dminecraft.api.profiles.host=${auth-server}/account"
-          # "-Dminecraft.api.session.host=${auth-server}/session"
-          # "-Dminecraft.api.services.host=${auth-server}/services"
+      jvmOpts = let flags = [
+        "-Xms${toString ram-allocation-mb}M"
+        "-Xmx${toString ram-allocation-mb}M"
 
-          # Aikar's GC flags (tuned for 10GB)
-          "-XX:+UseG1GC"
-          "-XX:+ParallelRefProcEnabled"
-          "-XX:MaxGCPauseMillis=200"
-          "-XX:+UnlockExperimentalVMOptions"
-          "-XX:+DisableExplicitGC"
-          "-XX:+AlwaysPreTouch"
-          "-XX:G1HeapWastePercent=5"
-          "-XX:G1MixedGCCountTarget=4"
-          "-XX:InitiatingHeapOccupancyPercent=15"
-          "-XX:G1MixedGCLiveThresholdPercent=90"
-          "-XX:G1RSetUpdatingPauseTimePercent=5"
-          "-XX:SurvivorRatio=32"
-          "-XX:+PerfDisableSharedMem"
-          "-XX:MaxTenuringThreshold=1"
-          "-Dusing.aikars.flags=https://mcflags.emc.gs"
-          "-Daikars.new.flags=true"
-          "-XX:G1NewSizePercent=30"
-          "-XX:G1MaxNewSizePercent=40"
-          "-XX:G1HeapRegionSize=8M"
-          "-XX:G1ReservePercent=20"
-        ];
-      in lib.concatStringsSep " " flags;
+        # Exposes SIMD instructions (requires full JDK, useful with performance mods)
+        "--add-modules=jdk.incubator.vector"
+
+        # ZGC flags (requires Java v25+, 8+ CPU cores, 10GB+ RAM)
+        "-XX:+UseZGC"
+        "-XX:+UseLargePages"
+        "-XX:+AlwaysPreTouch"
+        "-XX:+DisableExplicitGC"
+        "-XX:+PerfDisableSharedMem"
+        "-XX:+UseCompactObjectHeaders"
+        "-XX:ZAllocationSpikeTolerance=5"
+        "-XX:SoftMaxHeapSize=${toString (ram-allocation-mb - 2048)}M"
+      ]; in lib.concatStringsSep " " flags;
       
       serverProperties = {
         server-port = 25565;
-        server-name = "Digit Association";
+        server-name = "Minecraft Server";
         motd = "§lSeason 3 TESTING§r - §dExplorers Creativity 🔥";
         
         difficulty = "normal";
@@ -88,7 +73,7 @@ in {
         # resource-pack-sha1 = "e0958dcef5755286f390c22280700c471ec34a65";
         # resource-pack-enforce = false;
         
-        simulation-distance = 16;
+        simulation-distance = 12;
         view-distance = 4;
         
         enable-rcon = true;
