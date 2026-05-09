@@ -7,6 +7,7 @@
     shell = pkgs.zsh;
     extraGroups = [
       "networkmanager"
+      "minecraft"
       "wheel"
       "dialout"
       "libvirtd"

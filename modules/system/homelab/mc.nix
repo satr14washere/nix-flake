@@ -1,11 +1,13 @@
 { inputs, lib, pkgs, ... }: let
   ram-allocation-mb = 12288;
+  rcon-pass = "howdy";
   modpack = let
     commit = "9241d6b4642239a6dfb5629ddb822a127bf93dff";
   in pkgs.fetchPackwizModpack {
     packHash = "sha256-GwXJf81iXuEEQeg97nKxzGG/dYl9l8xMW0+mOHRiSAQ=";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/commit/${commit}/pack.toml";
   };
+  
 in {
   imports = [ inputs.mc.nixosModules.minecraft-servers ];
   nixpkgs.overlays = [ inputs.mc.overlay ];
@@ -50,6 +52,16 @@ in {
         "-XX:ZAllocationSpikeTolerance=5"
         "-XX:SoftMaxHeapSize=${toString (ram-allocation-mb - 2048)}M"
       ]; in lib.concatStringsSep " " flags;
+
+      extraStartPost = let gamerules = {
+        "locator_bar" = false;
+        "mob_explosion_drop_decay" = false;
+        # "reduced_debug_info" = false;
+        # "global_sound_events" = false;
+      }; in lib.concatStringsSep "\n" (map
+        (rule: "rcon-cli --password ${rcon-pass} gamerule ${rule} ${toString (gamerules.${rule})}")
+        (lib.attrNames gamerules)
+      );
       
       serverProperties = {
         server-port = 25565;
@@ -78,16 +90,14 @@ in {
         
         enable-rcon = true;
         sync-chunk-writes = false;
-        "rcon.password" = "howdy";
+        "rcon.password" = rcon-pass;
         "rcon.port" = 25575;
       };
       
       symlinks = {
+        # "server-icon.png" = "${modpack}/server-icon.png";
         # "resources/datapack/required" = "${modpack}/datapacks";
         "mods" = "${modpack}/mods";
-        
-        # "server-icon.png" = "${modpack}/server-icon.png";
-        # "config" = "";
       };
     };
   };
