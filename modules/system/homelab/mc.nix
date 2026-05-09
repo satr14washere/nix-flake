@@ -53,15 +53,16 @@ in {
         "-XX:SoftMaxHeapSize=${toString (ram-allocation-mb - 2048)}M"
       ]; in lib.concatStringsSep " " flags;
 
-      extraStartPost = let gamerules = {
-        "locator_bar" = false;
-        "mob_explosion_drop_decay" = false;
-        # "reduced_debug_info" = false;
-        # "global_sound_events" = false;
-      }; in lib.concatStringsSep "\n" (map
-        (rule: "${pkgs.rcon-cli}/bin/rcon-cli --password ${rcon-pass} gamerule ${rule} ${toString (gamerules.${rule})}")
-        (lib.attrNames gamerules)
-      );
+      # extraStartPost = let gamerules = {
+      #   "locator_bar" = false;
+      #   "mob_explosion_drop_decay" = false;
+      #   # "reduced_debug_info" = false;
+      #   # "global_sound_events" = false;
+      # }; in lib.concatStringsSep "\n" (map
+      #   (rule: "${pkgs.rcon-cli}/bin/rcon-cli --password ${rcon-pass} gamerule ${rule} ${toString (gamerules.${rule})}")
+      #   (lib.attrNames gamerules)
+      # );
+      # TODO: figure out how to set gamerules on start (script above runs **before** server ready)
       
       serverProperties = {
         server-port = 25565;
