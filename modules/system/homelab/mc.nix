@@ -59,7 +59,7 @@ in {
         # "reduced_debug_info" = false;
         # "global_sound_events" = false;
       }; in lib.concatStringsSep "\n" (map
-        (rule: "rcon-cli --password ${rcon-pass} gamerule ${rule} ${toString (gamerules.${rule})}")
+        (rule: "${pkgs.rcon-cli} --password ${rcon-pass} gamerule ${rule} ${toString (gamerules.${rule})}")
         (lib.attrNames gamerules)
       );
       
