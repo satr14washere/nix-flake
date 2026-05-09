@@ -1,9 +1,9 @@
 { inputs, lib, pkgs, ... }: let
   ram-allocation-mb = 12288;
   modpack = let
-    commit = "d1c0e4d6813e912a861345aa172eb52b83f93da9";
+    commit = "476d4e5c08caded28ef0e24193249bec75cf52e6";
   in pkgs.fetchPackwizModpack {
-    packHash = "sha256-qeiJlkMBkTW+WQemGt9W0N+iTgG6TKsq/5YiJuph1Sk=";
+    packHash = "";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/commit/${commit}/pack.toml";
   };
 in {
@@ -12,7 +12,7 @@ in {
   
   powerManagement.cpuFreqGovernor = "schedutil";
   boot.kernel.sysctl = {
-    "vm.nr_hugepages" = 6656;
+    "vm.nr_hugepages" = (ram-allocation-mb / 2) + 512; # (heap_mb / 2MB per page) + 512 pages (1GB) for ZGC off-heap overhead
     "vm.swappiness" = 10;
   };
   
