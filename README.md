@@ -10,3 +10,4 @@
 ## Credits
 - [orangc's flake](https://git.orangc.net/c/dots)
 - [vimjoyer's tutorials](https://www.youtube.com/@vimjoyer)
+- [wallpaper source](https://github.com/er2de2/catppuccin_walls/blob/master/wallpapers_png/autumn_2.0.png)
