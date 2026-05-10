@@ -86,8 +86,8 @@ in {
         # resource-pack-sha1 = "e0958dcef5755286f390c22280700c471ec34a65";
         # resource-pack-enforce = false;
         
-        simulation-distance = 12;
-        view-distance = 4;
+        view-distance = 12;
+        simulation-distance = 4;
         
         enable-rcon = true;
         sync-chunk-writes = false;
