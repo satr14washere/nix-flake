@@ -97,7 +97,6 @@ in {
       
       symlinks = {
         # "server-icon.png" = "${modpack}/server-icon.png";
-        "world/datapacks" = "${modpack}/datapacks";
         "mods" = "${modpack}/mods";
       };
     };
