@@ -51,6 +51,10 @@ in {
         "-XX:+UseCompactObjectHeaders"
         "-XX:ZAllocationSpikeTolerance=5"
         "-XX:SoftMaxHeapSize=${toString (ram-allocation-mb - 2048)}M"
+
+        # High MSPT due to ZGC pauses
+        "-XX:ZUncommitDelay=300"
+        "-XX:ZCollectionInterval=5"
       ]; in lib.concatStringsSep " " flags;
 
       # extraStartPost = let gamerules = {
