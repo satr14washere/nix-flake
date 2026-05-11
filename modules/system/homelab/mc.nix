@@ -2,9 +2,9 @@
   ram-allocation-mb = 12288;
   rcon-pass = "howdy";
   modpack = let
-    commit = "918b281754d4c289a3567cca083774087b2a2ec0";
+    commit = "506050af820a4cf370c6f2021c5991d665ba902a";
   in pkgs.fetchPackwizModpack {
-    packHash = "sha256-HmTDQac9FCQXBPWiZIxu9zmHyl2vqMVQpZpDHp+2lBA=";
+    packHash = "";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/commit/${commit}/pack.toml";
   };
   
@@ -38,23 +38,17 @@ in {
       jvmOpts = let flags = [
         "-Xms${toString ram-allocation-mb}M"
         "-Xmx${toString ram-allocation-mb}M"
-
-        # Exposes SIMD instructions (requires full JDK, useful with performance mods)
-        "--add-modules=jdk.incubator.vector"
-
-        # ZGC flags (requires Java v25+, 8+ CPU cores, 10GB+ RAM)
-        "-XX:+UseZGC"
-        "-XX:+UseLargePages"
-        "-XX:+AlwaysPreTouch"
-        "-XX:+DisableExplicitGC"
-        "-XX:+PerfDisableSharedMem"
-        "-XX:+UseCompactObjectHeaders"
-        "-XX:ZAllocationSpikeTolerance=5"
-        "-XX:SoftMaxHeapSize=${toString (ram-allocation-mb - 2048)}M"
-
-        # High MSPT due to ZGC pauses
-        "-XX:ZUncommitDelay=300"
-        "-XX:ZCollectionInterval=5"
+        
+        "-XX:+UseZGC" # Use ZGC (requires Java v25+, 8+ CPU cores, 10GB+ RAM)
+        "-XX:+UseCompactObjectHeaders" # Use compact object headers (requires Java v16+, saves a couple of bits per object)
+        
+        "--add-modules=jdk.incubator.vector" # Exposes SIMD instructions (requires full JDK, useful with performance mods)
+        "-XX:+UseLargePages" # Large pages support (requires hugepages configured on the system)
+        "-XX:+AlwaysPreTouch" # Pre-allocates memory on startup, OS claims it immediately for JVM instead of negotiating it
+        "-XX:+DisableExplicitGC" # Disables mods from manually invoking the GC
+        "-XX:+PerfDisableSharedMem" # Disables constant /tmp writes for JVM metrics
+        "-XX:ZAllocationSpikeTolerance=5" # Helps when server is active with many players (causes unnecessary GC load at idle)
+        "-XX:SoftMaxHeapSize=${toString (ram-allocation-mb - 2048)}M" # Leave 2GB headroom for off-heap memory (native code, mods, and ZGC overhead)
       ]; in lib.concatStringsSep " " flags;
 
       # extraStartPost = let gamerules = {
