@@ -4,7 +4,7 @@
   modpack = let
     commit = "506050af820a4cf370c6f2021c5991d665ba902a";
   in pkgs.fetchPackwizModpack {
-    packHash = "";
+    packHash = "sha256-Haonn1K74z0aREXCfb/t88DtYD6Kboq23kS6wxqKc3Y=";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/commit/${commit}/pack.toml";
   };
   
@@ -21,14 +21,46 @@ in {
   services.minecraft-servers = {
     enable = true;
     eula = true;
-    managementSystem.systemd-socket.enable = true; # Referenced but unset environment variable evaluates to an empty string: MAINPID
+    managementSystem.systemd-socket.enable = true;
     # ^^^ https://github.com/Infinidoge/nix-minecraft/issues/119
+    
+    # TODO: figure out how to set gamerules on start (script above runs **before** server ready)
+    # gamerules to disable: locator_bar, mob_explosion_drop_decay 
    
-    servers.mc0-explorers-creativity = {
+    servers.da-s3 = {
       enable = true;
       autoStart = true;
       restart = "always";
-      enableReload = true; # NOTE: development phase, disable in production
+      enableReload = false;
+      
+      serverProperties = {
+        server-port = 25565;
+        server-name = "Minecraft Server";
+        motd = "§lSeason 3§r - §dExplorers Creativity 🔥";
+        
+        difficulty = "normal";
+        gamemode = "survival";
+        max-world-size = 25000;
+        spawn-protection = 0;
+        pvp = true;
+        
+        online-mode = true;
+        enable-query = true;
+        enforce-secure-profile = false;
+        pevent-proxy-connections = false;
+        allow-flight = false;
+        player-idle-timeout = 0;
+        
+        view-distance = 12;
+        simulation-distance = 4;
+        
+        enable-rcon = true;
+        sync-chunk-writes = false;
+        "rcon.password" = rcon-pass;
+        "rcon.port" = 25575;
+      };
+      
+      symlinks."mods" = "${modpack}/mods";
       
       package = pkgs.fabricServers.fabric-1_21_11.override {
         jre_headless = pkgs.javaPackages.compiler.temurin-bin.jdk-25;
@@ -50,53 +82,6 @@ in {
         "-XX:ZAllocationSpikeTolerance=5" # Helps when server is active with many players (causes unnecessary GC load at idle)
         "-XX:SoftMaxHeapSize=${toString (ram-allocation-mb - 2048)}M" # Leave 2GB headroom for off-heap memory (native code, mods, and ZGC overhead)
       ]; in lib.concatStringsSep " " flags;
-
-      # extraStartPost = let gamerules = {
-      #   "locator_bar" = false;
-      #   "mob_explosion_drop_decay" = false;
-      #   # "reduced_debug_info" = false;
-      #   # "global_sound_events" = false;
-      # }; in lib.concatStringsSep "\n" (map
-      #   (rule: "${pkgs.rcon-cli}/bin/rcon-cli --password ${rcon-pass} gamerule ${rule} ${toString (gamerules.${rule})}")
-      #   (lib.attrNames gamerules)
-      # );
-      # TODO: figure out how to set gamerules on start (script above runs **before** server ready)
-      
-      serverProperties = {
-        server-port = 25565;
-        server-name = "Minecraft Server";
-        motd = "§lSeason 3 TESTING§r - §dExplorers Creativity 🔥";
-        
-        difficulty = "normal";
-        gamemode = "survival";
-        max-world-size = 25000;
-        spawn-protection = 0;
-        pvp = true;
-        
-        online-mode = true;
-        enable-query = true;
-        enforce-secure-profile = false;
-        pevent-proxy-connections = false;
-        allow-flight = false;
-        player-idle-timeout = 0;
-        
-        # resource-pack = "https://cdn.satr14.my.id/public/fullslide-1.21.11.zip";
-        # resource-pack-sha1 = "e0958dcef5755286f390c22280700c471ec34a65";
-        # resource-pack-enforce = false;
-        
-        view-distance = 12;
-        simulation-distance = 4;
-        
-        enable-rcon = true;
-        sync-chunk-writes = false;
-        "rcon.password" = rcon-pass;
-        "rcon.port" = 25575;
-      };
-      
-      symlinks = {
-        # "server-icon.png" = "${modpack}/server-icon.png";
-        "mods" = "${modpack}/mods";
-      };
     };
   };
 }
