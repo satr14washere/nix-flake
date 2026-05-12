@@ -60,7 +60,9 @@ in {
         "rcon.port" = 25575;
       };
       
-      symlinks."mods" = "${modpack}/mods";
+      symlinks = lib.mapAttrs'
+        (name: _: lib.nameValuePair "mods/${name}" "${modpack}/mods/${name}")
+        (builtins.readDir "${modpack}/mods");
       
       package = pkgs.fabricServers.fabric-1_21_11.override {
         jre_headless = pkgs.javaPackages.compiler.temurin-bin.jdk-25;
