@@ -37,9 +37,9 @@
         "cd" = "z";
 
         "sys" = "sudo systemctl --runtime";
-        "sys-log" = "journalctl -f -b -u";
+        "sys-log" = "journalctl -o cat -f -b -u";
         "user" = "systemctl --user --runtime";
-        "user-log" = "journalctl -f -b --user-unit";
+        "user-log" = "journalctl -o cat -f -b --user-unit";
 
         "ts" = "sudo tailscale";
         "tsip" = "tailscale ip -4";
