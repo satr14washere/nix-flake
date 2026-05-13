@@ -80,7 +80,7 @@ in {
         "-XX:+UseLargePages" # Large pages support (requires hugepages configured on the system)
         "-XX:+AlwaysPreTouch" # Pre-allocates memory on startup, OS claims it immediately for JVM instead of negotiating it
         "-XX:+DisableExplicitGC" # Disables mods from manually invoking the GC
-        "-XX:+PerfDisableSharedMem" # Disables constant /tmp writes for JVM metrics
+        # "-XX:+PerfDisableSharedMem" # Disables constant /tmp writes for JVM metrics
         "-XX:ZAllocationSpikeTolerance=5" # Helps when server is active with many players (causes unnecessary GC load at idle)
         "-XX:SoftMaxHeapSize=${toString (ram-allocation-mb - 2048)}M" # Leave 2GB headroom for off-heap memory (native code, mods, and ZGC overhead)
       ]; in lib.concatStringsSep " " flags;
