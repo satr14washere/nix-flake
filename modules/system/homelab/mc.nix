@@ -12,7 +12,7 @@ in {
   imports = [ inputs.mc.nixosModules.minecraft-servers ];
   nixpkgs.overlays = [ inputs.mc.overlay ];
   
-  powerManagement.cpuFreqGovernor = "schedutil";
+  powerManagement.cpuFreqGovernor = "performance";
   boot.kernel.sysctl = {
     "vm.nr_hugepages" = (ram-allocation-mb / 2) + 512; # (heap_mb / 2MB per page) + 512 pages (1GB) for ZGC off-heap overhead
     "vm.swappiness" = 10;
@@ -83,6 +83,8 @@ in {
         # "-XX:+PerfDisableSharedMem" # Disables constant /tmp writes for JVM metrics
         "-XX:ZAllocationSpikeTolerance=5" # Helps when server is active with many players (causes unnecessary GC load at idle)
         "-XX:SoftMaxHeapSize=${toString (ram-allocation-mb - 2048)}M" # Leave 2GB headroom for off-heap memory (native code, mods, and ZGC overhead)
+        "-XX:ZCollectionInterval=1" # Force a GC cycle at minimum every 1s — prevents allocation stalls when ZGC falls behind Minecraft's bursty allocation
+        "-XX:ConcGCThreads=4" # Threads ZGC uses for concurrent work; default (cpu/8+1) is often just 2, too slow to keep up with allocation rate
       ]; in lib.concatStringsSep " " flags;
     };
   };
