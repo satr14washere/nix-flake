@@ -90,6 +90,101 @@ in {
 
       pages = [
         {
+          name = "Dashboard";
+          show-mobile-header = true;
+          width = "slim";
+          columns = [
+            {
+              size = "small";
+              widgets = [
+                {
+                  type = "monitor";
+                  title = "Critical Systems";
+                  cache = "15s";
+                  style = "compact";
+                  show-failing-only = true;
+                  sites = map (e: {
+                    same-tab = true;
+                    allow-insecure = true;
+                    title = builtins.elemAt e 0;
+                    url = builtins.elemAt e 1;
+                  }) monitor;
+                }
+                {
+                  type = "dns-stats";
+                  title = "DNS Stats";
+                  service = "adguard";
+                  url = "http://localhost:8088/";
+                  hour-format = "12h";
+                }
+                {
+                  type = "bookmarks";
+                  groups = [
+                    {
+                      links = [{
+                        same-tab = true;
+                        title = "NixFlake";
+                        icon = "si:nixos";
+                        url = "https://flake.satr14.my.id";
+                      }];
+                    }
+                    {
+                      links = map (e: {
+                        same-tab = true;
+                        title = builtins.elemAt e 0;
+                        icon = "si:${builtins.elemAt e 1}";
+                        url = builtins.elemAt e 2;
+                        alt-status-codes = [ 401 ];
+                      }) bookmarks;
+                    }
+                  ];
+                }
+                {
+                  type = "to-do";
+                  id = "tasks";
+                }
+              ];
+            }
+            {
+              size = "full";
+              widgets = [
+                {
+                  type = "server-stats";
+                  servers = [{
+                    type = "local";
+                    mountpoints = {
+                      "/boot".hide = true;
+                      "/nix/store".hide = true;
+                      "/var/lib/vaultwarden".hide = true;
+                      "/var/lib/private/cryptpad".hide = true;
+                      "/var/lib/acme/proxy.satr14.my.id".hide = true;
+                    };
+                  }];
+                }
+                {
+                  type = "monitor";
+                  cache = "1m";
+                  title = "Services";
+                  sites = map (e: { 
+                    same-tab = true;
+                    allow-insecure = true;
+                    title = builtins.elemAt e 0;
+                    icon = "si:${builtins.elemAt e 1}";
+                    url = builtins.elemAt e 2;
+                    check-url = builtins.elemAt e 3;
+                  }) homelab.dash;
+                }
+                {
+                  type = "docker-containers";
+                  title = "Containers";
+                  format-container-names = true;
+                  hide-by-default = true;
+                }
+              ];
+            }
+          ];
+        }
+        {
           name = "Home";
           show-mobile-header = true;
           columns = [
@@ -182,101 +277,6 @@ in {
                   cache = "1d";
                   hide-header = true;
                   repositories = gh;
-                }
-              ];
-            }
-          ];
-        }
-        {
-          name = "Dashboard";
-          show-mobile-header = true;
-          width = "slim";
-          columns = [
-            {
-              size = "small";
-              widgets = [
-                {
-                  type = "monitor";
-                  title = "Critical Systems";
-                  cache = "15s";
-                  style = "compact";
-                  show-failing-only = true;
-                  sites = map (e: {
-                    same-tab = true;
-                    allow-insecure = true;
-                    title = builtins.elemAt e 0;
-                    url = builtins.elemAt e 1;
-                  }) monitor;
-                }
-                {
-                  type = "dns-stats";
-                  title = "DNS Stats";
-                  service = "adguard";
-                  url = "http://localhost:8088/";
-                  hour-format = "12h";
-                }
-                {
-                  type = "bookmarks";
-                  groups = [
-                    {
-                      links = [{
-                        same-tab = true;
-                        title = "NixFlake";
-                        icon = "si:nixos";
-                        url = "https://flake.satr14.my.id";
-                      }];
-                    }
-                    {
-                      links = map (e: {
-                        same-tab = true;
-                        title = builtins.elemAt e 0;
-                        icon = "si:${builtins.elemAt e 1}";
-                        url = builtins.elemAt e 2;
-                        alt-status-codes = [ 401 ];
-                      }) bookmarks;
-                    }
-                  ];
-                }
-                {
-                  type = "to-do";
-                  id = "tasks";
-                }
-              ];
-            }
-            {
-              size = "full";
-              widgets = [
-                {
-                  type = "server-stats";
-                  servers = [{
-                    type = "local";
-                    mountpoints = {
-                      "/boot".hide = true;
-                      "/nix/store".hide = true;
-                      "/var/lib/vaultwarden".hide = true;
-                      "/var/lib/private/cryptpad".hide = true;
-                      "/var/lib/acme/proxy.satr14.my.id".hide = true;
-                    };
-                  }];
-                }
-                {
-                  type = "monitor";
-                  cache = "1m";
-                  title = "Services";
-                  sites = map (e: { 
-                    same-tab = true;
-                    allow-insecure = true;
-                    title = builtins.elemAt e 0;
-                    icon = "si:${builtins.elemAt e 1}";
-                    url = builtins.elemAt e 2;
-                    check-url = builtins.elemAt e 3;
-                  }) homelab.dash;
-                }
-                {
-                  type = "docker-containers";
-                  title = "Containers";
-                  format-container-names = true;
-                  hide-by-default = true;
                 }
               ];
             }
