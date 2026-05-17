@@ -24,7 +24,7 @@ in {
     managementSystem.systemd-socket.enable = true;
     # ^^^ https://github.com/Infinidoge/nix-minecraft/issues/119
     
-    # TODO: figure out how to set gamerules on start (script above runs **before** server ready)
+    # TODO: figure out how to set gamerules on start
     # gamerules to disable: locator_bar, mob_explosion_drop_decay 
     # gamerules to enable (temporarily): noend:disable_end
    
