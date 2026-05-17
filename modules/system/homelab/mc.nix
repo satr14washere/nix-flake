@@ -90,11 +90,11 @@ in {
         "-XX:+UseLargePages" # Large pages support (requires hugepages configured on the system)
         "-XX:+AlwaysPreTouch" # Pre-allocates memory on startup, OS claims it immediately for JVM instead of negotiating it
         "-XX:+DisableExplicitGC" # Disables mods from manually invoking the GC
-        # "-XX:+PerfDisableSharedMem" # Disables constant /tmp writes for JVM metrics
-        "-XX:ZAllocationSpikeTolerance=5" # Helps when server is active with many players (causes unnecessary GC load at idle)
-        "-XX:SoftMaxHeapSize=${toString (ram-allocation-mb - 2048)}M" # Leave 2GB headroom for off-heap memory (native code, mods, and ZGC overhead)
-        "-XX:ZCollectionInterval=1" # Force a GC cycle at minimum every 1s — prevents allocation stalls when ZGC falls behind Minecraft's bursty allocation
-        "-XX:ConcGCThreads=4" # Threads ZGC uses for concurrent work; default (cpu/8+1) is often just 2, too slow to keep up with allocation rate
+        "-XX:+PerfDisableSharedMem" # Disables constant /tmp writes for JVM metrics
+        "-XX:ZAllocationSpikeTolerance=5" # Helps when server is active with many players
+        "-XX:SoftMaxHeapSize=${toString (ram-allocation-mb - 2048)}M" # Leave 2GB headroom
+        "-XX:ZCollectionInterval=1" # Force a GC cycle at minimum every second
+        "-XX:ConcGCThreads=8" # Threads ZGC uses for concurrent work
       ]; in lib.concatStringsSep " " flags;
     };
   };
