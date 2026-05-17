@@ -42,9 +42,11 @@ in {
       # ^^ DISABLE ON PROD
       
       serverProperties = {
+        # server-ip = "localhost";
         server-port = 25565;
         server-name = "Minecraft Server";
         motd = "§lSeason 3§r - §dExplorers Creativity 🔥";
+        log-ips = false; # TODO: figure out how to get ips from cloudflared tunnel
         
         difficulty = "normal";
         gamemode = "survival";
