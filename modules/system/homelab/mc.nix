@@ -25,7 +25,7 @@ in {
     # ^^^ https://github.com/Infinidoge/nix-minecraft/issues/119
     
     # TODO: figure out how to set gamerules on start
-    # gamerules to disable: locator_bar, mob_explosion_drop_decay 
+    # gamerules to disable: locator_bar, mob_explosion_drop_decay, (and possibly) reduced_debug_info, global_sound_events 
     # gamerules to enable (temporarily): noend:disable_end
    
     servers.da-s3 = {
