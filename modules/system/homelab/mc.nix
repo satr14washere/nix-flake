@@ -4,7 +4,7 @@
   modpack = let
     commit = "81067d9cea4e3c48acceb42c8c62c252ab1bd3b2";
   in pkgs.fetchPackwizModpack {
-    packHash = "";
+    packHash = "sha256-D34uF8LUPNM1LTvOM3V8tvo4yfG++UODxW2qH2tXs/8=";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/commit/${commit}/pack.toml";
   };
   
