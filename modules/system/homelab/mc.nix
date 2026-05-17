@@ -2,9 +2,9 @@
   ram-allocation-mb = 12288;
   rcon-pass = "howdy";
   modpack = let
-    commit = "c7d1a2d8d181104707dd549fc65fffda956b8f40";
+    commit = "81067d9cea4e3c48acceb42c8c62c252ab1bd3b2";
   in pkgs.fetchPackwizModpack {
-    packHash = "sha256-h/hQalxd8C5D5LADgsok3bMeQSb2Bgpg6UIbZWM0fw8=";
+    packHash = "";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/commit/${commit}/pack.toml";
   };
   
@@ -32,6 +32,13 @@ in {
       autoStart = true;
       restart = "always";
       enableReload = false;
+      
+      operators."satr14" = {
+        uuid = "54441a30-fe73-46e7-adca-c476bd4fc6d2";
+        bypassesPlayerLimit = true;
+        level = 4;
+      };
+      # ^^ DISABLE ON PROD
       
       serverProperties = {
         server-port = 25565;
