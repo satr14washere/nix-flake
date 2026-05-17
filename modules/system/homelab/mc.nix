@@ -26,6 +26,7 @@ in {
     
     # TODO: figure out how to set gamerules on start (script above runs **before** server ready)
     # gamerules to disable: locator_bar, mob_explosion_drop_decay 
+    # gamerules to enable (temporarily): noend:disable_end
    
     servers.da-s3 = {
       enable = true;
