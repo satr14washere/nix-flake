@@ -35,14 +35,17 @@ in {
 
   users.users.root.openssh.authorizedKeys.keys = homelab.ssh-keys;
   
-  services.tailscale = {
-    enable = true;
-    authKeyFile = "/mnt/data/apps/tailscale/authkey";
-    useRoutingFeatures = "server";
-    extraUpFlags = ts-flags;
-    extraSetFlags = ts-flags;
+  services = {
+    netbird.enable = true;
+    tailscale = {
+      enable = true;
+      authKeyFile = "/mnt/data/apps/tailscale/authkey";
+      useRoutingFeatures = "server";
+      extraUpFlags = ts-flags;
+      extraSetFlags = ts-flags;
+    };
   };
-  
+
   virtualisation = {
     oci-containers.backend = "docker";
     docker = {
