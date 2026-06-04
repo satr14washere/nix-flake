@@ -7,6 +7,11 @@
 - `thinkpad` - Thinkpad T480, i5 8350U, 16GB RAM, 256GB NVME
 - `homelab` - i7 8700T, 32GB RAM, 512GB NVME, 1TB 2.5" SATA
 
+## Todo
+- Automatic backups to external drives.
+- Better documentation and code structure.
+- Use NixOS modules system. 
+
 ## Credits
 - [orangc's flake](https://git.orangc.net/c/dots)
 - [vimjoyer's tutorials](https://www.youtube.com/@vimjoyer)
