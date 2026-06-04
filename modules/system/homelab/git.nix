@@ -45,7 +45,7 @@
       url = "http://localhost:5080"; #"https://git.proxy.${homelab.domain}";
       tokenFile = "/mnt/data/apps/forgejo/token-runner"; 
       labels = [ "self-hosted:host" ];
-      hostPackages = with pkgs; [ bash coreutils git nix openssh nodejs ];
+      hostPackages = with pkgs; [ bash coreutils git nix openssh bun ];
     };
   };
   systemd.services = {
