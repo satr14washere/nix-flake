@@ -1,11 +1,13 @@
 { inputs, lib, pkgs, ... }: let
+  production = true;
   ram-allocation-mb = 12288;
   rcon-pass = "howdy";
   modpack = let
     commit = "8523f89493ace13087eb68cd9fe3b5eb4f669440";
+    path = if production then "commit/${commit}" else "branch/main";
   in pkgs.fetchPackwizModpack {
     packHash = "sha256-xB9Oc/aneogSQ9r7L42vyVM6xwq+QkoTaXYNuUzeo6M=";
-    url = "https://git.satr14.my.id/satr14/server-modpack/raw/commit/${commit}/pack.toml";
+    url = "https://git.satr14.my.id/satr14/server-modpack/raw/${path}/pack.toml";
   };
   
 in {
@@ -32,14 +34,25 @@ in {
       enable = true;
       autoStart = true;
       restart = "always";
-      enableReload = false;
+      enableReload = production;
+      # extraReload = ''
+      #   function rcon() {
+      #     ${pkgs.rcon-cli}/bin/rcon-cli -p ${rcon-pass} $@
+      #   }
+
+      #   rcon "gamerule locator_bar false"
+      #   rcon "gamerule mob_explosion_drop_decay false"
+      #   rcon "gamerule reduced_debug_info false"
+      #   rcon "gamerule global_sound_events false"
+      # '';
       
-      operators."satr14" = {
-        uuid = "54441a30-fe73-46e7-adca-c476bd4fc6d2";
-        bypassesPlayerLimit = true;
-        level = 4;
+      operators = lib.mkIf (!production) {
+        "satr14" = {
+          uuid = "54441a30-fe73-46e7-adca-c476bd4fc6d2";
+          bypassesPlayerLimit = true;
+          level = 4;
+        };
       };
-      # ^^ DISABLE ON PROD
       
       serverProperties = {
         # server-ip = "localhost";
