@@ -60,6 +60,7 @@ in {
         server-name = "Minecraft Server";
         motd = "§lSeason 3§r - §dExplorers Creativity 🔥";
         log-ips = false; # TODO: figure out how to get ips from cloudflared tunnel
+        hide-online-players = true; 
         
         difficulty = "normal";
         gamemode = "survival";
