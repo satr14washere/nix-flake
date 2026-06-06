@@ -94,6 +94,7 @@
       enable = true;
       signing.format = null;
       settings = {
+        push.autoSetupRemote = true;
         pull.rebase = "true";
         credential.helper = "cache --timeout=3600";
         user = {
