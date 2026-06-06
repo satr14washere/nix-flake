@@ -58,7 +58,7 @@ in {
         # server-ip = "localhost";
         server-port = 25565;
         server-name = "Minecraft Server";
-        motd = "§lSeason 3§r - §dExplorers Creativity 🔥";
+        motd = "§cCan't connect to server";
         log-ips = false; # TODO: figure out how to get ips from cloudflared tunnel
         hide-online-players = true; 
         
