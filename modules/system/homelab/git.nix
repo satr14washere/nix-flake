@@ -20,7 +20,8 @@
           ROOT_URL = "https://git.${homelab.domain}";
           LANDING_PAGE = "explore";
         };
-        oauth2_client.ENABLE_AUTO_REGISTRATION=true;
+        actions.DEFAULT_ACTIONS_URL = "https://git.satr14.my.id";
+        oauth2_client.ENABLE_AUTO_REGISTRATION = true;
         service = {
           DISABLE_REGISTRATION = true;
           ENABLE_OPENID_SIGNIN = false;
