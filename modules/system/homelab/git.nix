@@ -47,7 +47,7 @@
       labels = [
         "self-hosted:host"
         "bun:docker://docker.io/oven/bun"
-        "debian:docker://docker.io/library/debian:trixie-slim"
+        "debian:docker://docker.io/library/node:26-trixie-slim"
         "aio:docker://git.satr14.my.id/satr14/aio-container:latest"
       ];
       hostPackages = with pkgs; [ bash coreutils git nix openssh bun ];
