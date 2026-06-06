@@ -67,7 +67,7 @@
         "fg-create-repo" = "git remote add origin ${git.server}/${git.username}/$(basename $PWDw).git && git push";
         "convert-pdf" = "libreoffice --headless --convert-to pdf";
         
-        "mcl" = "portablemc start -l $(cat ~/.minecraft/portablemc-launch-params.json | jq -r .email) $(cat ~/.minecraft/portablemc-launch-params.json | jq -r .version)";
+        "mcl" = "portablemc start -l $(cat ~/.minecraft/portablemc-launch-params.json | jq -r .email) $(cat ~/.minecraft/portablemc-launch-params.json | jq -r .version) --jvm-arg=-Xmx6G";
         "mc" = "ferium upgrade; mcl";
       };
       initContent = ''
