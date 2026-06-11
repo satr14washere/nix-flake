@@ -76,7 +76,7 @@ in {
         player-idle-timeout = 0;
         
         view-distance = 12;
-        simulation-distance = 4;
+        simulation-distance = 6;
         
         enable-rcon = true;
         sync-chunk-writes = false;
