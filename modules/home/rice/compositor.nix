@@ -36,7 +36,7 @@
 
         "uwsm app -s b -- blueman-applet &"
         "uwsm app -s b -- nm-applet &"
-        "uwsm app -s b -- tailscale-systray &"
+        "uwsm app -s b -- tailscale systray &"
         #"keepassxc &"
       ];
 
