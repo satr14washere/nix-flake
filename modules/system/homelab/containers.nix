@@ -32,10 +32,8 @@ in {
       RestartSec = lib.mkOverride 500 "100ms";
       RestartSteps = lib.mkOverride 500 9;
     };
-    wantedBy = [
-      "multi-user.target"
-      "network.target"
-      "docker.service"
-    ];
+    after = [ "docker.service" "docker.socket" ];
+    requires = [ "docker.service" "docker.socket" ];
+    wantedBy = [ "multi-user.target" ];
   };
 }
