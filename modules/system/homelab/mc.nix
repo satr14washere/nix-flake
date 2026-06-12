@@ -9,7 +9,18 @@
     packHash = "sha256-xB9Oc/aneogSQ9r7L42vyVM6xwq+QkoTaXYNuUzeo6M=";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/${path}/pack.toml";
   };
-  
+
+  packsquash-binary = pkgs.runCommand "packsquash" {
+    src = pkgs.fetchurl {
+      url = "https://github.com/ComunidadAylas/PackSquash/releases/download/v0.4.1/packsquash-x86_64-unknown-linux-gnu.zip";
+      sha256 = "sha256-VsGZewoiO5MjhIhwjlLO5d5uHynlAK5Jh16jH2k2rPs=";
+    };
+    nativeBuildInputs = [ pkgs.unzip ];
+  } ''
+    mkdir -p $out/bin
+    unzip $src -d $out/bin
+    chmod +x $out/bin/packsquash
+  '';
 in {
   imports = [ inputs.mc.nixosModules.minecraft-servers ];
   nixpkgs.overlays = [ inputs.mc.overlay ];
@@ -86,7 +97,8 @@ in {
       
       symlinks = lib.mapAttrs'
         (name: _: lib.nameValuePair "mods/${name}" "${modpack}/mods/${name}")
-        (builtins.readDir "${modpack}/mods");
+        (builtins.readDir "${modpack}/mods")
+        // { "polymer/packsquash" = "${packsquash-binary}/bin/packsquash"; };
       
       package = pkgs.fabricServers.fabric-1_21_11.override {
         jre_headless = pkgs.javaPackages.compiler.temurin-bin.jdk-25;
