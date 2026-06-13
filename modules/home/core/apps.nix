@@ -61,7 +61,7 @@
     })
 
     (prismlauncher.override {
-      jdks = [ javaPackages.compiler.temurin-bin.jdk-25 ];
+      jdks = with javaPackages.compiler.temurin-bin; [ jre-25 jre-21 ];
     })
 
     ferium
