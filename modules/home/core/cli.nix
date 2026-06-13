@@ -78,7 +78,7 @@
         nvim-cmp
         indent-blankline-nvim
         markdown-preview-nvim
-        suda-vim
+        vim-suda
       ];
     };
     gh = {
