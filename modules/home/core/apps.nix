@@ -60,6 +60,10 @@
       ];
     })
 
+    (prismlauncher.override {
+      jdks = [ javaPackages.compiler.temurin-bin.jdk-25 ];
+    })
+
     ferium
     packwiz
     portablemc
