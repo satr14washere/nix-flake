@@ -90,7 +90,7 @@ in {
               chmod +x $out/bin/packsquash
             '';
           in "${packsquash-binary}/bin/packsquash";
-          "config/proxy_protocol_support.json" = {
+          "config/proxy_protocol_support.json".value = {
             enableProxyProtocol = true;
             whitelistTCPShieldServers = false;
             proxyServerIPs = [ "127.0.0.1" "::1" ];
