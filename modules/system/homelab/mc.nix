@@ -3,10 +3,10 @@
   ram-allocation-mb = 12288;
   rcon-pass = "howdy";
   modpack = let
-    commit = "8523f89493ace13087eb68cd9fe3b5eb4f669440";
+    commit = "6dc66117471b4f290e0d6776ac449d9f7f870c90";
     path = if production then "commit/${commit}" else "branch/main";
   in pkgs.fetchPackwizModpack {
-    packHash = "sha256-xB9Oc/aneogSQ9r7L42vyVM6xwq+QkoTaXYNuUzeo6M=";
+    packHash = "";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/${path}/pack.toml";
   };
 
