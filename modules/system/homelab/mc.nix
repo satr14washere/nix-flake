@@ -91,7 +91,10 @@ in {
       files."config/proxy_protocol_support.json".value = {
         enableProxyProtocol = true;
         whitelistTCPShieldServers = false;
-        proxyServerIPs = [ "127.0.0.1" "::1" ];
+        proxyServerIPs = [
+          "127.0.0.1" "::1"
+          "127.185.172.53" # playit
+        ];
         directAccessIPs = [
           "127.0.0.0/8" "::1/128" # localhost
           "100.64.0.0/10" "fd7a:115c:a1e0::/48" # tailscale
