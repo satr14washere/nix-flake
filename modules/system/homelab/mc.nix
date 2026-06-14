@@ -93,7 +93,7 @@ in {
         whitelistTCPShieldServers = false;
         proxyServerIPs = [ "127.0.0.1" "::1" ];
         directAccessIPs = [
-          "127.0.0.1" "::1" # localhost
+          "127.0.0.0/8" "::1/128" # localhost
           "100.64.0.0/10" "fd7a:115c:a1e0::/48" # tailscale
           "192.168.1.0/24" "10.3.14.0/24" # lan
         ];
