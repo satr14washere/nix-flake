@@ -9,7 +9,7 @@
     packHash = "sha256-J3KdjRer1d8jOeO84rET05nFdjCXjgz5A7mJysFwu6Q=";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/${path}/pack.toml";
   };
-
+  inherit (inputs.nix-minecraft.lib) collectFilesAt;
 in {
   imports = [ inputs.mc.nixosModules.minecraft-servers ];
   nixpkgs.overlays = [ inputs.mc.overlay ];
@@ -73,34 +73,32 @@ in {
         "rcon.port" = 25575;
       };
       
-      symlinks = lib.mapAttrs'
-        (name: _: lib.nameValuePair "mods/${name}" "${modpack}/mods/${name}")
-        (builtins.readDir "${modpack}/mods")
-        // {
-          "polymer/packsquash" = let 
-            packsquash-binary = pkgs.runCommand "packsquash" {
-              src = pkgs.fetchurl {
-                url = "https://github.com/ComunidadAylas/PackSquash/releases/download/v0.4.1/packsquash-x86_64-unknown-linux-gnu.zip";
-                sha256 = "sha256-VsGZewoiO5MjhIhwjlLO5d5uHynlAK5Jh16jH2k2rPs=";
-              };
-              nativeBuildInputs = [ pkgs.unzip ];
-            } ''
-              mkdir -p $out/bin
-              unzip $src -d $out/bin
-              chmod +x $out/bin/packsquash
-            '';
-          in "${packsquash-binary}/bin/packsquash";
-          "config/proxy_protocol_support.json".value = {
-            enableProxyProtocol = true;
-            whitelistTCPShieldServers = false;
-            proxyServerIPs = [ "127.0.0.1" "::1" ];
-            directAccessIPs = [
-              "127.0.0.1" "::1" # localhost
-              "100.64.0.0/10" "fd7a:115c:a1e0::/48" # tailscale
-              "192.168.1.0/24" "10.3.14.0/24" # lan
-            ];
-          };
-        };
+      symlinks = collectFilesAt modpack "mods" // {
+        "polymer/packsquash" = let 
+          packsquash-binary = pkgs.runCommand "packsquash" {
+            src = pkgs.fetchurl {
+              url = "https://github.com/ComunidadAylas/PackSquash/releases/download/v0.4.1/packsquash-x86_64-unknown-linux-gnu.zip";
+              sha256 = "sha256-VsGZewoiO5MjhIhwjlLO5d5uHynlAK5Jh16jH2k2rPs=";
+            };
+            nativeBuildInputs = [ pkgs.unzip ];
+          } ''
+            mkdir -p $out/bin
+            unzip $src -d $out/bin
+            chmod +x $out/bin/packsquash
+          '';
+        in "${packsquash-binary}/bin/packsquash";
+      };
+
+      files."config/proxy_protocol_support.json".value = {
+        enableProxyProtocol = true;
+        whitelistTCPShieldServers = false;
+        proxyServerIPs = [ "127.0.0.1" "::1" ];
+        directAccessIPs = [
+          "127.0.0.1" "::1" # localhost
+          "100.64.0.0/10" "fd7a:115c:a1e0::/48" # tailscale
+          "192.168.1.0/24" "10.3.14.0/24" # lan
+        ];
+      };
       
       package = pkgs.fabricServers.fabric-1_21_11.override {
         jre_headless = pkgs.javaPackages.compiler.temurin-bin.jdk-25;
