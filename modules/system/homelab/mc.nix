@@ -9,7 +9,6 @@
     packHash = "sha256-J3KdjRer1d8jOeO84rET05nFdjCXjgz5A7mJysFwu6Q=";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/${path}/pack.toml";
   };
-  inherit (inputs.nix-minecraft.lib) collectFilesAt;
 in {
   imports = [ inputs.mc.nixosModules.minecraft-servers ];
   nixpkgs.overlays = [ inputs.mc.overlay ];
@@ -73,7 +72,7 @@ in {
         "rcon.port" = 25575;
       };
       
-      symlinks = collectFilesAt modpack "mods" // {
+      symlinks = inputs.mc.lib.collectFilesAt modpack "mods" // {
         "polymer/packsquash" = let 
           packsquash-binary = pkgs.runCommand "packsquash" {
             src = pkgs.fetchurl {
