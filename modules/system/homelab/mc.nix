@@ -6,21 +6,10 @@
     commit = "6dc66117471b4f290e0d6776ac449d9f7f870c90";
     path = if production then "commit/${commit}" else "branch/main";
   in pkgs.fetchPackwizModpack {
-    packHash = "";
+    packHash = "sha256-J3KdjRer1d8jOeO84rET05nFdjCXjgz5A7mJysFwu6Q=";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/${path}/pack.toml";
   };
 
-  packsquash-binary = pkgs.runCommand "packsquash" {
-    src = pkgs.fetchurl {
-      url = "https://github.com/ComunidadAylas/PackSquash/releases/download/v0.4.1/packsquash-x86_64-unknown-linux-gnu.zip";
-      sha256 = "sha256-VsGZewoiO5MjhIhwjlLO5d5uHynlAK5Jh16jH2k2rPs=";
-    };
-    nativeBuildInputs = [ pkgs.unzip ];
-  } ''
-    mkdir -p $out/bin
-    unzip $src -d $out/bin
-    chmod +x $out/bin/packsquash
-  '';
 in {
   imports = [ inputs.mc.nixosModules.minecraft-servers ];
   nixpkgs.overlays = [ inputs.mc.overlay ];
@@ -46,16 +35,6 @@ in {
       autoStart = true;
       restart = "always";
       enableReload = production;
-      # extraReload = ''
-      #   function rcon() {
-      #     ${pkgs.rcon-cli}/bin/rcon-cli -p ${rcon-pass} $@
-      #   }
-
-      #   rcon "gamerule locator_bar false"
-      #   rcon "gamerule mob_explosion_drop_decay false"
-      #   rcon "gamerule reduced_debug_info false"
-      #   rcon "gamerule global_sound_events false"
-      # '';
       
       operators = lib.mkIf (!production) {
         "satr14" = {
@@ -66,11 +45,10 @@ in {
       };
       
       serverProperties = {
-        # server-ip = "localhost";
         server-port = 25565;
         server-name = "Minecraft Server";
         motd = "§cCan't connect to server";
-        log-ips = false; # TODO: figure out how to get ips from cloudflared tunnel
+        log-ips = true;
         hide-online-players = true; 
         
         difficulty = "normal";
@@ -98,7 +76,31 @@ in {
       symlinks = lib.mapAttrs'
         (name: _: lib.nameValuePair "mods/${name}" "${modpack}/mods/${name}")
         (builtins.readDir "${modpack}/mods")
-        // { "polymer/packsquash" = "${packsquash-binary}/bin/packsquash"; };
+        // {
+          "polymer/packsquash" = let 
+            packsquash-binary = pkgs.runCommand "packsquash" {
+              src = pkgs.fetchurl {
+                url = "https://github.com/ComunidadAylas/PackSquash/releases/download/v0.4.1/packsquash-x86_64-unknown-linux-gnu.zip";
+                sha256 = "sha256-VsGZewoiO5MjhIhwjlLO5d5uHynlAK5Jh16jH2k2rPs=";
+              };
+              nativeBuildInputs = [ pkgs.unzip ];
+            } ''
+              mkdir -p $out/bin
+              unzip $src -d $out/bin
+              chmod +x $out/bin/packsquash
+            '';
+          in "${packsquash-binary}/bin/packsquash";
+          "config/proxy_protocol_support.json" = {
+            enableProxyProtocol = true;
+            whitelistTCPShieldServers = false;
+            proxyServerIPs = [ "127.0.0.1" "::1" ];
+            directAccessIPs = [
+              "127.0.0.1" "::1" # localhost
+              "100.64.0.0/10" "fd7a:115c:a1e0::/48" # tailscale
+              "192.168.1.0/24" "10.3.14.0/24" # lan
+            ];
+          };
+        };
       
       package = pkgs.fabricServers.fabric-1_21_11.override {
         jre_headless = pkgs.javaPackages.compiler.temurin-bin.jdk-25;
