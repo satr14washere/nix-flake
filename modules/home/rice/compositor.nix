@@ -3,6 +3,8 @@
     ./keybinds.nix
   ];
 
+  catppuccin.hyprland.enable = false; # temp fix until i get things migrated to lua
+  
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland; # inputs.hl.packages."${pkgs.system}".hyprland;
@@ -57,8 +59,8 @@
         allow_tearing = false;
         layout = "dwindle";
 
-        "col.active_border" = if rice.borders.colored then "$accent" else "$overlay0";
-        "col.inactive_border" = if rice.borders.colored then "$overlay2" else "$crust";
+        "col.active_border" = if rice.borders.colored then "$accent" else "rgb(108,112,134)"; # accent overlay0
+        "col.inactive_border" = if rice.borders.colored then "rgb(147,153,178)" else "rgb(17,17,27)"; # overlay2 crust
       };
 
       decoration = {
@@ -71,8 +73,8 @@
           enabled = true;
           range = 6;
           render_power = 3;
-          color_inactive = "rgba($crustAlpha99)";
-          color = "rgba($crustAlphaee)";
+          color_inactive = "rgba(17,17,27,99)"; # crust alpha 99
+          color = "rgba(17,17,27,238)"; # crust alpha ee
         };
 
         blur = {
@@ -119,7 +121,7 @@
         middle_click_paste = false;
         exit_window_retains_fullscreen = true;
         on_focus_under_fullscreen = 1;
-        background_color = "$base";
+        background_color = "rgb(17, 17, 27)"; # crust
       };
 
       input = {
