@@ -6,10 +6,11 @@
   
   catppuccin = {
     enable = true;
-    hyprlock.useDefaultConfig = false;
-    
     flavor = ctp-opt.flavor;
     accent = ctp-opt.accent;
+    
+    hyprlock.useDefaultConfig = false;
+    nvim.settings.transparent_background = true;
   };
 
   home = {
