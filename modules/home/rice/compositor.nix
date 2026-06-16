@@ -87,9 +87,15 @@
 
         blur = {
           enabled = true;
-          size = 3;
-          passes = 1;
-          vibrancy = 0.1696;
+          size = 7;
+          passes = 3;
+          ignore_opacity = true;
+
+          noise = 0.05;
+          contrast = 1.5;
+
+          xray = false;
+          new_optimizations = true;
         };
       };
 
