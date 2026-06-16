@@ -27,47 +27,25 @@
   
   home.packages = with pkgs; [
     zed-editor
-    # kicad-small
-    # arduino-ide
 
     slack
     discord
-    # protonmail-desktop # https://www.reddit.com/r/NixOS/comments/1rm9alf/protonmail_in_nixos/
+    protonmail-desktop
     
     vlc
     brave
     flameshot
     libreoffice
     appimage-run
-    # keepassxc
 
     virt-manager
-    # winboat
-    
     remmina
     moonlight-qt
-    # rustdesk
-    
-    
-    # inkscape
-    # davinci-resolve
-    # kdePackages.kdenlive
-    (wrapOBS {
-      plugins = with obs-studio-plugins; [
-        wlrobs
-        obs-backgroundremoval
-        obs-pipewire-audio-capture
-      ];
-    })
+    gpu-screen-recorder
+    gpu-screen-recorder-gtk
 
     (prismlauncher.override {
       jdks = with javaPackages.compiler.temurin-bin; [ jre-21 jdk-25 ];
     })
-
-    ferium
-    packwiz
-    portablemc
-    steamguard-cli
-    # modrinth-app
   ];
 }

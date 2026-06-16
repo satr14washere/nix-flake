@@ -5,7 +5,7 @@
     TERMINAL = "kitty";
   };
 
-  home.packages = with pkgs; [ bun ];
+  home.packages = with pkgs; [ bun packwiz ];
 
   programs = {
     tmux = {
