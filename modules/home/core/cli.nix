@@ -8,7 +8,14 @@
   home.packages = with pkgs; [ bun ];
 
   programs = {
-    tmux.enable = true;
+    tmux = {
+      enable = true;
+      extraConfig = ''
+        set -g set-clipboard on
+        set -ag terminal-overrides ",*:Ms=\\E[52;%p1%s;%p2%s\\007"
+        set -g allow-passthrough on
+      '';
+    };
     vim.enable = true;
     bat.enable = true;
     kitty = {
@@ -49,16 +56,11 @@
       initLua = ''
         vim.opt.clipboard = "unnamedplus"
         vim.opt.termguicolors = true
+        local osc52 = require("vim.ui.clipboard.osc52")
         vim.g.clipboard = {
           name = "OSC 52",
-          copy = {
-            ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-            ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-          },
-          paste = {
-            ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
-            ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
-          },
+          copy  = { ["+"] = osc52.copy("+"),  ["*"] = osc52.copy("*")  },
+          paste = { ["+"] = osc52.paste("+"), ["*"] = osc52.paste("*") },
         }
         require("nvim-tree").setup()
         vim.api.nvim_create_autocmd("VimEnter", {
