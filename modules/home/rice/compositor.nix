@@ -6,18 +6,18 @@
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland; # inputs.hl.packages."${pkgs.system}".hyprland;
+    configType = "hyprlang"; # keep legacy config format (home.stateVersion < 26.05)
     systemd.enable = false;
     xwayland.enable = true;
     settings = {
+      dwindle.preserve_split = true;
+      
       debug = {
         error_position = 1;
         disable_logs = true;
+        vfr = true;
       };
 
-      # monitor = [
-      #   "eDP-1,preferred,auto,1"
-      #   ",preferred,auto,1"
-      # ];
       source = [
         "~/.config/hypr/monitors.conf"
         "~/.config/hypr/workspaces.conf"
@@ -28,16 +28,11 @@
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
 
-        #"dunst &"
-        #"hypridle &"
-        #"awww-daemon &"
         "uwsm app -s s -- waybar &"
         "uwsm app -s b -- sunshine &"
-
         "uwsm app -s b -- blueman-applet &"
         "uwsm app -s b -- nm-applet &"
         "uwsm app -s b -- tailscale systray &"
-        #"keepassxc &"
       ];
 
       env = [
@@ -64,11 +59,6 @@
 
         "col.active_border" = if rice.borders.colored then "$accent" else "$overlay0";
         "col.inactive_border" = if rice.borders.colored then "$overlay2" else "$crust";
-      };
-
-      dwindle = {
-        preserve_split = true;
-        pseudotile = true;
       };
 
       decoration = {
@@ -130,7 +120,6 @@
         exit_window_retains_fullscreen = true;
         on_focus_under_fullscreen = 1;
         background_color = "$base";
-        vfr = true;
       };
 
       input = {
