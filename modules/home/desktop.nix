@@ -14,6 +14,7 @@
     ./misc/phone.nix
     ./core/apps.nix
     ./core/code.nix
+    ./core/browser.nix
   ];
 
   services = {
