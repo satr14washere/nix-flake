@@ -1,4 +1,4 @@
-{ timezone, homelab, ... }:$ let 
+{ timezone, homelab, ... }: let 
   yt = [
     "UCXuqSBlHAE6Xw-yeJA0Tunw" # LinusTechTips
     "UCsBjURrPoezykLs9EqgamOA" # Fireship
