@@ -1,18 +1,4 @@
 { timezone, homelab, ... }: let 
-  rss = [
-    "https://www.raspberrypi.com/news/feed/"
-    "https://www.jeffgeerling.com/blog.xml"
-    "https://www.howtogeek.com/feed/"
-    "https://hackaday.com/feed/rss"
-    "https://www.xda-developers.com/feed/"
-    "https://9to5mac.com/feed/"
-    "https://9to5google.com/feed/"
-    "https://www.cnx-software.com/feed/"
-    "https://selfh.st/rss/"
-    "https://www.joshwcomeau.com/rss.xml"
-    "https://samwho.dev/rss.xml"
-    "https://ishadeed.com/feed.xml"
-  ];
   yt = [
     "UCXuqSBlHAE6Xw-yeJA0Tunw" # LinusTechTips
     "UCsBjURrPoezykLs9EqgamOA" # Fireship
@@ -33,24 +19,6 @@
     "UCv6J_jJa8GJqFwQNgNrMuww" # ServeTheHome
     "UCGKEMK3s-ZPbjVOIuAV8clQ" # CoreDumped
     "UCWQaM7SpSECp9FELz-cHzuQ" # DreamsOfCode
-  ];
-  gh = [
-    "tailscale/tailscale"
-    "glanceapp/glance"
-    "nixos/nixpkgs"
-    "ollama/ollama"
-    "nginx/nginx"
-    "oven-sh/bun"
-  ];
-  search = [
-    [ "Website" "!!" "https://{QUERY}" ]
-    [ "CVE" "!cve" "https://securityvulnerability.io/vulnerability/CVE-{QUERY}" ]
-    [ "YouTube" "!yt" "https://www.youtube.com/results?search_query={QUERY}" ]
-    [ "GitHub" "!gh" "https://github.com/search?q={QUERY}" ]
-    [ "Nix Packages" "!nix" "https://search.nixos.org/packages?channel=unstable&type=packages&query={QUERY}" ]
-    [ "Nix Options" "!opt" "https://mynixos.com/search?q={QUERY}" ]
-    [ "Flight Radar 24" "!f" "https://www.flightradar24.com/data/flights/{QUERY}" ]
-    [ "Google Web Results Only" "!s" "https://google.com/search?udm=14&q={QUERY}" ]
   ];
   monitor = [
     [ "DNS" "http://localhost:8088/" ]
@@ -202,30 +170,11 @@ in {
                   hide-header = true;
                   first-day-of-week = "monday";
                 }
-                {
-                  type = "rss";
-                  hide-header = true;
-                  title = "rss";
-                  limit = 12;
-                  cache = "12h";
-                  feeds = map (e: { url = e; }) rss;
-                }
               ];
             }
             {
               size = "full";
               widgets = [
-                {
-                  type = "search";
-                  hide-header = true;
-                  autofocus = true;
-                  search-engine = "google";
-                  bangs = map (e: {
-                    title = builtins.elemAt e 0;
-                    shortcut = builtins.elemAt e 1;
-                    url = builtins.elemAt e 2;
-                  }) search;
-                }
                 {
                   type = "hacker-news";
                   hide-header = true;
@@ -252,11 +201,6 @@ in {
                   hour-format = "12h";
                 }
                 {
-                  type = "to-do";
-                  id = "tasks";
-                  hide-header = true;
-                }
-                {
                   type = "repository";
                   repository = "is-a-dev/register";
                   pull-requests-limit = 5;
@@ -271,12 +215,6 @@ in {
                   issues-limit = 3;
                   commits-limit = 0;
                   hide-header = true;
-                }
-                {
-                  type = "releases";
-                  cache = "1d";
-                  hide-header = true;
-                  repositories = gh;
                 }
               ];
             }
