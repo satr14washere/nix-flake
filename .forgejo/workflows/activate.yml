@@ -27,14 +27,15 @@ jobs:
             root@localhost \
             "bash -lc 'nixos-rebuild switch --refresh --flake git+http://localhost:5080/satr14/nix-flake#homelab -L'"
 
-      - name: Show generation
-        if: always()
+      - name: Notify on failure
+        if: failure()
         run: |
-          ssh -i ./ssh/deploy_key \
-            -o PasswordAuthentication=no \
-            -o StrictHostKeyChecking=no \
-            -o UserKnownHostsFile=/dev/null \
-            root@localhost "bash -lc 'nixos-version'"
+          curl -s -X POST https://notify.proxy.satr14.my.id/git-flake-updates \
+            -H "Title: NixOS Homelab Rebuild Failed" \
+            -H "Priority: high" \
+            -H "Tags: x" \
+            -H "Actions: view, View Logs, ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}; view, View Commit, ${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}" \
+            -d "${{ github.event.head_commit.message }}"
 
       - name: Clean Up
         if: always()
