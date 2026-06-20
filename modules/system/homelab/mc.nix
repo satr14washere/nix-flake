@@ -121,8 +121,6 @@ in {
         "-XX:+PerfDisableSharedMem" # Disables constant /tmp writes for JVM metrics
         "-XX:ZAllocationSpikeTolerance=5" # Helps when server is active with many players
         "-XX:SoftMaxHeapSize=${toString (ram-allocation-mb - 2048)}M" # Leave 2GB headroom
-        "-XX:ZCollectionInterval=1" # Force a GC cycle at minimum every second
-        "-XX:ConcGCThreads=8" # Threads ZGC uses for concurrent work
       ]; in lib.concatStringsSep " " flags;
     };
   };
