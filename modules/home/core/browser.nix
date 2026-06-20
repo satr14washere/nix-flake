@@ -12,6 +12,7 @@
       "cebifddlogbjhoibpjobhlamopmlpckl" # disable page visibility
       "efknglbfhoddmmfabeihlemgekhhnabb" # json viewer
       "bhchdcejhohfmigjafbampogmaanbfkg" # user agent switcher
+      "bbppejejjfancffmhncgkhjdaikdgagc" # undisposition
       
       "ocabkmapohekeifbkoelpmppmfbcibna" # xoom redirector
       "fkagelmloambgokoeokbpihmgpkbgbfm" # indie wiki buddy
