@@ -3,10 +3,10 @@
   ram-allocation-mb = 12288;
   rcon-pass = "howdy";
   modpack = let
-    commit = "6dc66117471b4f290e0d6776ac449d9f7f870c90";
+    commit = "3956a42f139b93b049ff5004bba62cf29c9d3b99";
     path = if production then "commit/${commit}" else "branch/main";
   in pkgs.fetchPackwizModpack {
-    packHash = "sha256-J3KdjRer1d8jOeO84rET05nFdjCXjgz5A7mJysFwu6Q=";
+    packHash = "";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/${path}/pack.toml";
   };
 in {
@@ -29,7 +29,7 @@ in {
     # gamerules to disable: locator_bar, mob_explosion_drop_decay, (and possibly) reduced_debug_info, global_sound_events 
     # gamerules to enable (temporarily): noend:disable_end
    
-    servers.da-s3 = {
+    servers.mc0-vanilla-plus = {
       enable = true;
       autoStart = true;
       restart = "always";
@@ -88,19 +88,35 @@ in {
         in "${packsquash-binary}/bin/packsquash";
       };
 
-      files."config/proxy_protocol_support.json".value = {
-        enableProxyProtocol = true;
-        whitelistTCPShieldServers = false;
-        proxyServerIPs = [
-          "127.0.0.1" "::1"
-          "127.185.172.53" # playit
-        ];
-        directAccessIPs = [
-          "127.0.0.0/8" "::1/128" # localhost
-          "100.64.0.0/10" "fd7a:115c:a1e0::/48" # tailscale
-          "192.168.1.0/24" "10.3.14.0/24" # lan
-        ];
+      files = inputs.mc.lib.collectFilesAt modpack "config" // {
+        "config/proxy_protocol_support.json".value = {
+          enableProxyProtocol = false; # polymer auto host has issues with proxy protocol
+          whitelistTCPShieldServers = false;
+          proxyServerIPs = [
+            "127.0.0.1" "::1"
+            "127.185.172.53" # playit
+          ];
+          directAccessIPs = [
+            "127.0.0.0/8" "::1/128" # localhost
+            "100.64.0.0/10" "fd7a:115c:a1e0::/48" # tailscale
+            "192.168.1.0/24" "10.3.14.0/24" # lan
+          ];
+        };
       };
+      
+      extraStartPre = let sed-commands = lib.concatStringsSep "\n" (
+        lib.mapAttrsToList (placeholder: file: 
+          ''sed -i "s|${placeholder}|''${${placeholder}}|g" ${file}''
+        ) {
+          "REPLACE_SVC_HOST"      = "config/voicechat/voicechat-server.properties";
+          "REPLACE_RP_LINK"       = "config/welcomemessage.json5";
+          "REPLACE_DC_BOT_TOKEN"  = "config/simple-discord-link/simple-discord-link.toml";
+          "REPLACE_DC_OWNER_ROLE" = "config/simple-discord-link/simple-discord-link.toml";
+        }
+      ); in ''
+        source modpack-config.env
+        ${sed-commands}
+      '';
       
       package = pkgs.fabricServers.fabric-1_21_11.override {
         jre_headless = pkgs.javaPackages.compiler.temurin-bin.jdk-25;
