@@ -22,7 +22,7 @@ in {
 
   systemd.services."minecraft-server-${name}".environment = {
     LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
-  };
+  }; # ^^^ physics mod fix
   
   services.minecraft-servers = {
     enable = true;
