@@ -114,6 +114,7 @@ in {
           "REPLACE_DC_OWNER_ROLE" = "config/simple-discord-link/simple-discord-link.toml";
         }
       ); in ''
+        # shellcheck disable=SC1091
         source modpack-config.env
         ${sed-commands}
       '';
