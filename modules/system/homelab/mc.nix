@@ -1,4 +1,5 @@
 { inputs, lib, pkgs, ... }: let
+  name = "mc0-vanilla-plus";
   production = true;
   ram-allocation-mb = 12288;
   rcon-pass = "howdy";
@@ -18,6 +19,10 @@ in {
     "vm.nr_hugepages" = (ram-allocation-mb / 2) + 512; # (heap_mb / 2MB per page) + 512 pages (1GB) for ZGC off-heap overhead
     "vm.swappiness" = 10;
   };
+
+  systemd.services."minecraft-server-${name}".environment = {
+    LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
+  };
   
   services.minecraft-servers = {
     enable = true;
@@ -29,7 +34,7 @@ in {
     # gamerules to disable: locator_bar, mob_explosion_drop_decay, (and possibly) reduced_debug_info, global_sound_events 
     # gamerules to enable (temporarily): noend:disable_end
    
-    servers.mc0-vanilla-plus = {
+    servers.${name} = {
       enable = true;
       autoStart = true;
       restart = "always";
@@ -45,7 +50,7 @@ in {
       
       serverProperties = {
         server-port = 25565;
-        server-name = "Minecraft Server";
+        server-name = name;
         motd = "§cCan't connect to server";
         log-ips = true;
         hide-online-players = true; 
