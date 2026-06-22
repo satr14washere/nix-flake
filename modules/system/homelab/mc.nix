@@ -7,7 +7,7 @@
     commit = "e47a428b61fc087f4c733258e5a282c21b32d9c3";
     path = if production then "commit/${commit}" else "branch/main";
   in pkgs.fetchPackwizModpack {
-    packHash = "";
+    packHash = "sha256-/gQw/FeNv/jbschhFzujloO9jaqTmfvBbzouWUJGr6w=";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/${path}/pack.toml";
   };
 in {
@@ -143,6 +143,8 @@ in {
         "-XX:+PerfDisableSharedMem" # Disables constant /tmp writes for JVM metrics
         "-XX:ZAllocationSpikeTolerance=5" # Helps when server is active with many players
         "-XX:SoftMaxHeapSize=${toString (ram-allocation-mb - 2048)}M" # Leave 2GB headroom
+        "-XX:ZCollectionInterval=1" # Force a GC cycle at minimum every second
+        "-XX:ConcGCThreads=8" # Threads ZGC uses for concurrent work
       ]; in lib.concatStringsSep " " flags;
     };
   };
