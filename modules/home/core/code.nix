@@ -3,12 +3,12 @@
     enable = true;
     package = pkgs.zed-editor;
     extensions = [
-      "html" "html-snippets"
-      "svelte" "svelte-snippets"
       "wakatime" "discord-presence"
       "catppuccin" "catppuccin-icons"
-      "git-firefly"
-      "nix"
+      "codebook"
+      "git-firefly" "nix"
+      "html" "html-snippets"
+      "svelte" "svelte-snippets"
     ];
     userSettings = {
       diff_view_style =  "unified";
