@@ -4,7 +4,7 @@
   ram-allocation-mb = 12288;
   rcon-pass = "howdy";
   modpack = let
-    commit = "de8b0138c870fda24f1dbe1a8ebbe3c1a55734d4";
+    commit = "9b9111cd1f0508c268b7972ee6226e882a3e6595";
     path = if production then "commit/${commit}" else "branch/main";
   in pkgs.fetchPackwizModpack {
     packHash = "";
