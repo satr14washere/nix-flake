@@ -4,10 +4,10 @@
   ram-allocation-mb = 12288;
   rcon-pass = "howdy";
   modpack = let
-    commit = "e47a428b61fc087f4c733258e5a282c21b32d9c3";
+    commit = "583df6751eb0b88830fa7e4a424587aedc241653";
     path = if production then "commit/${commit}" else "branch/main";
   in pkgs.fetchPackwizModpack {
-    packHash = "sha256-/gQw/FeNv/jbschhFzujloO9jaqTmfvBbzouWUJGr6w=";
+    packHash = "";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/${path}/pack.toml";
   };
 in {
@@ -20,9 +20,10 @@ in {
     "vm.swappiness" = 10;
   };
 
-  systemd.services."minecraft-server-${name}".environment = {
-    LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
-  }; # ^^^ physics mod fix
+  systemd.services."minecraft-server-${name}" = {
+    environment.LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib"; # physics toys mod fix
+    serviceConfig.Nice = -5; # higher scheduling priority
+  };
   
   services.minecraft-servers = {
     enable = true;
@@ -141,10 +142,10 @@ in {
         "-XX:+AlwaysPreTouch" # Pre-allocates memory on startup, OS claims it immediately for JVM instead of negotiating it
         "-XX:+DisableExplicitGC" # Disables mods from manually invoking the GC
         "-XX:+PerfDisableSharedMem" # Disables constant /tmp writes for JVM metrics
-        "-XX:ZAllocationSpikeTolerance=5" # Helps when server is active with many players
         "-XX:SoftMaxHeapSize=${toString (ram-allocation-mb - 2048)}M" # Leave 2GB headroom
-        "-XX:ZCollectionInterval=1" # Force a GC cycle at minimum every second
-        "-XX:ConcGCThreads=8" # Threads ZGC uses for concurrent work
+        # "-XX:ZAllocationSpikeTolerance=5" # Helps when server is active with many players
+        # "-XX:ZCollectionInterval=1" # Force a GC cycle at minimum every second
+        # "-XX:ConcGCThreads=8" # Threads ZGC uses for concurrent work
       ]; in lib.concatStringsSep " " flags;
     };
   };
