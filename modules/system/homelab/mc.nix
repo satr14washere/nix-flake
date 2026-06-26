@@ -7,7 +7,7 @@
     commit = "bd5c266b2aaaf293aa4b0b0fbefd363fe1ef4a36";
     path = if production then "commit/${commit}" else "branch/main";
   in pkgs.fetchPackwizModpack {
-    packHash = "";
+    packHash = "sha256-JqO8oSWCGvSKcB91sb64889q3zinjUH0jrSfpKPfvt8=";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/${path}/pack.toml";
   };
 in {
