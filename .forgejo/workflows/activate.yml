@@ -7,6 +7,7 @@ on:
 
 env:
   PATH: /run/current-system/sw/bin:/run/wrappers/bin
+  SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
 
 jobs:
   rebuild:
@@ -15,7 +16,7 @@ jobs:
       - name: Setup SSH key
         run: |
           mkdir -p ./ssh
-          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ./ssh/deploy_key
+          echo "$SSH_KEY" > ./ssh/deploy_key
           chmod 600 ./ssh/deploy_key
           
       - name: Rebuild and switch

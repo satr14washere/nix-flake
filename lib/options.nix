@@ -25,7 +25,7 @@ in {
     domain = "satr14.my.id"; # root domain for dns, ssl certs, reverse proxy, etc.
     ssh-keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIESvQFXoUBafatqnxTd6qk3WEOcfwb3AIWVTstR3lHzX forgejo"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJtdH1YqRH9xhuHMivezLvj/hpH77yfH3HUCaRboB/hb forgejo-deploy-runner"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC7nkis5iB9qJ0OLi8YO4MX1F/ISmBng/xYdNcupGAJC forgejo-actions"
     ];
     disks = {
       # gallery = ext4 "/dev/disk/by-uuid/834f51c1-90ee-4601-ba76-ef0419198d67"; # disk for photo gallery 
