@@ -135,10 +135,10 @@ in {
         "-Xmx${toString ram-allocation-mb}M"
         
         "-XX:+UseZGC" # Use ZGC (requires Java v25+, 8+ CPU cores, 10GB+ RAM)
-        "-XX:+ZGenerational" # Use generational ZGC
+        "-XX:+ZGenerational" # Use generational ZGC (newer and better ZGC, requires Java v21+)
         "-XX:+UseCompactObjectHeaders" # Use compact object headers (requires Java v16+, saves a couple of bits per object)
         
-        "--add-modules=jdk.incubator.vector" # Exposes SIMD instructions (requires full JDK, useful with performance mods)
+        "--add-modules=jdk.incubator.vector" # Exposes SIMD instructions (requires full JDK, useful with performance mods like C2ME)
         "-XX:+UseLargePages" # Large pages support (requires hugepages configured on the system)
         "-XX:+AlwaysPreTouch" # Pre-allocates memory on startup, OS claims it immediately for JVM instead of negotiating it
         "-XX:+DisableExplicitGC" # Disables mods from manually invoking the GC
