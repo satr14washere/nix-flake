@@ -135,6 +135,7 @@ in {
         "-Xmx${toString ram-allocation-mb}M"
         
         "-XX:+UseZGC" # Use ZGC (requires Java v25+, 8+ CPU cores, 10GB+ RAM)
+        "-XX:+ZGenerational" # Use generational ZGC
         "-XX:+UseCompactObjectHeaders" # Use compact object headers (requires Java v16+, saves a couple of bits per object)
         
         "--add-modules=jdk.incubator.vector" # Exposes SIMD instructions (requires full JDK, useful with performance mods)
