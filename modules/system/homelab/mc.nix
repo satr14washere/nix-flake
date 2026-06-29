@@ -20,9 +20,56 @@ in {
     "vm.swappiness" = 10;
   };
 
-  systemd.services."minecraft-server-${name}" = {
-    environment.LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib"; # physics toys mod fix
-    serviceConfig.Nice = -5; # higher scheduling priority
+  systemd.services = {
+    lazymc = let
+      wrapperCommand = pkgs.writeShellScript "lazymc-${name}-wrapper" ''
+        #!/usr/bin/env bash
+        trap 'systemctl stop --wait "minecraft-server-${name}"; exit 0' SIGTERM
+        systemctl start "minecraft-server-${name}"
+        while systemctl is-active --quiet "minecraft-server-${name}"; do sleep 1; done
+      '';
+      config = {
+        public = {
+          address = "0.0.0.0:25565"; # external proxy port
+          version = "1.21.11";
+        };
+        server = {
+          wake_whitelist = true;
+          address = "127.0.0.1:25566"; # internal server port
+          directory = "/srv/minecraft/${name}";
+          command = wrapperCommand;
+        };
+        time.sleep_after = 600;
+        motd.from_server = true;
+        join = {
+          methods = [ "hold" ];
+          hold.timeout = 60;
+        };
+        advanced.rewrite_server_properties = false; # might get overridden by nix-minecraft
+        config.version = "0.2.11";
+      };
+    in {
+      description = "Wake-up Proxy for Minecraft Server";
+      after = [ "network.target" ];
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "simple";
+        User = "root";
+        Group = "root";
+        ExecStart = let
+          toml = pkgs.formats.toml {};
+          configFile = toml.generate "lazymc-${name}.toml" config;
+        in "${pkgs.lazymc}/bin/lazymc --config ${configFile}"; 
+        Restart = "always";
+      };
+    };
+    "minecraft-server-${name}" = {
+      environment.LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib"; # physics toys mod fix
+      serviceConfig = {
+        # Nice = -5; # higher scheduling priority
+        TimeoutStopSec = 180; # just in case saving takes a while
+      };
+    };
   };
   
   services.minecraft-servers = {
@@ -37,7 +84,7 @@ in {
    
     servers.${name} = {
       enable = true;
-      autoStart = true;
+      autoStart = false;
       restart = "always";
       enableReload = production;
       
@@ -50,7 +97,8 @@ in {
       };
       
       serverProperties = {
-        server-port = 25565;
+        server-ip = "127.0.0.1";
+        server-port = 25566;
         server-name = name;
         motd = "§cCan't connect to server";
         log-ips = true;
@@ -79,19 +127,17 @@ in {
       };
       
       symlinks = inputs.mc.lib.collectFilesAt modpack "mods" // {
-        "polymer/packsquash" = let 
-          packsquash-binary = pkgs.runCommand "packsquash" {
-            src = pkgs.fetchurl {
-              url = "https://github.com/ComunidadAylas/PackSquash/releases/download/v0.4.1/packsquash-x86_64-unknown-linux-gnu.zip";
-              sha256 = "sha256-VsGZewoiO5MjhIhwjlLO5d5uHynlAK5Jh16jH2k2rPs=";
-            };
-            nativeBuildInputs = [ pkgs.unzip ];
-          } ''
-            mkdir -p $out/bin
-            unzip $src -d $out/bin
-            chmod +x $out/bin/packsquash
-          '';
-        in "${packsquash-binary}/bin/packsquash";
+        "polymer/packsquash" = let packsquash-binary = pkgs.runCommand "packsquash" {
+          src = pkgs.fetchurl {
+            url = "https://github.com/ComunidadAylas/PackSquash/releases/download/v0.4.1/packsquash-x86_64-unknown-linux-gnu.zip";
+            sha256 = "sha256-VsGZewoiO5MjhIhwjlLO5d5uHynlAK5Jh16jH2k2rPs=";
+          };
+          nativeBuildInputs = [ pkgs.unzip ];
+        } ''
+          mkdir -p $out/bin
+          unzip $src -d $out/bin
+          chmod +x $out/bin/packsquash
+        ''; in "${packsquash-binary}/bin/packsquash";
       };
 
       files = inputs.mc.lib.collectFilesAt modpack "config" // {
@@ -100,12 +146,9 @@ in {
           whitelistTCPShieldServers = false;
           proxyServerIPs = [
             "127.0.0.1" "::1"
-            "127.185.172.53" # playit
           ];
           directAccessIPs = [
             "127.0.0.0/8" "::1/128" # localhost
-            "100.64.0.0/10" "fd7a:115c:a1e0::/48" # tailscale
-            "192.168.1.0/24" "10.3.14.0/24" # lan
           ];
         };
       };
@@ -120,9 +163,10 @@ in {
           "REPLACE_DC_OWNER_ROLE" = "config/simple-discord-link/simple-discord-link.toml";
         }
       ); in ''
-        # shellcheck disable=SC1091
-        source modpack-config.env
-        ${sed-commands}
+        if [ -f modpack-config.env ]; then
+          source modpack-config.env
+          ${sed-commands}
+        fi
       '';
       
       package = pkgs.fabricServers.fabric-1_21_11.override {
