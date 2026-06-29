@@ -65,10 +65,7 @@ in {
     };
     "minecraft-server-${name}" = {
       environment.LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib"; # physics toys mod fix
-      serviceConfig = {
-        # Nice = -5; # higher scheduling priority
-        TimeoutStopSec = 180; # just in case saving takes a while
-      };
+      # serviceConfig.Nice = -5; # higher scheduling priority
     };
   };
   
