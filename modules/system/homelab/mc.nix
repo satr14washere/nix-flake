@@ -49,6 +49,7 @@ in {
           enabled = true;
           port = 25575;
           password = rcon-pass;
+          randomize_password = false;
         };
         advanced.rewrite_server_properties = false; # might get overridden by nix-minecraft
         config.version = "0.2.11";
