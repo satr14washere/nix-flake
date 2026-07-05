@@ -6,7 +6,7 @@
   
   modpack = pkgs.fetchModrinthModpack {
       url = "https://cdn.modrinth.com/data/2wkV8mHp/versions/mFGJP1Ye/Server%20Optimization%201.21.11-2.1.mrpack";
-      packHash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+      packHash = "sha256-odvJs6s1/T13RQhE3NnpCIrulc98nd9vo9Alg/aU404=";
       side = "server";
     };
 in {
