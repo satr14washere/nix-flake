@@ -1,7 +1,7 @@
 { inputs, lib, pkgs, ... }: let
   name = "mc0-vanilla-plus";
-  ram-allocation-mb = 12288;
-  headroom-allocation-mb = 2048;
+  ram-allocation-mb = 8192;
+  headroom-allocation-mb = 1024;
   rcon-pass = "howdy";
   modpack = let
     useLatest = false;
