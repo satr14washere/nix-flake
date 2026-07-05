@@ -1,6 +1,7 @@
 { inputs, ... }: {
   imports = [
     ./mc0-vanilla-plus.nix
+    ./mc1-pure-vanilla.nix
     inputs.mc.nixosModules.minecraft-servers
   ];
   nixpkgs.overlays = [ inputs.mc.overlay ];
