@@ -31,10 +31,10 @@
           ALLOW_ONLY_EXTERNAL_REGISTRATION = true;
           ALLOW_ONLY_INTERNAL_REGISTRATION = false;
           REQUIRE_EXTERNAL_REGISTRATION_PASSWORD = true;
-          explore = {
-            DISABLE_USERS_PAGE = true;
-            DISABLE_ORGANIZATIONS_PAGE = true;
-          };
+        };
+        "service.explore" = {
+          DISABLE_USERS_PAGE = true;
+          DISABLE_ORGANIZATIONS_PAGE = true;
         };
         user.ENABLE_FOLLOWING = false;
         repository = {
