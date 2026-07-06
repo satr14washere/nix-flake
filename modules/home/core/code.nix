@@ -43,7 +43,7 @@
         tool_permissions.default = "allow";
         default_model = {
           provider = "copilot_chat";
-          model = "claude-sonnet-4.6";
+          model = "claude-sonnet-5";
           effort = "high";
           enable_thinking = false;
         };
