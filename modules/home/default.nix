@@ -7,6 +7,7 @@
   catppuccin = {
     enable = true;
     autoEnable = true;
+    cache.enable = true;
     flavor = ctp-opt.flavor;
     accent = ctp-opt.accent;
     
