@@ -5,10 +5,10 @@
   rcon-pass = "howdy";
   
   modpack = pkgs.fetchModrinthModpack {
-      url = "https://cdn.modrinth.com/data/2wkV8mHp/versions/mFGJP1Ye/Server%20Optimization%201.21.11-2.1.mrpack";
-      packHash = "sha256-odvJs6s1/T13RQhE3NnpCIrulc98nd9vo9Alg/aU404=";
-      side = "server";
-    };
+    url = "https://cdn.modrinth.com/data/2wkV8mHp/versions/mFGJP1Ye/Server%20Optimization%201.21.11-2.1.mrpack";
+    packHash = "sha256-odvJs6s1/T13RQhE3NnpCIrulc98nd9vo9Alg/aU404=";
+    side = "server";
+  };
 in {
   services.minecraft-servers.servers.${name} = {
     enable = true;
@@ -19,7 +19,7 @@ in {
       server-ip = "0.0.0.0";
       server-port = 25566;
       server-name = name;
-      motd = "Season 4 - §6§lPure Vanilla ⛏";
+      motd = "§cCan't connect to server";
       log-ips = false;
       hide-online-players = true; 
       
@@ -45,8 +45,14 @@ in {
       "rcon.port" = 25576;
     };
     
-    symlinks = inputs.mc.lib.collectFilesAt modpack "mods"; # TODO: add cracked support
     files = inputs.mc.lib.collectFilesAt modpack "config";
+    symlinks = inputs.mc.lib.collectFilesAt modpack "mods" // {
+      mods = pkgs.linkFarmFromDrvs "mods" (builtins.attrValues {
+        EasyAuth = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/aZj58GfX/versions/R4EX0C3V/easyauth-mc1.21.11-3.4.3.jar"; hash = "sha256-T1PfPlyfkieOCsfoab+BpW8pB/CSDKlxGrS5FMgSMEU="; };
+        Floodgate = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/bWrNNfkb/versions/81EuNxeZ/Floodgate-Fabric-2.2.6-b60.jar"; hash = "sha256-voH1QWv5GVm6EziJ3ERPjn5cx09/et73QiZlJ7l3foM="; };
+        Geyser = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/wKkoqHrH/versions/6uw7I3Qj/geyser-fabric-Geyser-Fabric-2.9.6-b1133.jar"; hash = "sha256-aWMlDdHvNz6VaLVPdmO01YBAlQ7m4w8aUe47TbXxM60="; };
+      });
+    };
     
     package = pkgs.fabricServers.fabric-1_21_11.override {
       jre_headless = pkgs.javaPackages.compiler.temurin-bin.jdk-25;
