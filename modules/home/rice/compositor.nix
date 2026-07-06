@@ -5,6 +5,10 @@
 
   catppuccin.hyprland.enable = false; # temp fix until i get things migrated to lua
   
+  wayland.windowManager.sway = {
+    enable = true;
+  };
+  
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland; # inputs.hl.packages."${pkgs.system}".hyprland;
