@@ -5,10 +5,10 @@
   rcon-pass = "howdy";
   modpack = let
     useLatest = false;
-    commit = "bf95d65e758963899f9d5a4eba6b589c50faffc9";
+    commit = "86bf13316ed1352a676d9056d284448ea5e5a079";
     path = if !useLatest then "commit/${commit}" else "branch/main";
   in pkgs.fetchPackwizModpack {
-    packHash = "sha256-4AbpwvbzndeQC18sCKbWkIo8npQRHTftOJ69au3AjXc=";
+    packHash = "";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/${path}/pack.toml";
   };
 in {
