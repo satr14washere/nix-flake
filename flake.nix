@@ -10,6 +10,7 @@
     gl.url = "github:nix-community/nixGL";
     ctp.url = "github:catppuccin/nix";
     
+    niri.url = "github:sodiboo/niri-flake";
     mc.url = "github:Infinidoge/nix-minecraft";
   };
 

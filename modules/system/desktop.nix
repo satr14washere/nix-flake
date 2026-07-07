@@ -1,5 +1,8 @@
-{ pkgs, enable-dm, ... }: {
+{ inputs, pkgs, enable-dm, ... }: {
+  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
   imports = [
+    inputs.niri.nixosModules.niri
+    
     ./misc/programs.nix
     ./misc/graphics.nix
     ./misc/theme.nix
@@ -7,12 +10,15 @@
     ./base.nix
   ];
 
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-    xwayland.enable = true;
-    package = pkgs.hyprland; # if rice.enable then inputs.hl.packages."${pkgs.system}".hyprland else pkgs.hyprland;
-    portalPackage = pkgs.xdg-desktop-portal-hyprland; # inputs.hl.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+  programs = {
+    niri.enable = true;
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+      xwayland.enable = true;
+      package = pkgs.hyprland; # if rice.enable then inputs.hl.packages."${pkgs.system}".hyprland else pkgs.hyprland;
+      portalPackage = pkgs.xdg-desktop-portal-hyprland; # inputs.hl.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+    };
   };
 
   xdg.portal = {

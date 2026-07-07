@@ -3,11 +3,38 @@
     ./keybinds.nix
   ];
 
-  catppuccin.hyprland.enable = false; # temp fix until i get things migrated to lua
-  
-  wayland.windowManager.sway = {
-    enable = true;
+  programs.niri = {
+    settings = {
+      outputs."eDP-1" = {
+        mode = { width=1920; height=1080; refresh=60.006; };
+        position = { x=0; y=0; };
+        scale   = 1.0;
+      };
+      environment = {
+        XCURSOR_SIZE = "24";
+        XCURSOR_THEME = "catppuccin-${ctp-opt.flavor}-light-cursors";
+
+        CLIPHIST_MAX_ITEMS = "36";
+
+        GTK_APPLICATION_PREFER_DARK_THEME = "1";
+        GTK_THEME = "Adwaita:dark";
+        QT_QPA_PLATFORMTHEME = "kvantum";
+        QT_STYLE_OVERRIDE = "kvantum";
+      };
+      spawn-at-startup = map (sh: { inherit sh; }) [
+        "wl-paste --type text --watch cliphist store"
+        "wl-paste --type image --watch cliphist store"
+
+        "waybar &"
+        "sunshine &"
+        "blueman-applet &"
+        "nm-applet &"
+        "tailscale systray &"
+      ];
+    };
   };
+  
+  catppuccin.hyprland.enable = false; # temp fix until i get things migrated to lua
   
   wayland.windowManager.hyprland = {
     enable = true;

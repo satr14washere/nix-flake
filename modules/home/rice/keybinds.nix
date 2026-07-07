@@ -18,6 +18,31 @@
       };
     };
   };
+
+  programs.niri.settings.binds = {
+    "XF86AudioRaiseVolume" = { action.spawn = [ "wpctl" "set-volume" "-l" "1" "@DEFAULT_AUDIO_SINK@" "5%+" ]; allow-when-locked = true; };
+    "XF86AudioLowerVolume" = { action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-" ]; allow-when-locked = true; };
+    "XF86AudioMute" = { action.spawn = [ "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle" ]; allow-when-locked = true; };
+    "XF86AudioMicMute" = { action.spawn = [ "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle" ]; allow-when-locked = true; };
+    "XF86MonBrightnessUp" = { action.spawn = [ "brightnessctl" "s" "10%+" ]; allow-when-locked = true; };
+    "XF86MonBrightnessDown" = { action.spawn = [ "brightnessctl" "s" "10%-" ]; allow-when-locked = true; };
+    
+    "Mod+Q".action.close-window = {};
+    "Mod+W".action.maximize-column = {};
+    "Print".action.screenshot-screen = {};
+    
+    "Mod+Up".action.focus-workspace-up = {};
+    "Mod+Down".action.focus-workspace-down = {};
+    "Mod+Left".action.focus-column-left = {};
+    "Mod+Right".action.focus-column-right = {};
+    
+    "Mod+R".action.spawn = [ "rofi" "-show" "drun" "-show-icons" "-display-drun" ":" "-run-command" "uwsm app -- {cmd}" ];
+    "Mod+E".action.spawn = [ "pcmanfm-qt" ];
+    "Mod+T".action.spawn = [ "kitty" ];
+    "Mod+Y".action.spawn = [ "brave" "--restore-last-session" ];
+    "Mod+Return".action.spawn-sh = "ls ~/Projects | rofi -dmenu -p \"Open Project\" | xargs -I {} sh -c 'mkdir -p ~/Projects/\"{}\" && zeditor ~/Projects/\"{}\"'";
+  };
+  
   wayland.windowManager.hyprland = {
     settings = {
       gestures = {
