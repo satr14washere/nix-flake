@@ -38,7 +38,7 @@
     "Mod+Right".action.focus-column-right = {};
     
     "Mod+Space" = { action.spawn = [ "playerctl" "play-pause" ]; allow-when-locked = true; };
-    "Mod+R".action.spawn = [ "rofi" "-show" "drun" "-show-icons" "-display-drun" ":" "-run-command" "uwsm app -- {cmd}" ];
+    "Mod+R".action.spawn = [ "rofi" "-show" "drun" "-show-icons" "-display-drun" "" "-run-command" "uwsm app -- {cmd}" ];
     
     "Mod+E".action.spawn = [ "pcmanfm-qt" ];
     "Mod+T".action.spawn = [ "kitty" ];

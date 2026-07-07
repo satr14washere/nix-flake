@@ -4,13 +4,13 @@
     layout = [
       {
         label = "shutdown";
-        action = "hyprshutdown -t 'Shutting down...' --post-cmd 'systemctl poweroff'";
+        action = "systemctl poweroff";
         text = "(S)hutdown";
         keybind = "s";
       }
       {
         label = "reboot";
-        action = "hyprshutdown -t 'Rebooting...' --post-cmd 'systemctl reboot'";
+        action = "systemctl reboot";
         text = "(R)eboot";
         keybind = "r";
       }
@@ -28,7 +28,7 @@
       }
       {
         label = "logout";
-        action = "hyprshutdown -t 'Logging Out...' --post-cmd 'uwsm stop'";
+        action = "niri msg action quit";
         text = "L(o)gout";
         keybind = "o";
       }

@@ -1,4 +1,4 @@
-{ pkgs, rice, ctp-opt, ... }: {
+{ lib, pkgs, rice, ctp-opt, ... }: {
   imports = [
     ./keybinds.nix
   ];
@@ -18,6 +18,7 @@
           max-scroll-amount = "5%";
           enable = true;
         };
+        keyboard.xkb.options = "caps:none";
       };
       
       environment = {
@@ -41,6 +42,11 @@
         "nm-applet &"
         "tailscale systray &"
       ];
+
+      xwayland-satellite = {
+        enable = true;
+        path = lib.getExe pkgs.xwayland-satellite;
+      };
 
       prefer-no-csd = true;
       layout = {
