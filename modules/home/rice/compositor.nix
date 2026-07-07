@@ -12,6 +12,13 @@
         position = { x=0; y=0; };
         scale   = 1.0;
       };
+      input = {
+        warp-mouse-to-focus.enable = true;
+        focus-follows-mouse = {
+          max-scroll-amount = "5%";
+          enable = true;
+        };
+      };
       
       environment = {
         XCURSOR_SIZE = "24";
