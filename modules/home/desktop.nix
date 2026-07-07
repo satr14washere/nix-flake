@@ -17,6 +17,10 @@
     ./core/browser.nix
   ];
 
+  home.file.".config/discord/settings.json".text = builtins.toJSON {
+    SKIP_HOST_UPDATE = true;
+  };
+  
   services = {
     awww.enable = true;
     hyprpolkitagent.enable = true;
