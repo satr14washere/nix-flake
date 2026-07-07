@@ -12,15 +12,15 @@
 
         modules-left = [
           "custom/start"
-          "hyprland/workspaces"
-          "hyprland/window"
+          "niri/workspaces"
+          "niri/window"
           "mpris"
         ];
         modules-center = if rice.bar.minimal then [] else [
           "custom/dunst"
           "clock"
           "tray"
-          "hyprland/submap"
+          # "hyprland/submap"
         ];
         modules-right = if rice.bar.minimal then [
           "tray"
@@ -91,15 +91,10 @@
             balanced = "";
           };
         };
-        "hyprland/workspaces" = {
-          format = "{name}";
-          format-icons = {
-            default = " ";
-            active = " ";
-            urgent = " ";
-          };
-          on-scroll-down = "hyprctl dispatch workspace e+1";
-          on-scroll-up = "hyprctl dispatch workspace e-1";
+        "niri/workspaces" = {
+          format = "{value}";
+          on-scroll-down = "niri msg action focus-workspace-down";
+          on-scroll-up = "niri msg action focus-workspace-up";
         };
         "custom/dunst" = {
           format = "{}";
@@ -119,7 +114,7 @@
           on-click-right = "playerctl next";
           on-click = "playerctl previous";
         };
-        "hyprland/window" = {
+        "niri/window" = {
           icon = true;
           max-length = 35;
           separate-outputs = false;
@@ -128,16 +123,14 @@
             "~" = "${username}@${hostname}";
             "btop" = "${username}@${hostname}";
           };
-          on-click-right = "hyprctl dispatch fullscreen 0";
-          on-click-middle = "hyprctl dispatch killactive";
-          on-click = "hyprctl dispatch fullscreen 1";
-          on-scroll-up = "hyprctl dispatch cyclenext";
-          on-scroll-down = "hyprctl dispatch cyclenext prev";
+          on-click-right = "niri msg action fullscreen-window";
+          on-click-middle = "niri msg action close-window";
+          on-click = "niri msg action maximize-column";
         };
-        "hyprland/submap" = {
-          format = " {}";
-          on-click = "hyprctl dispatch submap reset";
-        };
+        # "hyprland/submap" = {
+        #   format = " {}";
+        #   on-click = "hyprctl dispatch submap reset";
+        # };
         "clock" = {
           format = "{:%b %d, %I:%M:%S %p}";
           interval = 1;
@@ -234,6 +227,7 @@
       #workspaces button {
         border-radius: 0px;
         margin: 0px;
+        padding: 4px;
         background: none;
         border: none;
       }
