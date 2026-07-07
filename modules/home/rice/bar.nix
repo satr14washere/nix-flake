@@ -20,7 +20,6 @@
           "custom/dunst"
           "clock"
           "tray"
-          # "hyprland/submap"
         ];
         modules-right = if rice.bar.minimal then [
           "tray"
@@ -54,7 +53,7 @@
           };
           interval = 1;
           format = " {used:0.1f}GiB";
-          on-click = "hyprctl dispatch exec '[float; size 75%]' kitty btop";
+          on-click = "kitty btop";
         };
         "disk" = {
           states = {
@@ -62,7 +61,7 @@
           };
           interval = 5;
           format = " {used}";
-          on-click = "hyprctl dispatch exec '[float; size 75%]' kitty btop";
+          on-click = "kitty btop";
           on-click-right = "kitty sh -c 'sudo nix-collect-garbage -d; nix-collect-garbage -d; nix store optimise; sudo journalctl --rotate --vacuum-time=1s --vacuum-files=1; read'";
         };
         "network" = {
@@ -81,7 +80,7 @@
           critical-threshold = 80;
           format = " {temperatureC}°C";
           interval = 1;
-          on-click = "hyprctl dispatch exec '[float; size 75%]' kitty btop";
+          on-click = "kitty btop";
         };
         "power-profiles-daemon" = {
           format = "{icon} {profile}";
@@ -127,10 +126,6 @@
           on-click-middle = "niri msg action close-window";
           on-click = "niri msg action maximize-column";
         };
-        # "hyprland/submap" = {
-        #   format = " {}";
-        #   on-click = "hyprctl dispatch submap reset";
-        # };
         "clock" = {
           format = "{:%b %d, %I:%M:%S %p}";
           interval = 1;
@@ -177,8 +172,7 @@
         };
         "custom/start" = {
           format = "";
-          on-click-middle = "wlogout";
-          on-click-right = "hyprctl dispatch togglespecialworkspace hidden";
+          on-click-right = "wlogout";
           on-click = "rofi -show drun -show-icons -display-drun '' -run-command \"uwsm app -- {cmd}\"";
         };
       }
@@ -221,8 +215,8 @@
         border: ${toString rice.borders.size}px solid transparent;
       }
 
-      #window, #submap { padding: 0px 5px; }
-      #submap, #workspaces, #cpu, #memory, #disk, #clock, #window, #tray, #pulseaudio, #battery, #network, #temperature, #power-profiles-daemon, #custom-exit, #custom-start, #custom-dunst, #mpris { padding: 0px 5px; margin: 0px 5px; }
+      #window { padding: 0px 5px; }
+      #workspaces, #cpu, #memory, #disk, #clock, #window, #tray, #pulseaudio, #battery, #network, #temperature, #power-profiles-daemon, #custom-exit, #custom-start, #custom-dunst, #mpris { padding: 0px 5px; margin: 0px 5px; }
 
       #workspaces button {
         border-radius: 0px;
@@ -241,7 +235,7 @@
         background: @base;
       }
 
-      #workspaces button.active, #submap {
+      #workspaces button.active {
         background: @surface0;
       }
 
