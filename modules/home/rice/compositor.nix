@@ -3,6 +3,8 @@
     ./keybinds.nix
   ];
 
+  # TODO: https://github.com/sodiboo/niri-flake/issues/1393 for nwg-displays monitor dynamic config
+
   programs.niri = {
     settings = {
       outputs."eDP-1" = {
@@ -10,6 +12,7 @@
         position = { x=0; y=0; };
         scale   = 1.0;
       };
+      
       environment = {
         XCURSOR_SIZE = "24";
         XCURSOR_THEME = "catppuccin-${ctp-opt.flavor}-light-cursors";
@@ -31,6 +34,17 @@
         "nm-applet &"
         "tailscale systray &"
       ];
+
+      prefer-no-csd = true;
+      layout = {
+        tab-indicator.enable = false;
+        gaps = rice.gap.outer;
+        border = {
+          enable = true;
+          width = rice.borders.size;
+          
+        };
+      };
     };
   };
   

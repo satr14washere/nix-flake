@@ -29,6 +29,7 @@
     
     "Mod+Q".action.close-window = {};
     "Mod+W".action.maximize-column = {};
+    "Mod+S".action.fullscreen-window = {};
     "Print".action.screenshot-screen = {};
     
     "Mod+Up".action.focus-workspace-up = {};
@@ -36,11 +37,35 @@
     "Mod+Left".action.focus-column-left = {};
     "Mod+Right".action.focus-column-right = {};
     
+    "Mod+Space" = { action.spawn = [ "playerctl" "play-pause" ]; allow-when-locked = true; };
     "Mod+R".action.spawn = [ "rofi" "-show" "drun" "-show-icons" "-display-drun" ":" "-run-command" "uwsm app -- {cmd}" ];
+    
     "Mod+E".action.spawn = [ "pcmanfm-qt" ];
     "Mod+T".action.spawn = [ "kitty" ];
     "Mod+Y".action.spawn = [ "brave" "--restore-last-session" ];
     "Mod+Return".action.spawn-sh = "ls ~/Projects | rofi -dmenu -p \"Open Project\" | xargs -I {} sh -c 'mkdir -p ~/Projects/\"{}\" && zeditor ~/Projects/\"{}\"'";
+
+    "Mod+M".action.spawn = [ "wlogout" ];
+    "Mod+Tab".action.spawn = [ "pkill" "-SIGUSR1" "waybar" ];
+
+    "XF86Bluetooth".action.spawn = [ "blueman-manager" ];
+    "XF86Display".action.spawn = [ "nwg-displays" ];
+    "Ctrl+Alt+Delete".action.spawn = [ "wlogout" ];
+    "Ctrl+Shift+Escape".action.spawn = [ "kitty" "btop" ];
+    "Mod+Grave".action.spawn = [ "dunstctl" "set-paused" "toggle" ];
+
+    "Mod+N".action.spawn = [ "rofi-network-manager" ];
+    "Mod+J".action.spawn-sh = "notify-send -u critical ${hostname} 'Caffein Mode' && notify-send '(SUPER+X to reset)' && systemctl --user stop hypridle";
+    "Mod+Z".action.spawn = [ "dunstctl" "close-all" ];
+
+    "Mod+V".action.spawn = [ "rofi" "-modi" "clipboard:cliphist-rofi-img" "-show" "clipboard" "-show-icons" ];
+    "Mod+A".action.spawn = [ "zeditor" ];
+    "Mod+C".action.spawn = [ "kitty" "btop" ];
+    "Mod+Shift+C".action.spawn = [ "kitty" "zsh" "-c" "fastfetch; exec zsh -i" ];
+    "Mod+D".action.spawn = [ "steam" "steam://open/bigpicture" ];
+    "Mod+Shift+D".action.spawn = [ "steam" ];
+
+    "Mod+L".action.spawn = [ "loginctl" "lock-session" ];
   };
   
   wayland.windowManager.hyprland = {

@@ -11,7 +11,10 @@
   ];
 
   programs = {
-    niri.enable = true;
+    niri = {
+      enable = true;
+      package = pkgs.niri-unstable;
+    };
     hyprland = {
       enable = true;
       withUWSM = true;
