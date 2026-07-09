@@ -5,8 +5,8 @@
       general = {
         lock_cmd = "hyprlock";
         unlock_cmd = "pkill -USR1 hyprlock";
-        before_sleep_cmd = "hyprctl dispatch dpms off && hyprlock";
-        after_sleep_cmd = "hyprctl dispatch dpms on";
+        before_sleep_cmd = "niri msg action power-off-monitors && hyprlock";
+        after_sleep_cmd = "niri msg action power-on-monitors";
       };
       listener = [
         {
@@ -21,8 +21,8 @@
         }
         {
           timeout = 420;
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
+          on-timeout = "niri msg action power-off-monitors";
+          on-resume = "niri msg action power-on-monitors";
         }
         {
           timeout = 600;

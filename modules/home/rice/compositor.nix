@@ -15,7 +15,7 @@
       input = {
         warp-mouse-to-focus.enable = true;
         focus-follows-mouse = {
-          max-scroll-amount = "5%";
+          max-scroll-amount = "35%";
           enable = true;
         };
         keyboard.xkb.options = "caps:none";
@@ -52,11 +52,11 @@
       layout = {
         tab-indicator.enable = false;
         gaps = rice.gap.outer;
-        border = {
+        focus-ring = {
           enable = true;
-          width = rice.borders.size;
-          
+          width = rice.borders.size; 
         };
+        border.enable = false;
       };
     };
   };

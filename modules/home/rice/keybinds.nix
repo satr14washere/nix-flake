@@ -1,24 +1,4 @@
-{ pkgs, hostname, ... }: {
-  services.fusuma = {
-    extraPackages = with pkgs; [ systemd coreutils-full xprop ];
-    enable = true;
-    settings = {
-      swipe = {
-        "4".down.sendkey = "LEFTMETA+L";
-        "4".up.sendkey = "LEFTMETA+M";
-        "3".up.sendkey = "LEFTMETA+W";
-  
-        "3".down.sendkey = "LEFTMETA+DOWN";
-        "3".right.sendkey = "LEFTMETA+LEFT";
-        "3".left.sendkey = "LEFTMETA+RIGHT";
-      };
-      hold = {
-        "3".sendkey = "LEFTMETA+TAB";
-        "4".sendkey = "LEFTMETA+SPACE";
-      };
-    };
-  };
-
+{ hostname, ... }: {
   programs.niri.settings.binds = {
     "XF86AudioRaiseVolume" = { action.spawn = [ "wpctl" "set-volume" "-l" "1" "@DEFAULT_AUDIO_SINK@" "5%+" ]; allow-when-locked = true; };
     "XF86AudioLowerVolume" = { action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-" ]; allow-when-locked = true; };
@@ -30,12 +10,22 @@
     "Mod+Q".action.close-window = {};
     "Mod+W".action.maximize-column = {};
     "Mod+S".action.fullscreen-window = {};
+    "Alt+Print".action.screenshot-window = {};
     "Print".action.screenshot-screen = {};
     
     "Mod+Up".action.focus-workspace-up = {};
     "Mod+Down".action.focus-workspace-down = {};
     "Mod+Left".action.focus-column-left = {};
     "Mod+Right".action.focus-column-right = {};
+
+    "Mod+Shift+Up".action.move-window-up-or-to-workspace-up = {};
+    "Mod+Shift+Down".action.move-window-down-or-to-workspace-down = {};
+    "Mod+Shift+Left".action.move-column-left = {};
+    "Mod+Shift+Right".action.move-column-right = {};
+
+    "Mod+G".action.center-column = {};
+    "Mod+F".action.toggle-window-floating = {};
+    "Alt+Space".action.toggle-overview = {};
     
     "Mod+Space" = { action.spawn = [ "playerctl" "play-pause" ]; allow-when-locked = true; };
     "Mod+R".action.spawn = [ "rofi" "-show" "drun" "-show-icons" "-display-drun" "" "-run-command" "uwsm app -- {cmd}" ];
@@ -47,6 +37,7 @@
 
     "Mod+M".action.spawn = [ "wlogout" ];
     "Mod+Tab".action.spawn = [ "pkill" "-SIGUSR1" "waybar" ];
+    "Mod+H".action.show-hotkey-overlay = {};
 
     "XF86Bluetooth".action.spawn = [ "blueman-manager" ];
     "XF86Display".action.spawn = [ "nwg-displays" ];
@@ -62,9 +53,11 @@
     "Mod+A".action.spawn = [ "zeditor" ];
     "Mod+C".action.spawn = [ "kitty" "btop" ];
     "Mod+Shift+C".action.spawn = [ "kitty" "zsh" "-c" "fastfetch; exec zsh -i" ];
-    "Mod+D".action.spawn = [ "steam" "steam://open/bigpicture" ];
-    "Mod+Shift+D".action.spawn = [ "steam" ];
+    "Mod+Shift+D".action.spawn = [ "steam" "-system-composer" "steam://open/bigpicture" ];
+    "Mod+D".action.spawn = [ "prismlauncher" ];
 
+    "Mod+X".action.spawn-sh = "dunstctl close-all && pkill -SIGUSR2 waybar && systemctl --user restart awww hypridle";
+    "Mod+K".action.spawn-sh = "notify-send -u critical ${hostname} 'Focus Mode' && notify-send '(SUPER+X to reset)' && systemctl --user stop awww && pkill -SIGUSR1 waybar";
     "Mod+L".action.spawn = [ "loginctl" "lock-session" ];
   };
   
