@@ -12,7 +12,10 @@
     
     niri.url = "github:sodiboo/niri-flake";
     mc.url = "github:Infinidoge/nix-minecraft";
-    cp.url = "github:9001/copyparty";
+    cp = {
+      url = "github:9001/copyparty";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: let
