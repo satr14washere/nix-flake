@@ -12,6 +12,7 @@
     
     niri.url = "github:sodiboo/niri-flake";
     mc.url = "github:Infinidoge/nix-minecraft";
+    cp.url = "github:9001/copyparty";
   };
 
   outputs = inputs: let
