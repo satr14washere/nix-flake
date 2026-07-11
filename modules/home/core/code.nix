@@ -44,8 +44,8 @@
         default_model = {
           provider = "copilot_chat";
           model = "claude-sonnet-5";
-          effort = "high";
-          enable_thinking = false;
+          effort = "low";
+          enable_thinking = true;
         };
       };
       theme = {
