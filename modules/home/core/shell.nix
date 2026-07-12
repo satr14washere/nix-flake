@@ -49,8 +49,6 @@
         "fetch-update" ="rm -f ~/.fetch.sh && wget https://raw.githubusercontent.com/SX-9/fetch.sh/master/fetch.sh -O ~/.fetch.sh && chmod +x ~/.fetch.sh";
         "fetch" = "~/.fetch.sh";
 
-        "hm-sw" = "home-manager switch -b bak-hm --flake";
-        "nix-sw" = "sudo nixos-rebuild switch --flake";
         "nix-hw-conf" = "nixos-generate-config --show-hardware-config";
         "nixos-diff" = "nix build .#nixosConfigurations.$(hostname).config.system.build.toplevel -o /tmp/nix-flake-diff && nvd diff /run/current-system /tmp/nix-flake-diff";
         "cd-conf" = "cd ${flake-path}";
@@ -66,6 +64,8 @@
         "gh-author-setup" = "git config user.name $(gh api -H \"Accept: application/vnd.github+json\" -H \"X-GitHub-Api-Version: 2022-11-28\" /user | jq -r .login) && git config user.email $(gh api -H \"Accept: application/vnd.github+json\" -H \"X-GitHub-Api-Version: 2022-11-28\" /user/emails | jq -r \".[1].email\")";
         "fg-create-repo" = "git remote add origin ${git.server}/${git.username}/$(basename $PWDw).git && git push";
         "convert-pdf" = "libreoffice --headless --convert-to pdf";
+        "nix-fetch-hash" = "nix store prefetch-url --json";
+        "git-fix" = "git rebase --continue";
         
         "mcl" = "portablemc start -l $(cat ~/.minecraft/portablemc-launch-params.json | jq -r .email) $(cat ~/.minecraft/portablemc-launch-params.json | jq -r .version) --jvm-args=-Xmx6G";
         "mc" = "ferium upgrade; mcl";
