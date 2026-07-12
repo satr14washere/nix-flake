@@ -57,6 +57,24 @@
       ];
       hostPackages = with pkgs; [ bash coreutils git nix openssh bun ];
     };
+    renovate = {
+      enable = true;
+      schedule = "*:0"; # every hour
+      credentials.RENOVATE_TOKEN = "/mnt/data/apps/renovate/token.env";
+      settings = {
+        platform = "forgejo";
+        endpoint = "https://git.${homelab.domain}";
+        gitAuthor = "renovate <system@${homelab.domain}>";
+        autodiscover = true;
+        nix.enabled = true;
+        lockFileMaintenance = {
+          enabled = true;
+          commitMessageAction = "update lock file(s)";
+          schedule = [ "0 0 * * 0" ]; # weekly
+        };
+      };
+      runtimePackages = with pkgs; [ bun nodejs npm nix ];
+    };
   };
   systemd.services = {
     "gitea-runner-nixos-deploy".restartIfChanged = false;
