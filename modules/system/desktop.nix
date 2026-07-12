@@ -11,6 +11,12 @@
   ];
 
   programs = {
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        libxcursor libx11 libxi libxkbcommon
+      ];
+    };
     niri = {
       enable = true;
       package = pkgs.niri-unstable;
