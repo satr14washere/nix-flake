@@ -17,6 +17,8 @@
       "plugdev"
       "adbusers"
       "kvm"
+      "video"
+      "render"
     ];
   };
 }
