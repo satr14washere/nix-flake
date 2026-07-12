@@ -73,7 +73,7 @@
           schedule = [ "0 0 * * 0" ]; # weekly
         };
       };
-      runtimePackages = with pkgs; [ bun nodejs npm nix ];
+      runtimePackages = with pkgs; [ bun nix ];
     };
   };
   systemd.services = {
