@@ -28,6 +28,13 @@
       "nvme_core.default_ps_max_latency_us=0"
     ];
   };
+  nixpkgs.overlays = [
+    (final: prev: {
+      throttled = prev.throttled.overrideAttrs (old: {
+        pythonPath = (old.pythonPath or []) ++ [ final.python3Packages.dbus-next ];
+      });
+    })
+  ];
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = false;
