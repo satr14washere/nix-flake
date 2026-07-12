@@ -54,7 +54,7 @@
     "Mod+V".action.spawn = [ "rofi" "-modi" "clipboard:cliphist-rofi-img" "-show" "clipboard" "-show-icons" ];
     "Mod+A".action.spawn = [ "zeditor" ];
     "Mod+C".action.spawn = [ "kitty" "btop" ];
-    "Mod+Shift+F".action.spawn-sh = "${lib.getExe pkgs.labwc} $$ WAYLAND_DISPLAY=wayland-1 ${lib.getExe pkgs.kitty}";
+    "Mod+Shift+F".action.spawn-sh = "${lib.getExe pkgs.labwc} & WAYLAND_DISPLAY=wayland-1 ${lib.getExe pkgs.kitty}";
     "Mod+Shift+C".action.spawn = [ "kitty" "zsh" "-c" "fastfetch; exec zsh -i" ];
     "Mod+Shift+D".action.spawn = [ "steam" "-system-composer" "steam://open/bigpicture" ];
     "Mod+D".action.spawn = [ "prismlauncher" ];
