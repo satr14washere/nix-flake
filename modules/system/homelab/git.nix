@@ -70,7 +70,7 @@
         lockFileMaintenance = {
           enabled = true;
           commitMessageAction = "update lock file(s)";
-          schedule = [ "0 0 * * 6" ]; # weekly, start of weekend (Saturday)
+          schedule = [ "* 0 * * 6" ]; # weekly, midnight Saturday 
         };
       };
       runtimePackages = with pkgs; [ bun nix ];
