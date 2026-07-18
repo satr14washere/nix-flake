@@ -1,20 +1,20 @@
 { inputs, lib, pkgs, ... }: let
-  name = "mc0-vanilla-plus";
-  ram-allocation-mb = 8192;
-  headroom-allocation-mb = 1024;
+  name = "mc2-create-aeronautics";
+  ram-allocation-mb = 12288;
+  headroom-allocation-mb = 2048;
   rcon-pass = "howdy";
   ports = {
-    minecraft = 25565;
-    rcon = 25575;
+    minecraft = 25567;
+    rcon = 25577;
   };
   
   modpack = let
-    useLatest = false;
-    commit = "86bf13316ed1352a676d9056d284448ea5e5a079";
+    useLatest = true;
+    commit = "";
     path = if !useLatest then "commit/${commit}" else "branch/main";
   in pkgs.fetchPackwizModpack {
-    packHash = "sha256-sc6vekjddYpwY2Hp3uZ/xFiXyPd4kfwcZVO/pKRRBwQ=";
-    url = "https://git.satr14.my.id/satr14/server-modpack/raw/${path}/pack.toml";
+    packHash = "";
+    url = "https://git.satr14.my.id/satr14/create-modpack/raw/${path}/pack.toml";
   };
 in {
   systemd.services."minecraft-server-${name}" = {
@@ -23,7 +23,7 @@ in {
   };
   
   services.minecraft-servers.servers.${name} = {
-    enable = false;
+    enable = true;
     autoStart = true;
     restart = "always";
     

@@ -3,6 +3,10 @@
   ram-allocation-mb = 8192;
   headroom-allocation-mb = 1024;
   rcon-pass = "howdy";
+  ports = {
+    minecraft = 25566;
+    rcon = 25576;
+  };
   
   modpack = pkgs.fetchModrinthModpack {
     url = "https://cdn.modrinth.com/data/2wkV8mHp/versions/mFGJP1Ye/Server%20Optimization%201.21.11-2.1.mrpack";
@@ -17,7 +21,7 @@ in {
     
     serverProperties = {
       server-ip = "0.0.0.0";
-      server-port = 25566;
+      server-port = ports.minecraft;
       server-name = name;
       motd = "§cCan't connect to server";
       log-ips = false;
@@ -42,7 +46,7 @@ in {
       enable-rcon = true;
       sync-chunk-writes = false;
       "rcon.password" = rcon-pass;
-      "rcon.port" = 25576;
+      "rcon.port" = ports.rcon;
     };
     
     files = inputs.mc.lib.collectFilesAt modpack "config";
