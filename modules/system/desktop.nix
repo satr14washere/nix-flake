@@ -22,7 +22,7 @@
       package = pkgs.niri-unstable;
     };
     hyprland = {
-      enable = true;
+      enable = false;
       withUWSM = true;
       xwayland.enable = true;
       package = pkgs.hyprland; # if rice.enable then inputs.hl.packages."${pkgs.system}".hyprland else pkgs.hyprland;

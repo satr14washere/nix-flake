@@ -89,7 +89,6 @@
         "wl-paste --type image --watch cliphist store"
 
         "uwsm app -s s -- waybar &"
-        "uwsm app -s b -- sunshine &"
         "uwsm app -s b -- blueman-applet &"
         "uwsm app -s b -- nm-applet &"
         "uwsm app -s b -- tailscale systray &"
