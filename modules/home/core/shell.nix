@@ -61,6 +61,9 @@
         "wm-lock" = "wm-ctl dispatch exec loginctl lock-session && notify-send ${hostname} 'Manual lock triggered'";
         "wm-disp" = "wm-ctl dispatch dpms";
 
+        "gz-compress" = "tar -czhf";
+        "gz-extract" = "tar -xzf";
+
         "gh-author-setup" = "git config user.name $(gh api -H \"Accept: application/vnd.github+json\" -H \"X-GitHub-Api-Version: 2022-11-28\" /user | jq -r .login) && git config user.email $(gh api -H \"Accept: application/vnd.github+json\" -H \"X-GitHub-Api-Version: 2022-11-28\" /user/emails | jq -r \".[1].email\")";
         "fg-create-repo" = "git remote add origin ${git.server}/${git.username}/$(basename $PWDw).git && git push";
         "convert-pdf" = "libreoffice --headless --convert-to pdf";
