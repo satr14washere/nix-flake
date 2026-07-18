@@ -28,6 +28,7 @@
   home.packages = with pkgs; [
     zed-editor
     opencode
+    github-copilot-cli
 
     slack
     discord
