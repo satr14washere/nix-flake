@@ -21,6 +21,13 @@
   whitelist = [
     "https://gist.githubusercontent.com/mul14/eb05e88fcec5bb195cbb/raw/75a1fe122a4502e8d5a5268c9d0ec28332b19d5d/hosts"
   ];
+  blocked = [
+    # LOCK IN
+    "instagram"
+    "youtube"
+    "minecraft"
+    "steam"
+  ];
 in {
   services.adguardhome = {
     enable = true;
@@ -31,6 +38,7 @@ in {
       dns = {
         upstream_dns = [ "https://security.cloudflare-dns.com/dns-query" ];
         bootstrap_dns = [ "1.1.1.2" "1.0.0.2" ];
+        blocked_services = blocked;
       };
       querylog = {
         interval = "2160h";

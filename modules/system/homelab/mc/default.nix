@@ -10,7 +10,8 @@
   boot.kernel.sysctl."vm.swappiness" = 10; # reduce swap usage and keep memory performance smooth
 
   services.minecraft-servers = {
-    enable = true;
+    # LOCK IN
+    enable = false;
     eula = true;
     managementSystem.systemd-socket.enable = true;
     # ^^^ https://github.com/Infinidoge/nix-minecraft/issues/119

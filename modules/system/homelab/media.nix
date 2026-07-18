@@ -4,7 +4,8 @@
   ];
   services = {
     jellyfin = {
-      enable = true;
+      # LOCK IN
+      enable = false;
       dataDir = "/mnt/data/apps/jellyfin";
       hardwareAcceleration = {
         enable = true;
