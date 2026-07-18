@@ -38,13 +38,13 @@ in {
       dns = {
         upstream_dns = [ "https://security.cloudflare-dns.com/dns-query" ];
         bootstrap_dns = [ "1.1.1.2" "1.0.0.2" ];
-        blocked_services.ids = blocked;
       };
       querylog = {
         interval = "2160h";
         enabled = true;
       };
       filtering = {
+        blocked_services.ids = blocked;
         blocking_mode = "null_ip";
         protection_enabled = true;
         safebrowsing_enabled = true;
