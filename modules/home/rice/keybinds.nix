@@ -10,8 +10,9 @@
     "Mod+Q".action.close-window = {};
     "Mod+W".action.maximize-column = {};
     "Mod+S".action.fullscreen-window = {};
-    "Alt+Print".action.screenshot-window = {};
-    "Print".action.screenshot-screen = {};
+    "Ctrl+Print".action.screenshot-window = {};
+    "Alt+Print".action.screenshot-screen = {};
+    "Print".action.screenshot = {};
     
     "Mod+Up".action.focus-workspace-up = {};
     "Mod+Down".action.focus-workspace-down = {};
@@ -30,7 +31,8 @@
     "Alt+Space".action.toggle-overview = {};
     
     "Mod+Space" = { action.spawn = [ "playerctl" "play-pause" ]; allow-when-locked = true; };
-    "Mod+R".action.spawn = [ "rofi" "-show" "drun" "-show-icons" "-display-drun" "" "-run-command" "uwsm app -- {cmd}" ];
+    "Mod+R".action.spawn = [ "rofi" "-show" "drun" "-show-icons" "-display-drun" "" "-run-command" "{cmd}" ];
+    "Mod+Shift+R".action.spawn = [ "rofi" "-show" "drun" "-show-icons" "-display-drun" "wayland-0" "-run-command" "sh -c 'WAYLAND_DISPLAY=wayland-0 DISPLAY=:1 exec {cmd}'" ];
     
     "Mod+E".action.spawn = [ "pcmanfm-qt" ];
     "Mod+T".action.spawn = [ "kitty" ];
