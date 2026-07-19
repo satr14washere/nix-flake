@@ -1,5 +1,5 @@
 { pkgs, ... }: let
-  python = pkgs.python3.withPackages (ps: with ps; [ pillow argon2 ]);
+  python = pkgs.python3.withPackages (ps: with ps; [ pillow argon2-cffi ]);
   script = let
     version = "v1.20.18";
   in pkgs.fetchurl {
