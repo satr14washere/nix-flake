@@ -6,7 +6,11 @@
     url = "https://github.com/9001/copyparty/releases/download/${version}/copyparty-en.py";
     hash = "sha256-8SBrKaLPat80n8sONKQYFeFSQXUnCYtwcOU7SR52h7E=";
   };
+  executable = pkgs.writeShellScriptBin "copyparty" ''
+    exec ${python}/bin/python3 ${scriptSrc} "$@"
+  '';
 in {
+  environment.systemPackages = [ executable ];
   systemd.services.copyparty = {
     description = "File Sharing Service";
     enable = true;
