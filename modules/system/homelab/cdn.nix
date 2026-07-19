@@ -19,7 +19,7 @@ in {
     path = [ pkgs.ffmpeg ];
     serviceConfig = {
       # ExecStart = "${pkgs.copyparty-most}/bin/copyparty -c /mnt/share/cfg/files.conf";
-      ExecStart = "${python}/bin/python3 ${script} -c /mnt/share/cfg/files.conf";
+      ExecStart = "${python}/bin/python3 ${script} --ah-alg argon2 -c /mnt/share/cfg/files.conf";
       Restart = "on-failure";
     };
   };
