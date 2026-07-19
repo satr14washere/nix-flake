@@ -7,7 +7,7 @@
     hash = "sha256-8SBrKaLPat80n8sONKQYFeFSQXUnCYtwcOU7SR52h7E=";
   };
   executable = pkgs.writeShellScriptBin "copyparty" ''
-    exec ${python}/bin/python3 ${scriptSrc} "$@"
+    exec ${python}/bin/python3 ${script} "$@"
   '';
 in {
   environment.systemPackages = [ executable ];
