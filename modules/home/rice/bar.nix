@@ -180,7 +180,7 @@
     style = ''
       * {
         font-size: 12px;
-        font-family: Font Awesome, ${rice.font};
+        font-family: ${rice.font};
         font-weight: bold;
         color: @text;
         transition: none;

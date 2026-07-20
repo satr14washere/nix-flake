@@ -105,7 +105,7 @@ in {
   };
 
   rice = {
-    font = "monospace"; # global font for rice GUIs, leave empty to use monospace
+    font = "DroidSansM Nerd Font"; # global font for rice GUIs, must be a Nerd Font for icon glyphs to render correctly
     bar = {
       top = true; # false will put the bar at the bottom
       fragmented = true; # enable fragmented bar, false will make it a single block
