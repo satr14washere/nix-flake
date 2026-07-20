@@ -74,6 +74,7 @@ in {
         "code"       = da "http://localhost:8443";
         "dns"        = da "http://localhost:8088";
         
+        "control"    = d "https://localhost:9090";
         "gallery"    = d "http://localhost:2283";
         "dynamic"    = d "http://localhost:8082";
         "search"     = d "http://localhost:8091";
