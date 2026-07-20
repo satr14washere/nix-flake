@@ -8,6 +8,7 @@
     proxy_cache off;
     send_timeout 600s;
     client_max_body_size 50000M;
+    proxy_ssl_session_reuse off;
   '';
 in {
   users.users = {
