@@ -20,7 +20,6 @@ in {
     ./homelab/pass.nix
     ./homelab/dash.nix
     ./homelab/code.nix
-    ./homelab/docs.nix
     ./homelab/dns.nix
     ./homelab/git.nix
     ./homelab/cdn.nix

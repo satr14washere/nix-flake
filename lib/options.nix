@@ -41,7 +41,7 @@ in {
       [ "PocketID" "authentik" "https://auth.${domain}" "http://localhost:1411/" ]
       [ "Forgejo" "forgejo" "https://git.${domain}" "http://localhost:5080/" ]
       [ "Copyparty" "files" "https://cdn.${domain}" "http://localhost:3923/" ]
-      [ "CryptPad" "cryptpad" "https://docs.${domain}" "http://localhost:7090/" ]
+      [ "Cockpit" "cockpit" "https://control.${domain}" "http://localhost:9090/" ]
       [ "CodeServer" "coder" "https://code.proxy.${domain}" "http://localhost:8443/" ]
       [ "AdGuardHome" "adguard" "https://dns.proxy.${domain}" "http://localhost:8088/" ]
       [ "Traefik" "traefikproxy" "https://dynamic.proxy.${domain}/dashboard/" "" ]
@@ -55,9 +55,6 @@ in {
     ];
     routes = {
       "mc.${domain}"     = "tcp://localhost:25565";
-      
-      "docs-sandbox.${domain}" = "http://localhost:7090";
-      "docs.${domain}"         = "http://localhost:7090";
       
       "cdn.${domain}"     = selfSigned "https://localhost:3923";
       
