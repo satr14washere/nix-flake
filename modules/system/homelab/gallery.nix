@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ pkgs, lib, ... }: {
   # fix every update causing error:
   # > microservices worker error: PostgresError: must be owner of function album_user_after_insert, stack: PostgresError: must be owner of function album_user_after_insert
   systemd.services.postgresql.postStart = pkgs.lib.mkAfter ''
