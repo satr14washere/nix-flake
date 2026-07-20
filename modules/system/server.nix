@@ -11,6 +11,7 @@ in {
     ./homelab/containers.nix
     ./homelab/gallery.nix
     ./homelab/tunnels.nix
+    ./homelab/control.nix
     ./homelab/notify.nix
     ./homelab/search.nix
     ./homelab/media.nix
