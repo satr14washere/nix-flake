@@ -11,7 +11,7 @@
 
   services.minecraft-servers = {
     # LOCK IN
-    enable = false;
+    enable = true;
     eula = true;
     managementSystem.systemd-socket.enable = true;
     # ^^^ https://github.com/Infinidoge/nix-minecraft/issues/119

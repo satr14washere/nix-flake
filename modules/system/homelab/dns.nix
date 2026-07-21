@@ -25,8 +25,8 @@
     # LOCK IN
     "instagram"
     "youtube"
-    "minecraft"
-    "steam"
+    # "minecraft"
+    # "steam"
   ];
 in {
   services.adguardhome = {
