@@ -23,8 +23,10 @@
     "Mod+Shift+Down".action.move-window-down-or-to-workspace-down = {};
     "Mod+Shift+Left".action.move-column-left = {};
     "Mod+Shift+Right".action.move-column-right = {};
-    "Mod+Ctrl+Left".action.set-column-width = [ "-5%" ];
-    "Mod+Ctrl+Right".action.set-column-width = [ "+5%" ];
+    "Mod+Ctrl+Left".action.set-window-width = [ "-5%" ];
+    "Mod+Ctrl+Right".action.set-window-width = [ "+5%" ];
+    "Mod+Ctrl+Down".action.set-window-height = [ "+5%" ];
+    "Mod+Ctrl+Up".action.set-window-height = [ "-5%" ];
 
     "Mod+G".action.center-column = {};
     "Mod+F".action.toggle-window-floating = {};
