@@ -30,6 +30,9 @@
         cursor_trail = 10;
         copy_on_select = true;
       };
+      keybindings = {
+        "ctrl+backspace" = "send_text all \\x17";
+      };
     };
     ranger = {
       enable = true;
