@@ -1,11 +1,11 @@
 { pkgs, lib, hostname, ... }: {
   programs.niri.settings.binds = {
-    "XF86AudioRaiseVolume" = { action.spawn = [ "wpctl" "set-volume" "-l" "1" "@DEFAULT_AUDIO_SINK@" "5%+" ]; allow-when-locked = true; };
-    "XF86AudioLowerVolume" = { action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-" ]; allow-when-locked = true; };
+    "XF86AudioRaiseVolume" = { action.spawn = [ "wpctl" "set-volume" "-l" "1" "@DEFAULT_AUDIO_SINK@" "2%+" ]; allow-when-locked = true; };
+    "XF86AudioLowerVolume" = { action.spawn = [ "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "2%-" ]; allow-when-locked = true; };
     "XF86AudioMute" = { action.spawn = [ "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle" ]; allow-when-locked = true; };
     "XF86AudioMicMute" = { action.spawn = [ "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle" ]; allow-when-locked = true; };
-    "XF86MonBrightnessUp" = { action.spawn = [ "brightnessctl" "s" "10%+" ]; allow-when-locked = true; };
-    "XF86MonBrightnessDown" = { action.spawn = [ "brightnessctl" "s" "10%-" ]; allow-when-locked = true; };
+    "XF86MonBrightnessUp" = { action.spawn = [ "brightnessctl" "s" "2%+" ]; allow-when-locked = true; };
+    "XF86MonBrightnessDown" = { action.spawn = [ "brightnessctl" "s" "2%-" ]; allow-when-locked = true; };
     
     "Mod+Q".action.close-window = {};
     "Mod+W".action.maximize-column = {};
@@ -23,10 +23,10 @@
     "Mod+Shift+Down".action.move-window-down-or-to-workspace-down = {};
     "Mod+Shift+Left".action.move-column-left = {};
     "Mod+Shift+Right".action.move-column-right = {};
-    "Mod+Ctrl+Left".action.set-window-width = [ "-5%" ];
-    "Mod+Ctrl+Right".action.set-window-width = [ "+5%" ];
-    "Mod+Ctrl+Down".action.set-window-height = [ "+5%" ];
-    "Mod+Ctrl+Up".action.set-window-height = [ "-5%" ];
+    "Mod+Ctrl+Left".action.set-window-width = [ "-2%" ];
+    "Mod+Ctrl+Right".action.set-window-width = [ "+2%" ];
+    "Mod+Ctrl+Down".action.set-window-height = [ "+2%" ];
+    "Mod+Ctrl+Up".action.set-window-height = [ "-2%" ];
 
     "Mod+G".action.center-column = {};
     "Mod+F".action.toggle-window-floating = {};
