@@ -17,7 +17,10 @@
   environment.localBinInPath = true;
 
   security = {
-    polkit.enable = true;
+    polkit = {
+      enable = true;
+      enablePkexecWrapper = true;
+    };
     sudo.configFile = ''
       Defaults insults
       Defaults passwd_tries = 5
