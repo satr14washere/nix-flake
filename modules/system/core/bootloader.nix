@@ -1,12 +1,11 @@
 { pkgs, legacy-boot, ... }: {
   boot = {
-    plymouth.enable = true;
     loader = {
       efi.canTouchEfiVariables = true;
       systemd-boot = {
         enable = !legacy-boot;
         configurationLimit = 3;
-        sortKey = "z-nixos";
+        sortKey = "nixos";
         editor = false;
       };
       grub = {
