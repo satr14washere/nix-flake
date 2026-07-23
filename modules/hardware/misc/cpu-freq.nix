@@ -49,23 +49,27 @@
     };
     auto-cpufreq = {
       enable = true; # wait for fix: https://github.com/AdnanHodzic/auto-cpufreq/issues/906
-      settings = {
-        charger = {
-          governor = "powersave"; # "performance";
+      settings = let
+        performance = {
+          governor = "performance";
           energy_performance_preference = "performance";
           turbo = "always";
           platform_profile = "performance";
           scaling_min_freq = 800000;
           scaling_max_freq = 3600000;
         };
-        battery = {
+        balanced = {
           governor = "powersave";
           energy_performance_preference = "balance-power";
-          platform_profile = "low-power";
           turbo = "never";
+          platform_profile = "balanced";
           scaling_min_freq = 400000;
           scaling_max_freq = 1700000;
         };
+      in {
+        battery = balanced;
+        charger = balanced; # performance;
+        # ^^ disable overclocking for purely productivity use so low temps and fan noise
       };
     };
   };
