@@ -25,7 +25,7 @@
         XCURSOR_SIZE = "24";
         XCURSOR_THEME = "catppuccin-${ctp-opt.flavor}-light-cursors";
 
-        CLIPHIST_MAX_ITEMS = "36";
+        CLIPHIST_MAX_ITEMS = "90";
 
         GTK_APPLICATION_PREFER_DARK_THEME = "1";
         GTK_THEME = "Adwaita:dark";
