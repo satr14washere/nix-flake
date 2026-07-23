@@ -40,6 +40,7 @@
         };
       };
       agent = {
+        sidebar_side = "right";
         tool_permissions.default = "allow";
         default_model = {
           provider = "copilot_chat";
