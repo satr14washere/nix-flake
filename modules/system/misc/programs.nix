@@ -17,7 +17,7 @@
 
   programs = {
     # LOCK IN
-    steam.enable = true;
+    # steam.enable = true;
     gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
     appimage = {
       enable = true;
