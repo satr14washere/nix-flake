@@ -33,7 +33,7 @@
   xdg.portal = {
     enable = true;
     extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland #inputs.hl.packages.${pkgs.system}.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-luminous
       pkgs.xdg-desktop-portal-gtk
     ];
   };
