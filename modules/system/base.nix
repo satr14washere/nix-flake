@@ -16,6 +16,9 @@
   i18n.defaultLocale = locale;
   environment.localBinInPath = true;
 
+  powerManagement.cpuFreqGovernor = "powersave";
+  boot.kernel.sysctl."vm.swappiness" = 10; # only swap when necessary
+  
   security = {
     polkit = {
       enable = true;
