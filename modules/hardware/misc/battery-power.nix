@@ -13,9 +13,10 @@
     cron = {
       enable = true;
       systemCronJobs = [
-        "* * * * * ${username} bash -x ${pkgs.writeShellScript "low-battery-notifier" ''
-          BAT_PCT=`${pkgs.acpi}/bin/acpi -b | ${pkgs.gnugrep}/bin/grep -P -o '[0-9]+(?=%)'`
-          BAT_STA=`${pkgs.acpi}/bin/acpi -b | ${pkgs.gnugrep}/bin/grep -P -o '\w+(?=,)'`
+        "*/2 * * * * ${username} bash ${pkgs.writeShellScript "low-battery-notifier" ''
+          ACPI_OUT=$(${pkgs.acpi}/bin/acpi -b)
+          BAT_PCT=`echo "$ACPI_OUT" | ${pkgs.gnugrep}/bin/grep -P -o '[0-9]+(?=%)'`
+          BAT_STA=`echo "$ACPI_OUT" | ${pkgs.gnugrep}/bin/grep -P -o '\w+(?=,)'`
           echo "`date` battery status:$BAT_STA percentage:$BAT_PCT"
           export DISPLAY=:0
           export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
