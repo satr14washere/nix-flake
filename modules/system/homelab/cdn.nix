@@ -4,7 +4,7 @@
     version = "v1.20.19";
   in pkgs.fetchurl {
     url = "https://github.com/9001/copyparty/releases/download/${version}/copyparty-en.py";
-    hash = "";
+    hash = "sha256-esPNxK4IzSVpRumbM06YEWEmu8pMv0xGzZGL6DpCLtQ=";
   };
   executable = pkgs.writeShellScriptBin "copyparty" ''
     exec ${python}/bin/python3 ${script} "$@"
