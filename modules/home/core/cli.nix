@@ -84,6 +84,7 @@
         indent-blankline-nvim
         markdown-preview-nvim
         vim-suda
+        vim-wakatime
       ];
     };
     gh = {
