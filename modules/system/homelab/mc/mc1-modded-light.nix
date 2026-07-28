@@ -51,13 +51,20 @@ in {
     
     files = inputs.mc.lib.collectFilesAt modpack "config";
     symlinks = inputs.mc.lib.collectFilesAt modpack "mods" // {
+      # "mods/.jar" = pkgs.fetchurl { url = ""; hash = ""; };
+      
       "mods/EffortlessBuilding.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/DYtfQEYj/versions/WFfB60HD/effortlessbuilding-4.1%2B1.21.11.jar"; hash = "sha256-nxp2tv/O5C++/5SKPixH8p96SGzSy26VOWsaho6SYqU="; };
       "mods/SimpleVoiceChat.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/XhWdYnkC/voicechat-fabric-1.21.11-2.6.21.jar"; hash = "sha256-06XtTXw2f4/CVFxED52AOLVxVnTVcr4BrdRgvb4bkRI="; };
 
       "mods/PlayerDropsHead.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/cz5Ve1NT/versions/cKab9P4U/player-drops-head-v3.6.2.1.jar"; hash = "sha256-71G5ptrmrq5uqhdQt7vGTfL/WaF41fE7rw8sJCJTEwo="; };
       "mods/AudioPlayer.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/SRlzjEBS/versions/QDto44wD/audioplayer-fabric-2.4.0%2B1.21.11.jar"; hash = "sha256-K/WbgU2kq9pKtT8yaP2noXt7g0bNOkmq/qWu0ox2Owk="; };
+      
+      "mods/FabricLanguageKotlin.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/Ha28R6CL/versions/bdhiINYC/fabric-language-kotlin-1.13.13%2Bkotlin.2.4.10.jar"; hash = "sha256-NMzazxO7k1H+Q85hkSwuCbcjZOQ+eH02uj0tBN7HWlI="; };
       "mods/VeinMiner.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/OhduvhIc/versions/7c3RO0Qs/veinminer-fabric-2.11.2%2B1.21.11.jar"; hash = "sha256-ubLLSS+/VtNcg99EUmjTE0eAywtR4P/LQIWgqRqp1Wk="; };
       "mods/LeavesBeGone.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/AVq17PqV/versions/RhFHpbMN/LeavesBeGone-v21.11.0-mc1.21.11-Fabric.jar"; hash = "sha256-Ys/jz2aorlFRd1vlpHPAdQThMR9SaKQSFWcQDrLCRjo="; };
+      "mods/PuzzlesLib.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/QAGBst4M/versions/xTX7sOwU/PuzzlesLib-v21.11.13-mc1.21.11-Fabric.jar"; hash = "sha256-HHsGL01P1Mgw26qHXaAXBu+F8HKWkZHYwa/+9pOma4I="; };
+      "mods/ForgeConfigAPIPort.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/ohNO6lps/versions/uXrWPsCu/ForgeConfigAPIPort-v21.11.1-mc1.21.11-Fabric.jar"; hash = "sha256-MaBoaQT60c/esdawEawcIoCZDW52rCQWRoFH4iRrTbE="; };
+      
       "mods/VanillaStructureUpdate.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/q3gDW66d/versions/p9AB4oNm/vanilla-structure-update-v2.8.jar"; hash = "sha256-62PW2JW6zOpnguvcQL9pjCD/lCtc4RGYQeO/hmal3D4="; };
       "mods/Explorify.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/HSfsxuTo/versions/9vHj342y/Explorify%20v1.6.4%20f15-88.mod.jar"; hash = "sha256-3MU0DcdxxhNY9TuYGFlOnliNmvgcCh6QbDc/sU2b56M="; };
       "mods/Clifftree.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/59ypHk8x/versions/JZIwqnbs/CliffTree-3.1.5-1.21.11_MoM.jar"; hash = "sha256-5Hk84lmUPsBkiIBJgHI0WWy4ctO6j5KGhffyFViOsjw="; };
