@@ -56,6 +56,7 @@ in {
 
       "mods/PlayerDropsHead.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/cz5Ve1NT/versions/cKab9P4U/player-drops-head-v3.6.2.1.jar"; hash = "sha256-71G5ptrmrq5uqhdQt7vGTfL/WaF41fE7rw8sJCJTEwo="; };
       "mods/AudioPlayer.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/SRlzjEBS/versions/QDto44wD/audioplayer-fabric-2.4.0%2B1.21.11.jar"; hash = "sha256-K/WbgU2kq9pKtT8yaP2noXt7g0bNOkmq/qWu0ox2Owk="; };
+      "mods/VanillaStructureUpdate.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/q3gDW66d/versions/p9AB4oNm/vanilla-structure-update-v2.8.jar"; hash = "sha256-62PW2JW6zOpnguvcQL9pjCD/lCtc4RGYQeO/hmal3D4="; };
       "mods/Clifftree.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/59ypHk8x/versions/JZIwqnbs/CliffTree-3.1.5-1.21.11_MoM.jar"; hash = "sha256-5Hk84lmUPsBkiIBJgHI0WWy4ctO6j5KGhffyFViOsjw="; };
       "mods/Lithostiched.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/XaDC71GB/versions/pLbQKCOo/lithostitched-1.7.2-fabric-21.11.jar"; hash = "sha256-XWhxsnpsMy46d6+PxDIDME4/Xfh9kAI2lq08BpEcIYI="; };
       "mods/Tectonic.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/lWDHr9jE/versions/7olSYFxL/tectonic-3.0.19-fabric-1.21.11.jar"; hash = "sha256-p0WQfF8uX9saB4b6Ms4AoDiQ4w8bh+bA6hDKoH3CmtY="; };
@@ -64,6 +65,7 @@ in {
       "mods/SimpleDiscordLink.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/Sh0YauEf/versions/w2ngBoyZ/SimpleDiscordLink-Universal-3.4.4.jar"; hash = "sha256-awmNrYgLl7waEEM+SeFAdgCaIDxcunIYO6UF2F2c4zQ="; };
       
       "mods/TabTPS.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/cUhi3iB2/versions/hTiqRp4H/tabtps-fabric-mc1.21.11-1.3.30.jar"; hash = "sha256-XgOF29UlvU00iZAkfZU78uXv8nX79uFXJUJBsqSp5Ac="; };
+      "mods/Vanish.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/UL4bJFDY/versions/WuwTqK6K/vanish-1.6.15%2B1.21.11.jar"; hash = "sha256-4U5XCZLR7A2INXm9f3V2ke1uBCCLt5SZSIa8Xa1ZEro="; };
       "mods/SkinRestorer.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/ghrZDhGW/versions/FyV19hQI/skinrestorer-2.9.0%2B1.21.11-fabric.jar"; hash = "sha256-yRL2k6uROnVBqjgFp1i8dMucubs5OYqZnT0wuBP0b0M="; };
       
       "mods/EasyAuth.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/aZj58GfX/versions/R4EX0C3V/easyauth-mc1.21.11-3.4.3.jar"; hash = "sha256-T1PfPlyfkieOCsfoab+BpW8pB/CSDKlxGrS5FMgSMEU="; };
