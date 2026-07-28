@@ -1,11 +1,11 @@
 { inputs, lib, pkgs, ... }: let
   name = "mc1-pure-vanilla";
-  ram-allocation-mb = 8192;
-  headroom-allocation-mb = 1024;
+  ram-allocation-mb = 12288;
+  headroom-allocation-mb = 2048;
   rcon-pass = "howdy";
   ports = {
-    minecraft = 25566;
-    rcon = 25576;
+    minecraft = 25565;
+    rcon = 25575;
   };
   
   modpack = pkgs.fetchModrinthModpack {

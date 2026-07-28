@@ -25,7 +25,7 @@
     # LOCK IN
     "instagram"
     "youtube"
-    "minecraft"
+    # "minecraft"
     "steam"
   ];
 in {
