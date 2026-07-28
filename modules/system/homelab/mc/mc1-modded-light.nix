@@ -1,5 +1,5 @@
 { inputs, lib, pkgs, ... }: let
-  name = "mc1-modded-light";
+  name = "mc1-modded-light-prod";
   ram-allocation-mb = 12288;
   headroom-allocation-mb = 2048;
   rcon-pass = "howdy";
