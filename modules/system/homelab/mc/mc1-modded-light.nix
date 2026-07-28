@@ -15,7 +15,7 @@
   };
 in {
   services.minecraft-servers.servers.${name} = {
-    enable = true;
+    enable = false;
     autoStart = true;
     restart = "always";
     
