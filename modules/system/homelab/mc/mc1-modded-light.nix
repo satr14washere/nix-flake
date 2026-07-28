@@ -69,7 +69,7 @@ in {
       "mods/EasyAuth.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/aZj58GfX/versions/R4EX0C3V/easyauth-mc1.21.11-3.4.3.jar"; hash = "sha256-T1PfPlyfkieOCsfoab+BpW8pB/CSDKlxGrS5FMgSMEU="; };
       "mods/ViaFabric.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/YlKdE5VK/versions/U1uUiwCm/ViaFabric-0.4.21%2B173-1.14-1.21.jar"; hash = "sha256-PZSsCBuU+TSDAvAFGGCXFYi1zwDixpKsH2G97H3zSxo="; };
       "mods/Floodgate.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/bWrNNfkb/versions/81EuNxeZ/Floodgate-Fabric-2.2.6-b60.jar"; hash = "sha256-voH1QWv5GVm6EziJ3ERPjn5cx09/et73QiZlJ7l3foM="; };
-      "mods/Geyser.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/wKkoqHrH/versions/6uw7I3Qj/geyser-fabric-Geyser-Fabric-2.9.6-b1133.jar"; hash = "sha256-aWMlDdHvNz6VaLVPdmO01YBAlQ7m4w8aUe47TbXxM60="; };
+      "mods/Geyser.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/YlKdE5VK/versions/ghuh2MQh/ViaFabric-0.4.21%2B171-1.14-1.21.jar"; hash = "sha256-9LHsJuz5egNzams1rzveyp43RhVl+4UovhCI5CDmqDg="; };
     };
     
     package = pkgs.fabricServers.fabric-1_21_11.override {
