@@ -54,6 +54,7 @@ in {
       "mods/EffortlessBuilding.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/DYtfQEYj/versions/WFfB60HD/effortlessbuilding-4.1%2B1.21.11.jar"; hash = "sha256-nxp2tv/O5C++/5SKPixH8p96SGzSy26VOWsaho6SYqU="; };
       "mods/SimpleVoiceChat.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/XhWdYnkC/voicechat-fabric-1.21.11-2.6.21.jar"; hash = "sha256-06XtTXw2f4/CVFxED52AOLVxVnTVcr4BrdRgvb4bkRI="; };
 
+      "mods/PlayerDropsHead.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/cz5Ve1NT/versions/cKab9P4U/player-drops-head-v3.6.2.1.jar"; hash = ""; };
       "mods/AudioPlayer.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/SRlzjEBS/versions/QDto44wD/audioplayer-fabric-2.4.0%2B1.21.11.jar"; hash = "sha256-K/WbgU2kq9pKtT8yaP2noXt7g0bNOkmq/qWu0ox2Owk="; };
       "mods/Clifftree.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/59ypHk8x/versions/JZIwqnbs/CliffTree-3.1.5-1.21.11_MoM.jar"; hash = "sha256-5Hk84lmUPsBkiIBJgHI0WWy4ctO6j5KGhffyFViOsjw="; };
       "mods/Lithostiched.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/XaDC71GB/versions/pLbQKCOo/lithostitched-1.7.2-fabric-21.11.jar"; hash = "sha256-XWhxsnpsMy46d6+PxDIDME4/Xfh9kAI2lq08BpEcIYI="; };
@@ -72,7 +73,7 @@ in {
     };
     
     package = pkgs.fabricServers.fabric-1_21_11.override {
-      jre_headless = pkgs.javaPackages.compiler.temurin-bin.jdk-25;
+      jre_headless = pkgs.javaPackages.compiler.temurin-bin.jdk-21;
       loaderVersion = "0.19.2";
     };
 
@@ -80,9 +81,9 @@ in {
       "-Xms${toString ram-allocation-mb}M"
       "-Xmx${toString ram-allocation-mb}M"
       
-      "-XX:+UseZGC" # Use ZGC (requires Java v25+, 8+ CPU cores, 10GB+ RAM)
+      "-XX:+UseZGC" # Use ZGC (requires Java v15+, 8+ CPU cores, 10GB+ RAM)
       "-XX:+ZGenerational" # Use generational ZGC (newer and better ZGC, requires Java v21+)
-      "-XX:+UseCompactObjectHeaders" # Use compact object headers (requires Java v16+, saves a couple of bits per object)
+      # "-XX:+UseCompactObjectHeaders" # Use compact object headers (requires Java v25+, saves a couple of bits per object)
       
       "--add-modules=jdk.incubator.vector" # Exposes SIMD instructions (requires full JDK, useful with performance mods like C2ME)
       "-XX:+AlwaysPreTouch" # Pre-allocates memory on startup, OS claims it immediately for JVM instead of negotiating it
