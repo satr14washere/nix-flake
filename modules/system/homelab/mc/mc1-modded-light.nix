@@ -50,10 +50,12 @@ in {
     };
     
     files = inputs.mc.lib.collectFilesAt modpack "config";
-    symlinks = inputs.mc.lib.collectFilesAt modpack "mods" // {
-      mods = pkgs.linkFarmFromDrvs "mods" (builtins.attrValues {
+    symlinks = {
+      mods = pkgs.linkFarmFromDrvs "mods" (
+        builtins.attrValues (inputs.mc.lib.collectFilesAt modpack "mods")
+        ++ builtins.attrValues {
       	# NAME = pkgs.fetchurl { url = ""; hash = ""; };
-
+        
         EffortlessBuilding = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/DYtfQEYj/versions/WFfB60HD/effortlessbuilding-4.1%2B1.21.11.jar"; hash = "sha256-nxp2tv/O5C++/5SKPixH8p96SGzSy26VOWsaho6SYqU="; };
 	      SimpleVoiceChat = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/XhWdYnkC/voicechat-fabric-1.21.11-2.6.21.jar"; hash = "sha256-06XtTXw2f4/CVFxED52AOLVxVnTVcr4BrdRgvb4bkRI="; };
 
@@ -69,7 +71,8 @@ in {
         EasyAuth = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/aZj58GfX/versions/R4EX0C3V/easyauth-mc1.21.11-3.4.3.jar"; hash = "sha256-T1PfPlyfkieOCsfoab+BpW8pB/CSDKlxGrS5FMgSMEU="; };
         Floodgate = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/bWrNNfkb/versions/81EuNxeZ/Floodgate-Fabric-2.2.6-b60.jar"; hash = "sha256-voH1QWv5GVm6EziJ3ERPjn5cx09/et73QiZlJ7l3foM="; };
         Geyser = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/wKkoqHrH/versions/6uw7I3Qj/geyser-fabric-Geyser-Fabric-2.9.6-b1133.jar"; hash = "sha256-aWMlDdHvNz6VaLVPdmO01YBAlQ7m4w8aUe47TbXxM60="; };
-      });
+        }
+      );
     };
     
     package = pkgs.fabricServers.fabric-1_21_11.override {
