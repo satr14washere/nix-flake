@@ -50,29 +50,22 @@ in {
     };
     
     files = inputs.mc.lib.collectFilesAt modpack "config";
-    symlinks = {
-      mods = pkgs.linkFarmFromDrvs "mods" (
-        builtins.attrValues (inputs.mc.lib.collectFilesAt modpack "mods")
-        ++ builtins.attrValues {
-      	# NAME = pkgs.fetchurl { url = ""; hash = ""; };
-        
-        EffortlessBuilding = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/DYtfQEYj/versions/WFfB60HD/effortlessbuilding-4.1%2B1.21.11.jar"; hash = "sha256-nxp2tv/O5C++/5SKPixH8p96SGzSy26VOWsaho6SYqU="; };
-	      SimpleVoiceChat = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/XhWdYnkC/voicechat-fabric-1.21.11-2.6.21.jar"; hash = "sha256-06XtTXw2f4/CVFxED52AOLVxVnTVcr4BrdRgvb4bkRI="; };
+    symlinks = inputs.mc.lib.collectFilesAt modpack "mods" // {
+      "mods/EffortlessBuilding.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/DYtfQEYj/versions/WFfB60HD/effortlessbuilding-4.1%2B1.21.11.jar"; hash = "sha256-nxp2tv/O5C++/5SKPixH8p96SGzSy26VOWsaho6SYqU="; };
+      "mods/SimpleVoiceChat.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/XhWdYnkC/voicechat-fabric-1.21.11-2.6.21.jar"; hash = "sha256-06XtTXw2f4/CVFxED52AOLVxVnTVcr4BrdRgvb4bkRI="; };
 
-	      AudioPlayer = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/SRlzjEBS/versions/QDto44wD/audioplayer-fabric-2.4.0%2B1.21.11.jar"; hash = "sha256-K/WbgU2kq9pKtT8yaP2noXt7g0bNOkmq/qWu0ox2Owk="; };
-	      Clifftree = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/59ypHk8x/versions/JZIwqnbs/CliffTree-3.1.5-1.21.11_MoM.jar"; hash = "sha256-5Hk84lmUPsBkiIBJgHI0WWy4ctO6j5KGhffyFViOsjw="; };
-	      Lithostiched = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/XaDC71GB/versions/pLbQKCOo/lithostitched-1.7.2-fabric-21.11.jar"; hash = "sha256-XWhxsnpsMy46d6+PxDIDME4/Xfh9kAI2lq08BpEcIYI="; };
-	      Tectonic = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/lWDHr9jE/versions/7olSYFxL/tectonic-3.0.19-fabric-1.21.11.jar"; hash = "sha256-p0WQfF8uX9saB4b6Ms4AoDiQ4w8bh+bA6hDKoH3CmtY="; };
+      "mods/AudioPlayer.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/SRlzjEBS/versions/QDto44wD/audioplayer-fabric-2.4.0%2B1.21.11.jar"; hash = "sha256-K/WbgU2kq9pKtT8yaP2noXt7g0bNOkmq/qWu0ox2Owk="; };
+      "mods/Clifftree.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/59ypHk8x/versions/JZIwqnbs/CliffTree-3.1.5-1.21.11_MoM.jar"; hash = "sha256-5Hk84lmUPsBkiIBJgHI0WWy4ctO6j5KGhffyFViOsjw="; };
+      "mods/Lithostiched.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/XaDC71GB/versions/pLbQKCOo/lithostitched-1.7.2-fabric-21.11.jar"; hash = "sha256-XWhxsnpsMy46d6+PxDIDME4/Xfh9kAI2lq08BpEcIYI="; };
+      "mods/Tectonic.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/lWDHr9jE/versions/7olSYFxL/tectonic-3.0.19-fabric-1.21.11.jar"; hash = "sha256-p0WQfF8uX9saB4b6Ms4AoDiQ4w8bh+bA6hDKoH3CmtY="; };
 
-	      CraterLib = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/Nn8Wasaq/versions/NPIPYNKe/CraterLib-Fabric-1.21.11-3.1.2.jar"; hash = "sha256-96O47b2IUTD0TXehlFj8ToToQ2d4g3nuO6+a+XKmS8A="; };
-	      SimpleDiscordLink = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/Sh0YauEf/versions/w2ngBoyZ/SimpleDiscordLink-Universal-3.4.4.jar"; hash = "sha256-awmNrYgLl7waEEM+SeFAdgCaIDxcunIYO6UF2F2c4zQ="; };
-	      TabTPS = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/cUhi3iB2/versions/hTiqRp4H/tabtps-fabric-mc1.21.11-1.3.30.jar"; hash = "sha256-XgOF29UlvU00iZAkfZU78uXv8nX79uFXJUJBsqSp5Ac="; };
-	      SkinRestorer = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/ghrZDhGW/versions/FyV19hQI/skinrestorer-2.9.0%2B1.21.11-fabric.jar"; hash = "sha256-yRL2k6uROnVBqjgFp1i8dMucubs5OYqZnT0wuBP0b0M="; };
-        EasyAuth = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/aZj58GfX/versions/R4EX0C3V/easyauth-mc1.21.11-3.4.3.jar"; hash = "sha256-T1PfPlyfkieOCsfoab+BpW8pB/CSDKlxGrS5FMgSMEU="; };
-        Floodgate = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/bWrNNfkb/versions/81EuNxeZ/Floodgate-Fabric-2.2.6-b60.jar"; hash = "sha256-voH1QWv5GVm6EziJ3ERPjn5cx09/et73QiZlJ7l3foM="; };
-        Geyser = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/wKkoqHrH/versions/6uw7I3Qj/geyser-fabric-Geyser-Fabric-2.9.6-b1133.jar"; hash = "sha256-aWMlDdHvNz6VaLVPdmO01YBAlQ7m4w8aUe47TbXxM60="; };
-        }
-      );
+      "mods/CraterLib.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/Nn8Wasaq/versions/NPIPYNKe/CraterLib-Fabric-1.21.11-3.1.2.jar"; hash = "sha256-96O47b2IUTD0TXehlFj8ToToQ2d4g3nuO6+a+XKmS8A="; };
+      "mods/SimpleDiscordLink.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/Sh0YauEf/versions/w2ngBoyZ/SimpleDiscordLink-Universal-3.4.4.jar"; hash = "sha256-awmNrYgLl7waEEM+SeFAdgCaIDxcunIYO6UF2F2c4zQ="; };
+      "mods/TabTPS.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/cUhi3iB2/versions/hTiqRp4H/tabtps-fabric-mc1.21.11-1.3.30.jar"; hash = "sha256-XgOF29UlvU00iZAkfZU78uXv8nX79uFXJUJBsqSp5Ac="; };
+      "mods/SkinRestorer.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/ghrZDhGW/versions/FyV19hQI/skinrestorer-2.9.0%2B1.21.11-fabric.jar"; hash = "sha256-yRL2k6uROnVBqjgFp1i8dMucubs5OYqZnT0wuBP0b0M="; };
+      "mods/EasyAuth.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/aZj58GfX/versions/R4EX0C3V/easyauth-mc1.21.11-3.4.3.jar"; hash = "sha256-T1PfPlyfkieOCsfoab+BpW8pB/CSDKlxGrS5FMgSMEU="; };
+      "mods/Floodgate.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/bWrNNfkb/versions/81EuNxeZ/Floodgate-Fabric-2.2.6-b60.jar"; hash = "sha256-voH1QWv5GVm6EziJ3ERPjn5cx09/et73QiZlJ7l3foM="; };
+      "mods/Geyser.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/wKkoqHrH/versions/6uw7I3Qj/geyser-fabric-Geyser-Fabric-2.9.6-b1133.jar"; hash = "sha256-aWMlDdHvNz6VaLVPdmO01YBAlQ7m4w8aUe47TbXxM60="; };
     };
     
     package = pkgs.fabricServers.fabric-1_21_11.override {
