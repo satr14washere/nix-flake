@@ -25,6 +25,8 @@ in {
       environmentFile = "/mnt/data/apps/acme/cf-api.env";
       dnsProvider = "cloudflare";
       # ^^^contents: CLOUDFLARE_DNS_API_TOKEN=XXXXX
+      dnsResolver = "1.1.1.1:53";
+      dnsPropagationCheck = false;
     };
   };
   
