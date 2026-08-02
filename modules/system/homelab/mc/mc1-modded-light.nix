@@ -90,7 +90,7 @@ in {
     };
     
     package = pkgs.fabricServers.fabric-1_21_11.override {
-      jre_headless = pkgs.javaPackages.compiler.temurin-bin.jdk-21;
+      jre_headless = pkgs.javaPackages.compiler.temurin-bin.jdk-25;
       loaderVersion = "0.19.2";
     };
 
