@@ -62,9 +62,6 @@
     # Media
     ffmpeg
 
-    # Printing
-    hplipWithPlugin
-
     # CLI Essentials
     vim
     wget
