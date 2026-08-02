@@ -65,7 +65,10 @@
           copy  = { ["+"] = osc52.copy("+"),  ["*"] = osc52.copy("*")  },
           paste = { ["+"] = osc52.paste("+"), ["*"] = osc52.paste("*") },
         }
+        vim.opt.termguicolors = true
+        require("bufferline").setup()
         require("nvim-tree").setup()
+        vim.lsp.enable('nixd')
         vim.api.nvim_create_autocmd("VimEnter", {
           callback = function()
             vim.cmd("set nu rnu")
