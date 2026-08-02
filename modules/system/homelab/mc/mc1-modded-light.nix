@@ -59,6 +59,7 @@ in {
 
       "mods/PlayerDropsHead.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/cz5Ve1NT/versions/cKab9P4U/player-drops-head-v3.6.2.1.jar"; hash = "sha256-71G5ptrmrq5uqhdQt7vGTfL/WaF41fE7rw8sJCJTEwo="; };
       "mods/AudioPlayer.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/SRlzjEBS/versions/QDto44wD/audioplayer-fabric-2.4.0%2B1.21.11.jar"; hash = "sha256-K/WbgU2kq9pKtT8yaP2noXt7g0bNOkmq/qWu0ox2Owk="; };
+      "mods/BetterMultiplayerSleep.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/LxB45e67/versions/MmaluIcb/BetterMultiplayerSleep%201.1.0%201.21.11%2B.jar"; hash = "sha256-xE9wZWb5Mszk8JonLV+yk/PxCkIDmzjA27DWU6DEij4="; };
       
       "mods/VeinMiner.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/OhduvhIc/versions/7c3RO0Qs/veinminer-fabric-2.11.2%2B1.21.11.jar"; hash = "sha256-ubLLSS+/VtNcg99EUmjTE0eAywtR4P/LQIWgqRqp1Wk="; };
       "mods/LeavesBeGone.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/AVq17PqV/versions/RhFHpbMN/LeavesBeGone-v21.11.0-mc1.21.11-Fabric.jar"; hash = "sha256-Ys/jz2aorlFRd1vlpHPAdQThMR9SaKQSFWcQDrLCRjo="; };
