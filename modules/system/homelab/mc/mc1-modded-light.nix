@@ -73,7 +73,7 @@ in {
       "mods/SkinRestorer.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/ghrZDhGW/versions/FyV19hQI/skinrestorer-2.9.0%2B1.21.11-fabric.jar"; hash = "sha256-yRL2k6uROnVBqjgFp1i8dMucubs5OYqZnT0wuBP0b0M="; };
       
       "mods/EasyAuth.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/aZj58GfX/versions/R4EX0C3V/easyauth-mc1.21.11-3.4.3.jar"; hash = "sha256-T1PfPlyfkieOCsfoab+BpW8pB/CSDKlxGrS5FMgSMEU="; };
-      "mods/ViaVersion.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/P1OZGk5p/versions/uz2jbJLI/ViaVersion-5.11.1-SNAPSHOT.jar"; hash = "sha256-xA5DOX2D3opxXldjVWytc3e579lKGy6o/84PtG3k4Vo="; };
+      "mods/ViaVersion.jar" = pkgs.fetchurl { url = "https://ci.viaversion.com/job/ViaVersion/1431/artifact/build/libs/ViaVersion-5.11.1-SNAPSHOT.jar"; hash = "sha256-KK8WrX2n68zuAChxVl/Q0esEl4aSMNdILgQMTR4dPyA="; }; # bedrock auto updates
       "mods/ViaFabric.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/YlKdE5VK/versions/U1uUiwCm/ViaFabric-0.4.21%2B173-1.14-1.21.jar"; hash = "sha256-PZSsCBuU+TSDAvAFGGCXFYi1zwDixpKsH2G97H3zSxo="; };
       "mods/Floodgate.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/bWrNNfkb/versions/81EuNxeZ/Floodgate-Fabric-2.2.6-b60.jar"; hash = "sha256-voH1QWv5GVm6EziJ3ERPjn5cx09/et73QiZlJ7l3foM="; };
       "mods/Geyser.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/wKkoqHrH/versions/6uw7I3Qj/geyser-fabric-Geyser-Fabric-2.9.6-b1133.jar"; hash = "sha256-aWMlDdHvNz6VaLVPdmO01YBAlQ7m4w8aUe47TbXxM60="; };
