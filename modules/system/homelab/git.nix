@@ -5,6 +5,7 @@
       lfs.enable = true;
       stateDir = "/mnt/data/apps/forgejo";
       package = pkgs.forgejo;
+      secrets.mailer.PASSWD = "/mnt/data/apps/forgejo/.mailer-passwd";
       settings = {
         server = {
           DISABLE_SSH = false;
@@ -41,6 +42,14 @@
           DISABLE_STARS = true;
           DISABLE_FORKS = true;
           ENABLE_PUSH_CREATE_USER = true;
+        };
+        mailer = rec {
+          ENABLED = true;
+          PROTOCOL = "smtp+starttls";
+          SMTP_ADDR = "smtp.protonmail.ch";
+          SMTP_PORT = 587;
+          USER = "system@satr14.my.id";
+          FROM = USER;
         };
       };
     };
