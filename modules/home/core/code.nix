@@ -54,12 +54,28 @@
         light = "Catppuccin Mocha (sapphire)";
         dark = "Catppuccin Mocha (sapphire)";
       };
-      languages.CSS.language_servers = [
-        "tailwindcss-intellisense-css"
-        "!vscode-css-language-server"
-        "..."
-      ];
+      languages = {
+        Svelte = {
+          auto_indent = "preserve_indent";
+          tab_size = 4;
+        };
+        HTML = {
+          auto_indent = "preserve_indent";
+          tab_size = 4;
+        };
+        CSS.language_servers = [
+          "tailwindcss-intellisense-css"
+          "!vscode-css-language-server"
+          "..."
+        ];
+        Nix.language_servers = [
+          "nixd"
+          "!nil"
+          "..."
+        ];
+      };
       lsp = {
+        nixd.settings.options.home-manager.expr = "let flake = builtins.getFlake (toString ./.); in (builtins.elemAt (builtins.attrValues flake.homeConfigurations) 0).options";
         tailwindcss-language-server.settings = {
           classFunctions = [ "cva" "cx" ];
           experimental.classRegex = [ "[cls|className]\\s\\:\\=\\s\"([^\"]*)" ];
