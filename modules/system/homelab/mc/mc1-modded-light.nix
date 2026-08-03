@@ -54,6 +54,7 @@ in {
       "mods/FabricAPI.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/P7dR8mSH/versions/6qAuTtLR/fabric-api-0.141.6%2B1.21.11.jar"; hash = "sha256-vf9/1+IgCFz60v+bH0Dd5lNK4Lls83j5ejdLxUy57Q8="; };
       
       "mods/EffortlessBuilding.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/DYtfQEYj/versions/WFfB60HD/effortlessbuilding-4.1%2B1.21.11.jar"; hash = "sha256-nxp2tv/O5C++/5SKPixH8p96SGzSy26VOWsaho6SYqU="; };
+      "mods/ArmoredFoes.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/ahTPKYtE/versions/lDgTIEk5/ArmoredFoes-v21.11.2-mc1.21.11-Fabric.jar"; hash = "sha256-r9S5ny34S7TnVZmDQVFh8dxakA1wDfVRqNr7SCRGm+w="; };
       "mods/SimpleVoiceChat.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/9eGKb6K1/versions/XhWdYnkC/voicechat-fabric-1.21.11-2.6.21.jar"; hash = "sha256-06XtTXw2f4/CVFxED52AOLVxVnTVcr4BrdRgvb4bkRI="; };
       "mods/SimpleDiscordLink.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/Sh0YauEf/versions/w2ngBoyZ/SimpleDiscordLink-Universal-3.4.4.jar"; hash = "sha256-awmNrYgLl7waEEM+SeFAdgCaIDxcunIYO6UF2F2c4zQ="; };
 
@@ -63,6 +64,7 @@ in {
       
       "mods/VeinMiner.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/OhduvhIc/versions/7c3RO0Qs/veinminer-fabric-2.11.2%2B1.21.11.jar"; hash = "sha256-ubLLSS+/VtNcg99EUmjTE0eAywtR4P/LQIWgqRqp1Wk="; };
       "mods/LeavesBeGone.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/AVq17PqV/versions/RhFHpbMN/LeavesBeGone-v21.11.0-mc1.21.11-Fabric.jar"; hash = "sha256-Ys/jz2aorlFRd1vlpHPAdQThMR9SaKQSFWcQDrLCRjo="; };
+      "mods/AntiXray.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/sml2FMaA/versions/PHC63Epd/antixray-fabric-1.4.14%2B1.21.11.jar"; hash = "sha256-e+5Cj+BIr3Gi0WL8KNeQvsSPJ1cBMVShSAfYHZF/7hA="; };
       
       "mods/VanillaStructureUpdate.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/q3gDW66d/versions/p9AB4oNm/vanilla-structure-update-v2.8.jar"; hash = "sha256-62PW2JW6zOpnguvcQL9pjCD/lCtc4RGYQeO/hmal3D4="; };
       "mods/Explorify.jar" = pkgs.fetchurl { url = "https://cdn.modrinth.com/data/HSfsxuTo/versions/9vHj342y/Explorify%20v1.6.4%20f15-88.mod.jar"; hash = "sha256-3MU0DcdxxhNY9TuYGFlOnliNmvgcCh6QbDc/sU2b56M="; };
