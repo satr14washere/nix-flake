@@ -68,7 +68,7 @@
         };
       in {
         battery = balanced;
-        charger = balanced; # performance;
+        charger = performance;
         # ^^ disable overclocking for purely productivity use so low temps and fan noise
       };
     };
