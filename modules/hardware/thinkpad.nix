@@ -7,12 +7,13 @@
     ./misc/fakecam.nix
     ./core/hibernation.nix
     ./core/firmware.nix
+    ./core/kernel.nix
     ./core/igpu.nix
     ./core/tpm.nix
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_zen;
+    # kernelPackages = pkgs.linuxPackages_zen;
     kernel.sysctl."vm.laptop_mode" = 5;
     initrd.availableKernelModules = [ "thinkpad_acpi" ];
     kernelParams = [
