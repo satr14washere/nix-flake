@@ -37,7 +37,6 @@
         "wl-paste --type image --watch cliphist store"
 
         "waybar &"
-        "sunshine &"
         "blueman-applet &"
         "nm-applet &"
         "tailscale systray &"
