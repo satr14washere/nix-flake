@@ -7,9 +7,9 @@
     trusted-public-keys = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
   };
 
-  # environment.systemPackages = with pkgs; [
-  #   scx-loader
-  # ];
+  environment.systemPackages = with pkgs; [
+    scx-loader scx.full
+  ];
   
   # services.scx = {
   #   enable = true;
