@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, ... }: let
+  nixd-flake-hostname = "thinkpad";
+in {
   programs.zed-editor = {
     enable = true;
     package = pkgs.zed-editor;
@@ -57,7 +59,7 @@
       languages = {
         Svelte = {
           auto_indent = "preserve_indent";
-          tab_size = 4;
+          tab_size = 2;
         };
         HTML = {
           auto_indent = "preserve_indent";
@@ -75,7 +77,10 @@
         ];
       };
       lsp = {
-        nixd.settings.options.home-manager.expr = "let flake = builtins.getFlake (toString ./.); in (builtins.elemAt (builtins.attrValues flake.homeConfigurations) 0).options";
+        nixd.settings.options = {
+          nixos.expr = "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.${nixd-flake-hostname}.options";
+          home-manager.expr = "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.${nixd-flake-hostname}.options.home-manager.users.type.getSubOptions []";
+        };
         tailwindcss-language-server.settings = {
           classFunctions = [ "cva" "cx" ];
           experimental.classRegex = [ "[cls|className]\\s\\:\\=\\s\"([^\"]*)" ];
