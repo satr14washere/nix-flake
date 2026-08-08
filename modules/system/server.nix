@@ -47,7 +47,10 @@ in {
   };
 
   virtualisation = {
-    incus.enable = true; # lxc
+    incus = {
+      enable = true; # lxc
+      ui.enable = true;
+    };
     oci-containers.backend = "docker";
     docker = {
       enable = true;
