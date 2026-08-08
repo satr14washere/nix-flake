@@ -10,6 +10,7 @@
       "minecraft"
       "wheel"
       "dialout"
+      "incus-admin"
       "libvirtd"
       "docker"
       "input"
