@@ -21,6 +21,12 @@
           ROOT_URL = "https://git.${homelab.domain}";
           LANDING_PAGE = "explore";
         };
+        cors = {
+          ENABLED = true;
+          ALLOW_CREDENTIALS = false;
+          ALLOW_DOMAIN = "https://satr14.my.id,https://*.satr14.my.id";
+          METHODS = "GET";
+        };
         actions.DEFAULT_ACTIONS_URL = "https://git.satr14.my.id";
         oauth2_client.ENABLE_AUTO_REGISTRATION = true;
         service = {
