@@ -26,7 +26,7 @@
     "instagram"
     "youtube"
     # "minecraft"
-    "steam"
+    # "steam"
   ];
 in {
   services.adguardhome = {
