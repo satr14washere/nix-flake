@@ -40,7 +40,7 @@ in {
   services = {
     nginx = {
       enable = true;
-      package = pkgs.angie;
+      # package = pkgs.angie; # marked as insecure, use nginx for now
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
       recommendedGzipSettings = true;
