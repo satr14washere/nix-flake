@@ -1,4 +1,10 @@
-{ pkgs, homelab, ... }: {
+{ pkgs, homelab, ... }:
+let
+  headerTmpl = pkgs.writeText "forgejo-header.tmpl" ''
+    <script defer src="https://a.satr14.my.id/script.js" data-website-id="3d913f12-552d-4d8d-811e-6f6ef5aff37f"></script>
+  '';
+in
+{
   services = {
     forgejo = {
       enable = true;
@@ -95,4 +101,9 @@
     "gitea-runner-nixos-deploy".restartIfChanged = false;
     "forgejo".restartIfChanged = false;
   };
+
+  systemd.tmpfiles.rules = [
+    "d /mnt/data/apps/forgejo/custom/templates/custom 0750 forgejo forgejo -"
+    "L+ /mnt/data/apps/forgejo/custom/templates/custom/header.tmpl - - - - ${headerTmpl}"
+  ];
 }
