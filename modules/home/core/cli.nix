@@ -5,7 +5,7 @@
     TERMINAL = "kitty";
   };
 
-  home.packages = with pkgs; [ bun packwiz ];
+  home.packages = with pkgs; [ bun packwiz arduino-cli ];
 
   programs = {
     tmux = {
