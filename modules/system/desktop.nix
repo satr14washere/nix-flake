@@ -19,7 +19,11 @@
     };
     niri = {
       enable = true;
-      package = pkgs.niri-unstable;
+      # Use niri-flake's own self-contained package rather than one built
+      # against our system nixpkgs: niri-flake's derivation still relies on
+      # the (now-removed) `libdisplay-info_0_2` attribute, which its own
+      # pinned nixpkgs still provides.
+      package = inputs.niri.packages.${pkgs.system}.niri-unstable;
     };
     hyprland = {
       enable = false;
@@ -33,9 +37,12 @@
   xdg.portal = {
     enable = true;
     extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
     ];
+    config = {
+      common.default = [ "gtk" ];
+      niri.default = [ "gtk" ];
+    };
   };
 
   services = {
