@@ -48,7 +48,7 @@ in {
         blocking_mode = "null_ip";
         protection_enabled = true;
         safebrowsing_enabled = true;
-        parental_enabled = true;
+        # parental_enabled = true;
         rewrites_enabled = true;
         filtering_enabled = true;
         safe_search = {
