@@ -32,7 +32,7 @@
 
     slack
     discord
-    protonmail-desktop
+    zoom-us
     
     vlc
     brave
