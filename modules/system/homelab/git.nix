@@ -30,7 +30,7 @@ in
         cors = {
           ENABLED = true;
           ALLOW_CREDENTIALS = false;
-          ALLOW_DOMAIN = "https://satr14.my.id,https://*.satr14.my.id";
+          ALLOW_DOMAIN = "*";
           METHODS = "GET";
         };
         actions.DEFAULT_ACTIONS_URL = "https://git.satr14.my.id";
