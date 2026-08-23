@@ -13,12 +13,11 @@
     commit = "f3798426202978beee3b3c91bcbbf3220505c75a";
     path = if !useLatest then "commit/${commit}" else "branch/main";
   in pkgs.fetchPackwizModpack {
-    packHash = "";
+    packHash = "sha256-ke5qkOxuf2b7OYuqOr6ug8c6JkwUXQ5jMKp7hBN5WQo=";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/${path}/iu-s4/pack.toml";
   };
 in {
   systemd.services."minecraft-server-${name}" = {
-    environment.LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib"; # physics toys mod fix
     # serviceConfig.Nice = -5; # higher scheduling priority (causes fan noise even when idle)
   };
   
@@ -31,7 +30,7 @@ in {
       server-ip = "0.0.0.0";
       server-port = ports.minecraft;
       server-name = name;
-      motd = "Season 4 - §b§lFlying Machines";
+      motd = "Season 4 - §b§lFlying Nuclear?";
       log-ips = false;
       hide-online-players = true; 
       
