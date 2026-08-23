@@ -76,9 +76,8 @@ in {
       fi
     '';
     
-    package = pkgs.fabricServers.neoforge-1_21_1.override {
+    package = pkgs.neoforgeServers.neoforge-1_21_1-21_1_248.override {
       jre_headless = pkgs.javaPackages.compiler.temurin-bin.jdk-25;
-      loaderVersion = "21.1.248";
     };
 
     jvmOpts = let flags = [
