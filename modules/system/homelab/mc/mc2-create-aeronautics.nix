@@ -10,7 +10,7 @@
   
   modpack = let
     useLatest = true;
-    commit = "4cb6c0f5d89c6e2d1c2add8884c0e2aff1e65910";
+    commit = "93a425aaad07dc39560a033c5a2f3bd5ae84531e";
     path = if !useLatest then "commit/${commit}" else "branch/main";
   in pkgs.fetchPackwizModpack {
     packHash = "";
