@@ -58,7 +58,7 @@ in {
     };
     
     symlinks = inputs.mc.lib.collectFilesAt modpack "mods";
-    files = inputs.mc.lib.collectFilesAt modpack "config";
+    files = inputs.mc.lib.collectFilesAt modpack "config" // inputs.mc.lib.collectFilesAt modpack "kubejs";
     
     extraStartPre = let sed-commands = lib.concatStringsSep "\n" (
       lib.mapAttrsToList (substitution: file: 
