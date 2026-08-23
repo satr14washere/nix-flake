@@ -44,7 +44,7 @@ in {
       enable-query = false;
       enforce-secure-profile = false;
       pevent-proxy-connections = false;
-      allow-flight = false;
+      allow-flight = true;
       player-idle-timeout = 0;
       
       view-distance = 12;
