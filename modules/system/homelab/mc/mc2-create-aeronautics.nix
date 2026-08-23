@@ -13,7 +13,7 @@
     commit = "93a425aaad07dc39560a033c5a2f3bd5ae84531e";
     path = if !useLatest then "commit/${commit}" else "branch/main";
   in pkgs.fetchPackwizModpack {
-    packHash = "";
+    packHash = "sha256-ShwuLXSJ0jtVMSRujN/ArcRcJA+xIuGgmgZJF9z3bDU=";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/${path}/iu-s4/pack.toml";
   };
 in {
