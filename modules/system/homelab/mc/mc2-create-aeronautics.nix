@@ -10,10 +10,10 @@
   
   modpack = let
     useLatest = true;
-    commit = "93a425aaad07dc39560a033c5a2f3bd5ae84531e";
+    commit = "f3798426202978beee3b3c91bcbbf3220505c75a";
     path = if !useLatest then "commit/${commit}" else "branch/main";
   in pkgs.fetchPackwizModpack {
-    packHash = "sha256-ShwuLXSJ0jtVMSRujN/ArcRcJA+xIuGgmgZJF9z3bDU=";
+    packHash = "";
     url = "https://git.satr14.my.id/satr14/server-modpack/raw/${path}/iu-s4/pack.toml";
   };
 in {
