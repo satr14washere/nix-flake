@@ -4,17 +4,17 @@
   headroom-allocation-mb = 2048;
   rcon-pass = "howdy";
   ports = {
-    minecraft = 25567;
-    rcon = 25577;
+    minecraft = 25565;
+    rcon = 25575;
   };
   
   modpack = let
     useLatest = true;
-    commit = "";
+    commit = "4cb6c0f5d89c6e2d1c2add8884c0e2aff1e65910";
     path = if !useLatest then "commit/${commit}" else "branch/main";
   in pkgs.fetchPackwizModpack {
     packHash = "";
-    url = "https://git.satr14.my.id/satr14/create-modpack/raw/${path}/pack.toml";
+    url = "https://git.satr14.my.id/satr14/server-modpack/raw/${path}/iu-s4/pack.toml";
   };
 in {
   systemd.services."minecraft-server-${name}" = {
@@ -23,7 +23,7 @@ in {
   };
   
   services.minecraft-servers.servers.${name} = {
-    enable = false;
+    enable = true;
     autoStart = true;
     restart = "always";
     
@@ -31,7 +31,7 @@ in {
       server-ip = "0.0.0.0";
       server-port = ports.minecraft;
       server-name = name;
-      motd = "§cCan't connect to server";
+      motd = "Season 4 - §b§lFlying Machines";
       log-ips = false;
       hide-online-players = true; 
       
@@ -41,8 +41,8 @@ in {
       spawn-protection = 0;
       pvp = true;
       
-      online-mode = true;
-      enable-query = true;
+      online-mode = false;
+      enable-query = false;
       enforce-secure-profile = false;
       pevent-proxy-connections = false;
       allow-flight = false;
@@ -57,35 +57,14 @@ in {
       "rcon.port" = ports.rcon;
     };
     
-    symlinks = inputs.mc.lib.collectFilesAt modpack "mods" // {
-      "polymer/packsquash" = let packsquash-binary = pkgs.runCommand "packsquash" {
-        src = pkgs.fetchurl {
-          url = "https://github.com/ComunidadAylas/PackSquash/releases/download/v0.4.1/packsquash-x86_64-unknown-linux-gnu.zip";
-          sha256 = "sha256-VsGZewoiO5MjhIhwjlLO5d5uHynlAK5Jh16jH2k2rPs=";
-        };
-        nativeBuildInputs = [ pkgs.unzip ];
-      } ''
-        mkdir -p $out/bin
-        unzip $src -d $out/bin
-        chmod +x $out/bin/packsquash
-      ''; in "${packsquash-binary}/bin/packsquash";
-    };
-
-    files = inputs.mc.lib.collectFilesAt modpack "config" // {
-      "config/proxy_protocol_support.json".value = {
-        enableProxyProtocol = false; # polymer auto host has issues with proxy protocol
-        whitelistTCPShieldServers = false;
-        proxyServerIPs = [ "127.0.0.1" "::1" ];
-        directAccessIPs = [ "127.0.0.0/8" "::1/128" ];
-      };
-    };
+    symlinks = inputs.mc.lib.collectFilesAt modpack "mods";
+    files = inputs.mc.lib.collectFilesAt modpack "config";
     
     extraStartPre = let sed-commands = lib.concatStringsSep "\n" (
       lib.mapAttrsToList (substitution: file: 
         ''sed -i "s|${substitution}|''${${substitution}}|g" ${file}''
       ) {
         "REPLACE_SVC_HOST"      = "config/voicechat/voicechat-server.properties";
-        "REPLACE_RP_LINK"       = "config/welcomemessage.json5";
         "REPLACE_DC_BOT_TOKEN"  = "config/simple-discord-link/simple-discord-link.toml";
         "REPLACE_DC_OWNER_ROLE" = "config/simple-discord-link/simple-discord-link.toml";
       }
@@ -97,9 +76,9 @@ in {
       fi
     '';
     
-    package = pkgs.fabricServers.fabric-1_21_11.override {
+    package = pkgs.fabricServers.neoforge-1_21_1.override {
       jre_headless = pkgs.javaPackages.compiler.temurin-bin.jdk-25;
-      loaderVersion = "0.19.2";
+      loaderVersion = "21.1.248";
     };
 
     jvmOpts = let flags = [
