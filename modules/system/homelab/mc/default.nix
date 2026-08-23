@@ -1,6 +1,6 @@
 { inputs, ... }: {
   imports = [
-    ./mc1-modded-light.nix
+    ./mc2-create-aeronautics.nix
     inputs.mc.nixosModules.minecraft-servers
   ];
   nixpkgs.overlays = [ inputs.mc.overlay ];
