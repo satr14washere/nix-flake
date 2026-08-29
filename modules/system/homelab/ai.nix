@@ -17,6 +17,7 @@
       environmentFile = "/mnt/data/apps/ollama/.env";
       environment = {
         OLLAMA_BASE_URL = "http://localhost:11434";
+        WEBUI_URL = "https://ai.proxy.satr14.my.id";
         # WEBUI_AUTH = "False";
       };
     };
