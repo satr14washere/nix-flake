@@ -18,6 +18,7 @@
       environment = {
         OLLAMA_BASE_URL = "http://localhost:11434";
         WEBUI_URL = "https://ai.proxy.satr14.my.id";
+        FORWARDED_ALLOW_IPS = "127.0.0.1";
         # WEBUI_AUTH = "False";
       };
     };
