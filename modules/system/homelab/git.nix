@@ -29,8 +29,8 @@ in
         };
         cors = {
           ENABLED = true;
-          ALLOW_CREDENTIALS = false;
-          ALLOW_DOMAIN = "*";
+          ALLOW_CREDENTIALS = true;
+          ALLOW_DOMAIN = "https://satr14.my.id,https://*.satr14.my.id";
           METHODS = "*";
           HEADERS = "*";
         };
