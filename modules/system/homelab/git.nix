@@ -31,7 +31,8 @@ in
           ENABLED = true;
           ALLOW_CREDENTIALS = false;
           ALLOW_DOMAIN = "*";
-          METHODS = "GET";
+          METHODS = "*";
+          HEADERS = "*";
         };
         actions.DEFAULT_ACTIONS_URL = "https://git.satr14.my.id";
         oauth2_client.ENABLE_AUTO_REGISTRATION = true;
