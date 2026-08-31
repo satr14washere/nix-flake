@@ -26,6 +26,7 @@ in {
     ssh-keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIESvQFXoUBafatqnxTd6qk3WEOcfwb3AIWVTstR3lHzX forgejo"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC7nkis5iB9qJ0OLi8YO4MX1F/ISmBng/xYdNcupGAJC forgejo-actions"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHJ7abOO4AqDl7HxDDnqmipc0zOyP4WApt7FLq7Bx+8z friday-sandbox"
     ];
     disks = {
       # gallery = ext4 "/dev/disk/by-uuid/834f51c1-90ee-4601-ba76-ef0419198d67"; # disk for photo gallery 
