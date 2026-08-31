@@ -26,6 +26,7 @@
       noto-fonts
       font-awesome
       corefonts
+      lora
     ];
   };
   
