@@ -21,7 +21,8 @@
       overlays = [ inputs.gl.overlay ];
       config = {
         allowUnfree = true;
-        permittedInsecurePackages = [ "ventoy-qt5-1.1.17" ];
+        allowInsecurePredicate = pkg: builtins.match "ventoy-.*" (pkg.pname or "") != null;
+
       };
     };
     args = {
