@@ -39,6 +39,7 @@
     flameshot
     libreoffice
     appimage-run
+    kdePackages.kdenlive
 
     virt-manager
     remmina
