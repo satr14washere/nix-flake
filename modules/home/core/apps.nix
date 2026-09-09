@@ -31,8 +31,11 @@
     github-copilot-cli
 
     slack
-    discord
     zoom-us
+    (discord.override {
+      withOpenASAR = true;
+      withVencord = true;
+    })
     
     vlc
     brave
