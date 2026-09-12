@@ -72,6 +72,7 @@
     };
     homeConfigurations = {
       bootstrap = homeConfig "bootstrap";
+      desktop = homeConfig "desktop";
     };
   };
 }
