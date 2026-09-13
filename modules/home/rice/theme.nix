@@ -4,12 +4,16 @@
     settings."org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       gtk-theme = lib.mkForce "Adwaita-dark";
+      enable-animations = false;
     };
   };
 
   gtk = {
     enable = true;
-    gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+      gtk-enable-animations = false;
+    };
     gtk4.theme = null;
     iconTheme = {
       name = "Papirus-Dark";
