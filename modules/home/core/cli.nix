@@ -5,7 +5,7 @@
     TERMINAL = "kitty";
   };
 
-  home.packages = with pkgs; [ bun uv packwiz arduino-cli esptool micropython platformio-core ];
+  home.packages = with pkgs; [ bun uv packwiz arduino-cli esptool platformio-core ];
 
   programs = {
     tmux = {
