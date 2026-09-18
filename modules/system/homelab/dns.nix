@@ -23,8 +23,8 @@
   ];
   blocked = [
     # LOCK IN
-    "instagram"
-    "youtube"
+    # "instagram"
+    # "youtube"
     # "minecraft"
     # "steam"
   ];
