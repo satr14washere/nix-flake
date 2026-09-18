@@ -27,6 +27,7 @@
   
   home.packages = with pkgs; [
     zed-editor
+    kicad
     opencode
     github-copilot-cli
 
