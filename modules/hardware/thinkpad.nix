@@ -50,25 +50,25 @@
     
         [BATTERY]
         Update_Rate_s: 30
-        PL1_Tdp_W: 12
+        PL1_Tdp_W: 10
         PL1_Duration_s: 28
-        PL2_Tdp_W: 20
+        PL2_Tdp_W: 15
         PL2_Duration_s: 0.002
-        Trip_Temp_C: 85
+        Trip_Temp_C: 75
     
         [AC]
         Update_Rate_s: 5
-        PL1_Tdp_W: 25
+        PL1_Tdp_W: 18
         PL1_Duration_s: 28
-        PL2_Tdp_W: 35
+        PL2_Tdp_W: 25
         PL2_Duration_s: 0.002
-        Trip_Temp_C: 90
+        Trip_Temp_C: 80
     
         [UNDERVOLT]
-        CORE: -100
-        CACHE: -100
-        GPU: -80
-        UNCORE: -80
+        CORE: -40
+        CACHE: -40
+        GPU: -30
+        UNCORE: -30
         ANALOGIO: 0
       '';
     };
