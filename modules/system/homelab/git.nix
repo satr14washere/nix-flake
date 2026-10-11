@@ -82,7 +82,10 @@ in
     renovate = {
       enable = true;
       schedule = "*:0"; # every hour
-      credentials.RENOVATE_TOKEN = "/mnt/data/apps/renovate/token.env";
+      credentials = {
+        RENOVATE_TOKEN = "/mnt/data/apps/renovate/token.env";
+        GITHUB_COM_TOKEN = "/mnt/data/apps/renovate/github_token.env";
+      };
       settings = {
         platform = "forgejo";
         endpoint = "https://git.${homelab.domain}";
