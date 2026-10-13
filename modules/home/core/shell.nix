@@ -69,6 +69,7 @@
         "convert-pdf" = "libreoffice --headless --convert-to pdf";
         "nix-fetch-hash" = "nix store prefetch-file --json";
         "git-fix" = "git rebase --continue";
+        "git-logs" = "git --no-pager log --oneline --author=${git.email}";
         
         "mcl" = "portablemc start -l $(cat ~/.minecraft/portablemc-launch-params.json | jq -r .email) $(cat ~/.minecraft/portablemc-launch-params.json | jq -r .version) --jvm-args=-Xmx6G";
         "mc" = "ferium upgrade; mcl";
