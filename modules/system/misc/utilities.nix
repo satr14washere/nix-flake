@@ -10,6 +10,7 @@
     smartmontools
     rclone
     ncdu
+    file
     ventoy-full-qt
 
     # System Monitoring & Hardware
