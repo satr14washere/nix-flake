@@ -1,10 +1,10 @@
 { pkgs, ... }: let
   python = pkgs.python3.withPackages (ps: with ps; [ pillow argon2-cffi ]);
   script = let
-    version = "v1.20.25";
+    version = "v1.20.26";
   in pkgs.fetchurl {
     url = "https://github.com/9001/copyparty/releases/download/${version}/copyparty-en.py";
-    hash = "sha256-HPObYyJl4AoWzCZGGATQ+A31TUdVo9i8bj+niZFDvSQ=";
+    hash = "sha256-OsB4bsv9uss/8ZTil/oLPN1xUuIOs8HOaMvThM1dBfU=";
   };
   executable = pkgs.writeShellScriptBin "copyparty" ''
     exec ${python}/bin/python3 ${script} "$@"
