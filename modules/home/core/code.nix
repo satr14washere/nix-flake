@@ -7,7 +7,8 @@ in {
     extensions = [
       "wakatime" "discord-presence"
       "catppuccin" "catppuccin-icons"
-      "codebook"
+      "github-theme" "github-theme"
+      "codebook" "emmet"
       "git-firefly" "nix"
       "html" "html-snippets"
       "svelte" "svelte-snippets"
