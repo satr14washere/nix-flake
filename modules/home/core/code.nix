@@ -45,10 +45,35 @@ in {
         sidebar_side = "right";
         tool_permissions.default = "allow";
         default_model = {
-          provider = "copilot_chat";
-          model = "claude-sonnet-5";
+          provider = "amanai";
+          model = "amanai/claude-sonnet-5";
           effort = "low";
           enable_thinking = true;
+        };
+      };
+      language_models = {
+        ollama.api_url = "http://localhost:11434";
+        openai_compatible = {
+          amanai = {
+            api_url = "https://api.amanai.dev/v1";
+            available_models = map (model: {
+              name = "amanai/${model}";
+              max_tokens = 200000;
+              max_output_tokens = 32000;
+              capabilities = {
+                tools = true;
+                parallel_tool_calls = false;
+                prompt_cache_key = false;
+                chat_completions = false;
+                interleaved_reasoning = false;
+                max_tokens_parameter = false;
+              };
+            }) [
+              "claude-sonnet-5" "claude-opus-5"
+              "deepseek-v4-flash" "deepseek-v4-pro"
+              "kimi-k3" "glm-5.3"
+            ];
+          };
         };
       };
       theme = {
