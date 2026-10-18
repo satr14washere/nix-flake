@@ -67,7 +67,6 @@
     vim
     wget
     curl
-    openssl_3
     coreutils-full
     jq
     lsof
