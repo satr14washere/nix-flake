@@ -71,7 +71,7 @@ in {
                 max_tokens_parameter = false;
               };
             }) [
-              "claude-sonnet-5" "claude-opus-5"
+              "claude-haiku-5.5" "claude-sonnet-5.5" "claude-opus-5.5"
               "deepseek-v4-flash" "deepseek-v4-pro"
               "kimi-k3" "glm-5.3"
             ];
