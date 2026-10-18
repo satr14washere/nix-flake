@@ -104,7 +104,13 @@ in {
               widgets = [
                 {
                   type = "to-do";
+                  hide-header = true;
                   id = "tasks";
+                }
+                {
+                  type = "to-do";
+                  hide-header = true;
+                  id = "homework";
                 }
                 {
                   type = "server-stats";
