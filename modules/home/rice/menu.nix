@@ -1,7 +1,7 @@
 { config, pkgs, rice, ctp-opt, ... }: {
   programs.rofi = {
     enable = true;
-    terminal = "${pkgs.kitty}/bin/kitty";
+    settings.terminal = "${pkgs.kitty}/bin/kitty";
     # location = "top";
     # yoffset = 10;
     theme = let inherit (config.lib.formats.rasi) mkLiteral; in {
