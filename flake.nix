@@ -10,7 +10,7 @@
     gl.url = "github:nix-community/nixGL";
     ctp.url = "github:catppuccin/nix";
     
-    krnl.url = "github:xddxdd/nix-cachyos-kernel";
+    #krnl.url = "github:xddxdd/nix-cachyos-kernel";
     niri.url = "github:sodiboo/niri-flake";
     mc.url = "github:Infinidoge/nix-minecraft";
   };
