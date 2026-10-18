@@ -42,7 +42,7 @@ in {
         };
       };
       agent = {
-        sidebar_side = "right";
+        threads_sidebar.position = "right";
         tool_permissions.default = "allow";
         default_model = {
           provider = "amanai";
@@ -62,6 +62,7 @@ in {
               max_output_tokens = 32000;
               capabilities = {
                 tools = true;
+                images = false;
                 parallel_tool_calls = false;
                 prompt_cache_key = false;
                 chat_completions = false;
