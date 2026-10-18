@@ -33,10 +33,7 @@
 
     slack
     zoom-us
-    (discord.override {
-      withOpenASAR = true;
-      withVencord = true;
-    })
+    vesktop
     
     vlc
     brave
