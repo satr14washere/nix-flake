@@ -19,11 +19,8 @@
     };
     niri = {
       enable = true;
-      # Use niri-flake's own self-contained package rather than one built
-      # against our system nixpkgs: niri-flake's derivation still relies on
-      # the (now-removed) `libdisplay-info_0_2` attribute, which its own
-      # pinned nixpkgs still provides.
-      package = inputs.niri.packages.${pkgs.system}.niri-unstable;
+      #package = inputs.niri.packages.${pkgs.system}.niri-unstable;
+      package = pkgs.niri;
     };
     hyprland = {
       enable = false;
@@ -60,6 +57,7 @@
   environment = {
     systemPackages = with pkgs; [
       libsecret libnotify kdePackages.kdeconnect-kde
+      libxcursor libx11 libxkbcommon
     ];
     sessionVariables = {
       XDG_RUNTIME_DIR = "/run/user/$UID"; # https://discourse.nixos.org/t/login-keyring-did-not-get-unlocked-hyprland/40869/10
