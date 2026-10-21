@@ -23,6 +23,7 @@ in {
   
   homelab = rec {
     domain = "satr14.my.id"; # root domain for dns, ssl certs, reverse proxy, etc.
+    ts-ip = "100.113.147.93";
     ssh-keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIESvQFXoUBafatqnxTd6qk3WEOcfwb3AIWVTstR3lHzX forgejo"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC7nkis5iB9qJ0OLi8YO4MX1F/ISmBng/xYdNcupGAJC forgejo-actions"
@@ -93,7 +94,7 @@ in {
       };
     };
     records = [
-      [ "main.dns.${domain}"       "100.113.147.93" ] # this machine
+      [ "main.dns.${domain}"       ts-ip                ] # this machine
       [ "proxy.${domain}"          "main.dns.${domain}" ]
       [ "*.proxy.${domain}"        "proxy.${domain}"    ]
       

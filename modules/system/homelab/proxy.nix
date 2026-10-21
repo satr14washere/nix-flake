@@ -45,6 +45,7 @@ in {
       recommendedTlsSettings = true;
       recommendedGzipSettings = true;
       recommendedOptimisation = true;
+      defaultListenAddresses = [ homelab.ts-ip ];
       virtualHosts = {
         "_" = {
           default = true;
