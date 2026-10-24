@@ -68,8 +68,22 @@ in {
     in builtins.concatStringsSep "\n" (map (r: "${builtins.elemAt r 1} ${builtins.elemAt r 0}") ipRecords);
   };
 
-  systemd.services.nginx = {
-    after = [ "adguardhome.service" ];
-    wants = [ "adguardhome.service" ];
+  systemd.services = {
+    nginx = {
+      after = [ "adguardhome.service" ];
+      wants = [ "adguardhome.service" ];
+    };
+    "prepare-kexec".script = lib.mkForce ''
+      set -euo pipefail
+  
+      if [[ 1 = "$(</sys/kernel/kexec_loaded)" ]]; then
+        exit 0
+      fi
+  
+      p=$(readlink -f /nix/var/nix/profiles/system)
+      kexec --load "$p/kernel" \
+        --initrd="$p/initrd" \
+        --append="$(cat "$p/kernel-params") init=$p/init"
+    '';
   };
 }
