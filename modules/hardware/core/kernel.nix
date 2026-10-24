@@ -11,6 +11,7 @@
 
   environment.systemPackages = with pkgs; [
     scx-loader scx.full
+    kexec-tools
   ];
   
   # services.scx = {
