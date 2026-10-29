@@ -43,6 +43,7 @@
   };
 
   services = {
+    cloudflare-warp.enable = true;
     resolved.enable = true;
     displayManager.sddm = {
       enable = enable-dm;
