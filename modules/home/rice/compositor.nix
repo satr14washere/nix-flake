@@ -40,6 +40,7 @@
         "blueman-applet &"
         "nm-applet &"
         "tailscale systray &"
+        "warp-taskbar &"
       ];
 
       xwayland-satellite = {
