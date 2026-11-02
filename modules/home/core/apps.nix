@@ -3,7 +3,9 @@
   # RAM within seconds when joining a meeting until the system OOMs.
   # The cgroup kill is confined to the scope, so the desktop survives.
   zoom-capped = pkgs.runCommand "zoom-us-capped" { } ''
-    mkdir -p $out/bin $out/share/applications
+    mkdir -p $out/bin
+    # keep icons (Icon=Zoom), mime types and the rest of share/ from the original package
+    cp -rs --no-preserve=mode ${pkgs.zoom-us}/share $out/share
     cat > $out/bin/zoom-us <<'EOF'
     #!${pkgs.runtimeShell}
     # disableCef=true stops ZoomWebviewHost (CEF) from spawning, saves RAM.
@@ -24,6 +26,9 @@
       ${lib.getExe pkgs.zoom-us} "$@"
     EOF
     chmod +x $out/bin/zoom-us
+    ln -s zoom-us $out/bin/zoom
+    # swap the symlinked desktop entry for one that launches the capped wrapper
+    rm $out/share/applications/Zoom.desktop
     substitute ${pkgs.zoom-us}/share/applications/Zoom.desktop $out/share/applications/Zoom.desktop \
       --replace-fail Exec=zoom Exec=zoom-us
   '';
