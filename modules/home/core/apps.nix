@@ -1,30 +1,27 @@
-{ pkgs, lib, ... }: let
-  zoom-capped = pkgs.runCommand "zoom-us-capped" { } ''
-    mkdir -p $out/bin
-    cp -rs --no-preserve=mode ${pkgs.zoom-us}/share $out/share
-    cat > $out/bin/zoom-us <<'EOF'
-    #!${pkgs.runtimeShell}
-    conf="$HOME/.config/zoomus.conf"
-    mkdir -p "$HOME/.config"
-    if [ ! -f "$conf" ]; then
-      printf '[General]\ndisableCef=true\n' > "$conf"
-    elif ${pkgs.gnugrep}/bin/grep -q '^disableCef=' "$conf"; then
-      ${pkgs.gnused}/bin/sed -i 's/^disableCef=.*/disableCef=true/' "$conf"
-    elif ${pkgs.gnugrep}/bin/grep -q '^\[General\]' "$conf"; then
-      ${pkgs.gnused}/bin/sed -i '0,/^\[General\]/s//[General]\ndisableCef=true/' "$conf"
-    else
-      printf '[General]\ndisableCef=true\n' >> "$conf"
-    fi
-    exec ${pkgs.systemd}/bin/systemd-run --user --scope --quiet --collect \
-      -p MemoryMax=6G -p MemorySwapMax=0 \
-      ${lib.getExe pkgs.zoom-us} "$@"
-    EOF
-    chmod +x $out/bin/zoom-us
-    ln -s zoom-us $out/bin/zoom
-    rm $out/share/applications/Zoom.desktop
-    substitute ${pkgs.zoom-us}/share/applications/Zoom.desktop $out/share/applications/Zoom.desktop \
-      --replace-fail Exec=zoom Exec=zoom-us
-  '';
+{ pkgs, ... }: let
+  zoom-wrapper = pkgs.writeShellApplication {
+    name = "zoom-us";
+    runtimeInputs = with pkgs; [ systemd gnugrep gnused zoom-us ];
+    text = ''
+      conf="$HOME/.config/zoomus.conf"
+      mkdir -p "$(dirname "$conf")"
+      touch "$conf"
+      sed -i '/^disableCef=/d; /^\[General\]/a disableCef=true' "$conf"
+      grep -q '^disableCef=true' "$conf" || printf '[General]\ndisableCef=true\n' >> "$conf"
+      exec systemd-run --user --scope --quiet --collect -p MemoryMax=6G -p MemorySwapMax=0 zoom "$@"
+    '';
+  };
+  zoom-capped = pkgs.symlinkJoin {
+    name = "zoom-us-capped";
+    paths = [ pkgs.zoom-us ];
+    postBuild = ''
+      rm $out/bin/{zoom,zoom-us} $out/share/applications/Zoom.desktop
+      ln -s ${zoom-wrapper}/bin/zoom-us $out/bin/zoom-us
+      ln -s zoom-us $out/bin/zoom
+      substitute ${pkgs.zoom-us}/share/applications/Zoom.desktop $out/share/applications/Zoom.desktop \
+        --replace-fail Exec=zoom Exec=zoom-us
+    '';
+  };
 in {
   nixpkgs.config.allowUnfree = true;
 
