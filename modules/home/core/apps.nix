@@ -1,4 +1,33 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: let
+  # Wrap zoom in a systemd scope with a memory cap: Zoom on Linux spikes
+  # RAM within seconds when joining a meeting until the system OOMs.
+  # The cgroup kill is confined to the scope, so the desktop survives.
+  zoom-capped = pkgs.runCommand "zoom-us-capped" { } ''
+    mkdir -p $out/bin $out/share/applications
+    cat > $out/bin/zoom-us <<'EOF'
+    #!${pkgs.runtimeShell}
+    # disableCef=true stops ZoomWebviewHost (CEF) from spawning, saves RAM.
+    # Set in the launcher since Zoom rewrites zoomus.conf itself.
+    conf="$HOME/.config/zoomus.conf"
+    mkdir -p "$HOME/.config"
+    if [ ! -f "$conf" ]; then
+      printf '[General]\ndisableCef=true\n' > "$conf"
+    elif ${pkgs.gnugrep}/bin/grep -q '^disableCef=' "$conf"; then
+      ${pkgs.gnused}/bin/sed -i 's/^disableCef=.*/disableCef=true/' "$conf"
+    elif ${pkgs.gnugrep}/bin/grep -q '^\[General\]' "$conf"; then
+      ${pkgs.gnused}/bin/sed -i '0,/^\[General\]/s//[General]\ndisableCef=true/' "$conf"
+    else
+      printf '[General]\ndisableCef=true\n' >> "$conf"
+    fi
+    exec ${pkgs.systemd}/bin/systemd-run --user --scope --quiet --collect \
+      -p MemoryMax=6G -p MemorySwapMax=0 \
+      ${lib.getExe pkgs.zoom-us} "$@"
+    EOF
+    chmod +x $out/bin/zoom-us
+    substitute ${pkgs.zoom-us}/share/applications/Zoom.desktop $out/share/applications/Zoom.desktop \
+      --replace-fail Exec=zoom Exec=zoom-us
+  '';
+in {
   nixpkgs.config.allowUnfree = true;
 
   xdg = {
@@ -32,7 +61,7 @@
     github-copilot-cli
 
     slack
-    zoom-us
+    zoom-capped
     vesktop
     
     vlc
