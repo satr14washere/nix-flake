@@ -1,4 +1,28 @@
-{ pkgs, ... }: {
+{ pkgs, ... }: let
+  zoom-wrapper = pkgs.writeShellApplication {
+    name = "zoom-us";
+    runtimeInputs = with pkgs; [ systemd gnugrep gnused zoom-us ];
+    text = ''
+      conf="$HOME/.config/zoomus.conf"
+      mkdir -p "$(dirname "$conf")"
+      touch "$conf"
+      sed -i '/^disableCef=/d; /^\[General\]/a disableCef=true' "$conf"
+      grep -q '^disableCef=true' "$conf" || printf '[General]\ndisableCef=true\n' >> "$conf"
+      exec systemd-run --user --scope --quiet --collect -p MemoryMax=6G -p MemorySwapMax=0 zoom "$@"
+    '';
+  };
+  zoom-capped = pkgs.symlinkJoin {
+    name = "zoom-us-capped";
+    paths = [ pkgs.zoom-us ];
+    postBuild = ''
+      rm $out/bin/{zoom,zoom-us} $out/share/applications/Zoom.desktop
+      ln -s ${zoom-wrapper}/bin/zoom-us $out/bin/zoom-us
+      ln -s zoom-us $out/bin/zoom
+      substitute ${pkgs.zoom-us}/share/applications/Zoom.desktop $out/share/applications/Zoom.desktop \
+        --replace-fail Exec=zoom Exec=zoom-us
+    '';
+  };
+in {
   nixpkgs.config.allowUnfree = true;
 
   xdg = {
@@ -32,7 +56,7 @@
     github-copilot-cli
 
     slack
-    zoom-us
+    zoom-capped
     vesktop
     
     vlc
