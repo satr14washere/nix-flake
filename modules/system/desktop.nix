@@ -1,4 +1,4 @@
-{ inputs, pkgs, enable-dm, ... }: {
+{ homelab, inputs, pkgs, enable-dm, ... }: {
   nixpkgs.overlays = [ inputs.niri.overlays.niri ];
   imports = [
     inputs.niri.nixosModules.niri
@@ -9,6 +9,21 @@
     ./misc/wol.nix
     ./base.nix
   ];
+
+  nix = {
+    distributedBuilds = true;
+    buildMachines = [{
+      hostName = homelab.ts-hostname;
+      system = "x86_64-linux";
+      protocol = "ssh-ng";
+      maxJobs = 8;
+      speedFactor = 4;
+      supportedFeatures = [ "nixos-test" "big-parallel" "kvm" ];
+      sshUser = "satr14";
+      sshKey = "/home/satr14/.ssh/id_ed25519";
+    }];
+    settings.builders-use-substitutes = true;
+  };
 
   programs = {
     nix-ld = {
