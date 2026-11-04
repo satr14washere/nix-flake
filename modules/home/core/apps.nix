@@ -52,6 +52,7 @@ in {
   home.packages = with pkgs; [
     zed-editor
     kicad
+    freecad
     opencode
     github-copilot-cli
 
