@@ -53,6 +53,7 @@ in {
     zed-editor
     kicad
     freecad
+    orca-slicer
     opencode
     github-copilot-cli
 
