@@ -75,8 +75,8 @@ in {
     gpu-screen-recorder-gtk
 
     # LOCK IN
-    (prismlauncher.override {
-      jdks = with javaPackages.compiler.temurin-bin; [ jre-21 jdk-25 ];
-    })
+    # (prismlauncher.override {
+    #   jdks = with javaPackages.compiler.temurin-bin; [ jre-21 jdk-25 ];
+    # })
   ];
 }
