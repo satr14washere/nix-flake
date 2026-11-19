@@ -51,6 +51,7 @@ in {
   
   home.packages = with pkgs; [
     zed-editor
+    arduino-ide
     kicad
     freecad
     orca-slicer
