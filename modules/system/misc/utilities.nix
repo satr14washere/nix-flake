@@ -1,5 +1,10 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
+    # Database Tools
+    sqlite
+    postgresql
+    pgsql-tools
+    
     # Disk & Storage
     baobab
     gnome-disk-utility
