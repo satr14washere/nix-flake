@@ -77,7 +77,7 @@ in
         "debian:docker://docker.io/library/node:26-trixie-slim"
         "aio:docker://git.satr14.my.id/satr14/aio-container:latest"
       ];
-      hostPackages = with pkgs; [ bash coreutils git nix openssh bun docker-client ];
+      hostPackages = with pkgs; [ bash coreutils git nix openssh bun nodejs npm docker-client ];
     };
     renovate = {
       enable = true;
