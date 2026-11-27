@@ -12,6 +12,9 @@
     ./core/tpm.nix
   ];
 
+  systemd.coredump.extraConfig = "Storage=none";
+  # ^^^ coredumps consume every single bit of disk space on every resume from suspend
+  
   boot = {
     # kernelPackages = pkgs.linuxPackages_zen;
     kernel.sysctl."vm.laptop_mode" = 5;
